@@ -34,9 +34,9 @@ function SmoothRotatingTerra({
     ) {
       // معالجة الانتقال من 0 إلى 2π أو العكس لتجنب الدوران الطويل
       if (targetRotation > currentRotation) {
-        setCurrentRotation(currentRotation + 2 * Math.PI);
+        setCurrentRotation(currentRotation + 4 * Math.PI);
       } else {
-        setCurrentRotation(currentRotation - 2 * Math.PI);
+        setCurrentRotation(currentRotation - 4 * Math.PI);
       }
     }
   }, [targetRotation, currentRotation]);
@@ -161,13 +161,13 @@ function AnimatedTerraGeometry({
 
 function AnimatedTerraCanvas({
   rotation = 0,
-  scale = 0.00015,
+  scale = 0.00017,
   position = [1.5, 0, 0],
 }: AnimatedTerraProps) {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 5] }}
+        camera={{ position: [5, 1, 4] }}
         style={{ background: "transparent" }}
         onError={(error) => {
           console.warn("AnimatedTerra Canvas error:", error);
