@@ -1,7 +1,7 @@
 "use client";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useRef } from "react";
 import dynamic from "next/dynamic";
 import * as THREE from "three";
 
@@ -14,11 +14,68 @@ interface AnimatedTerraProps {
   position?: [number, number, number];
 }
 
-function AnimatedTerraGeometry({
-  rotation = 0,
+function SmoothRotatingTerra({
+  targetRotation = 0,
   scale = 0.00015,
   position = [1.5, 0, 0],
-}: AnimatedTerraProps) {
+}: {
+  targetRotation?: number;
+  scale?: number;
+  position?: [number, number, number];
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+  const [currentRotation, setCurrentRotation] = useState(targetRotation);
+
+  // تحديث الـ rotation عند تغيير الـ target
+  useEffect(() => {
+    if (
+      groupRef.current &&
+      Math.abs(targetRotation - currentRotation) > Math.PI
+    ) {
+      // معالجة الانتقال من 0 إلى 2π أو العكس لتجنب الدوران الطويل
+      if (targetRotation > currentRotation) {
+        setCurrentRotation(currentRotation + 2 * Math.PI);
+      } else {
+        setCurrentRotation(currentRotation - 2 * Math.PI);
+      }
+    }
+  }, [targetRotation, currentRotation]);
+
+  // Smooth rotation animation with easing
+  useFrame((state, delta) => {
+    if (groupRef.current) {
+      const rotationDiff = targetRotation - currentRotation;
+
+      // إذا كان الفرق كبير، نستخدم easing أبطأ للحصول على تأثير أكثر سلاسة
+      const easingSpeed = Math.abs(rotationDiff) > 1 ? 2 : 4;
+      const newRotation = currentRotation + rotationDiff * delta * easingSpeed;
+
+      // تحديد threshold صغير لتجنب الـ jittering
+      if (Math.abs(rotationDiff) > 0.01) {
+        groupRef.current.rotation.y = newRotation;
+        setCurrentRotation(newRotation);
+      } else {
+        // snap to target عند الوصول قريب منه
+        groupRef.current.rotation.y = targetRotation;
+        setCurrentRotation(targetRotation);
+      }
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <AnimatedTerraGeometry scale={scale} position={position} />
+    </group>
+  );
+}
+
+function AnimatedTerraGeometry({
+  scale = 0.00015,
+  position = [1.5, 0, 0],
+}: {
+  scale?: number;
+  position?: [number, number, number];
+}) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { scene } = useGLTF("/assets/Terra.glb");
 
@@ -96,7 +153,7 @@ function AnimatedTerraGeometry({
   }
 
   return (
-    <group rotation={[0, rotation, 0]}>
+    <group>
       <primitive object={scene.clone()} scale={scale} position={position} />
     </group>
   );
@@ -131,8 +188,8 @@ function AnimatedTerraCanvas({
             </mesh>
           }
         >
-          <AnimatedTerraGeometry
-            rotation={rotation}
+          <SmoothRotatingTerra
+            targetRotation={rotation}
             scale={scale}
             position={position}
           />
