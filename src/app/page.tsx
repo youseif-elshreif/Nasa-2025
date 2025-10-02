@@ -9,7 +9,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Earth Section - Terra يتحرك حول الأرض */}
-      {/* <EarthSection /> */}
+      <EarthSection />
     </main>
   );
 }

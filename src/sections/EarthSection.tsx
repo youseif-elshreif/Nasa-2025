@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import EarthModel from "../components/EarthModel";
 import dynamic from "next/dynamic";
 
-const TerraModel = dynamic(() => import("../components/TerraModel"), {
+const AnimatedTerra = dynamic(() => import("../components/AnimatedTerra"), {
   ssr: false,
 });
 
 export default function EarthSection() {
   const [currentPhase, setCurrentPhase] = useState(0);
   const [terraPosition, setTerraPosition] = useState({ x: 200, y: -100 });
+  const [terraRotation, setTerraRotation] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,15 +28,19 @@ export default function EarthSection() {
       if (progress < 0.25) {
         setCurrentPhase(0);
         setTerraPosition({ x: 200, y: -100 }); // فوق يمين الأرض
+        setTerraRotation(0); // الاتجاه الأصلي
       } else if (progress < 0.5) {
         setCurrentPhase(1);
         setTerraPosition({ x: -200, y: -80 }); // فوق شمال الأرض
+        setTerraRotation(Math.PI); // دوران 180 درجة
       } else if (progress < 0.75) {
         setCurrentPhase(2);
         setTerraPosition({ x: 220, y: 100 }); // تحت يمين الأرض
+        setTerraRotation(0); // الاتجاه الأصلي
       } else {
         setCurrentPhase(3);
         setTerraPosition({ x: -220, y: 120 }); // تحت شمال الأرض
+        setTerraRotation(Math.PI); // دوران 180 درجة
       }
     };
 
@@ -91,7 +96,9 @@ export default function EarthSection() {
               transform: `translate(${terraPosition.x}px, ${terraPosition.y}px)`,
             }}
           >
-            <TerraModel />
+            <AnimatedTerra 
+              rotation={terraRotation}
+            />
           </div>
         </div>
 

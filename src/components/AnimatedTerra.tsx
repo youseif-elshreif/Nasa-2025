@@ -1,0 +1,139 @@
+"use client";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { useEffect, useState, Suspense } from "react";
+import dynamic from "next/dynamic";
+import * as THREE from "three";
+
+// Preload the model مع key مختلف لتجنب التضارب
+useGLTF.preload("/assets/Terra.glb");
+
+interface AnimatedTerraProps {
+  rotation?: number;
+  scale?: number;
+  position?: [number, number, number];
+}
+
+function AnimatedTerraGeometry({ 
+  rotation = 0, 
+  scale = 0.00015, 
+  position = [1.5, 0, 0] 
+}: AnimatedTerraProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { scene } = useGLTF("/assets/Terra.glb");
+
+  useEffect(() => {
+    if (scene) {
+      // نسخ الـ scene لتجنب التضارب مع المكون الآخر
+      const clonedScene = scene.clone();
+      
+      // إصلاح مشكلة الـ textures المفقودة
+      clonedScene.traverse((child) => {
+        if (child.type === 'Mesh') {
+          const mesh = child as THREE.Mesh;
+          if (mesh.material) {
+            // نسخ المادة لتجنب التضارب
+            const originalMaterial = mesh.material as THREE.MeshStandardMaterial;
+            const material = originalMaterial.clone();
+            mesh.material = material;
+            
+            // إضافة ألوان fallback حسب نوع الجزء
+            if (material.name?.includes('Solar') || material.name?.includes('Panel')) {
+              material.color.setHex(0x1a1a2e); // أزرق داكن للألواح الشمسية
+              material.metalness = 0.8;
+              material.roughness = 0.2;
+            } else if (material.name?.includes('Side')) {
+              material.color.setHex(0x4a4a4a); // رمادي للجوانب
+              material.metalness = 0.6;
+              material.roughness = 0.4;
+            } else {
+              material.color.setHex(0x666666); // لون افتراضي
+              material.metalness = 0.5;
+              material.roughness = 0.5;
+            }
+            
+            // إزالة الـ textures المكسورة
+            if (material.map && !material.map.image) {
+              material.map = null;
+              material.needsUpdate = true;
+            }
+          }
+        }
+      });
+
+      // إضافة تأخير صغير لضمان smooth loading
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+      }, 150); // تأخير مختلف قليلاً
+
+      return () => clearTimeout(timer);
+    }
+  }, [scene]);
+
+  if (!isLoaded) {
+    return (
+      <mesh>
+        <boxGeometry args={[0.8, 0.8, 0.8]} />
+        <meshStandardMaterial color="#444" opacity={0.7} transparent />
+      </mesh>
+    );
+  }
+
+  return (
+    <group rotation={[0, rotation, 0]}>
+      <primitive object={scene.clone()} scale={scale} position={position} />
+    </group>
+  );
+}
+
+function AnimatedTerraCanvas({ 
+  rotation = 0, 
+  scale = 0.00015, 
+  position = [1.5, 0, 0] 
+}: AnimatedTerraProps) {
+  return (
+    <div className="w-full h-full">
+      <Canvas
+        camera={{ position: [0, 0, 5] }}
+        style={{ background: "transparent" }}
+        onError={(error) => {
+          console.warn("AnimatedTerra Canvas error:", error);
+        }}
+        onCreated={({ gl }) => {
+          gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        }}
+      >
+        <ambientLight intensity={1.0} />
+        <directionalLight position={[8, 8, 5]} intensity={0.8} />
+        <directionalLight position={[-8, -8, -5]} intensity={0.4} />
+        <Suspense
+          fallback={
+            <mesh>
+              <boxGeometry args={[0.8, 0.8, 0.8]} />
+              <meshStandardMaterial color="#666" />
+            </mesh>
+          }
+        >
+          <AnimatedTerraGeometry 
+            rotation={rotation} 
+            scale={scale} 
+            position={position} 
+          />
+        </Suspense>
+        {/* لا توجد OrbitControls هنا - فقط عرض */}
+      </Canvas>
+    </div>
+  );
+}
+
+// Export with no SSR to prevent hydration mismatch
+export default dynamic(() => Promise.resolve(AnimatedTerraCanvas), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-transparent">
+      <div className="animate-pulse">
+        <div className="w-16 h-16 bg-gray-700 rounded-lg"></div>
+      </div>
+    </div>
+  ),
+}) as React.ComponentType<AnimatedTerraProps>;
