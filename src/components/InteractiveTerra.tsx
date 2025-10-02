@@ -14,32 +14,47 @@ function TerraGeometry() {
 
   useEffect(() => {
     if (scene) {
-      // إصلاح مشكلة الـ textures المفقودة
+      // تحسين المواد والألوان
       scene.traverse((child) => {
-        if (child.type === 'Mesh') {
+        if (child.type === "Mesh") {
           const mesh = child as THREE.Mesh;
           if (mesh.material) {
             const material = mesh.material as THREE.MeshStandardMaterial;
-            
-            // إضافة ألوان fallback حسب نوع الجزء
-            if (material.name?.includes('Solar') || material.name?.includes('Panel')) {
-              material.color.setHex(0x1a1a2e); // أزرق داكن للألواح الشمسية
-              material.metalness = 0.8;
-              material.roughness = 0.2;
-            } else if (material.name?.includes('Side')) {
-              material.color.setHex(0x4a4a4a); // رمادي للجوانب
-              material.metalness = 0.6;
-              material.roughness = 0.4;
-            } else {
-              material.color.setHex(0x666666); // لون افتراضي
-              material.metalness = 0.5;
-              material.roughness = 0.5;
-            }
-            
-            // إزالة الـ textures المكسورة
-            if (material.map && !material.map.image) {
+
+            // تحسين خصائص المادة للإضاءة الأفضل
+            material.needsUpdate = true;
+
+            // فقط معالجة الـ textures المكسورة
+            if (
+              material.map &&
+              (!material.map.image || material.map.image.complete === false)
+            ) {
+              console.log("Removing broken texture for:", material.name);
               material.map = null;
-              material.needsUpdate = true;
+
+              // إضافة ألوان fallback واقعية فقط للـ textures المكسورة
+              if (
+                material.name?.toLowerCase().includes("solar") ||
+                material.name?.toLowerCase().includes("panel")
+              ) {
+                material.color.setHex(0x1a4d72); // أزرق للألواح الشمسية
+                material.metalness = 0.8;
+                material.roughness = 0.2;
+              } else if (material.name?.toLowerCase().includes("side")) {
+                material.color.setHex(0xd4d4d4); // فضي للجوانب
+                material.metalness = 0.6;
+                material.roughness = 0.4;
+              } else {
+                material.color.setHex(0xf5f5f5); // أبيض مائل للرمادي
+                material.metalness = 0.2;
+                material.roughness = 0.8;
+              }
+            } else if (material.color) {
+              // تحسين السطوع للألوان الموجودة
+              const currentColor = material.color.getHex();
+              if (currentColor === 0x000000 || currentColor === 0x808080) {
+                material.color.setHex(0xf0f0f0); // تفتيح الألوان الداكنة
+              }
             }
           }
         }
@@ -83,9 +98,10 @@ function InteractiveTerraCanvas() {
           gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         }}
       >
-        <ambientLight intensity={1.2} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <directionalLight position={[-10, -10, -5]} intensity={0.5} />
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[10, 10, 5]} intensity={1.2} />
+        <directionalLight position={[-10, -10, -5]} intensity={0.8} />
+        <pointLight position={[0, 0, 10]} intensity={0.5} color="#ffffff" />
         <Suspense
           fallback={
             <mesh>

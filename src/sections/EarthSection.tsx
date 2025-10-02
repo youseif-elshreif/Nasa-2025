@@ -96,9 +96,7 @@ export default function EarthSection() {
               transform: `translate(${terraPosition.x}px, ${terraPosition.y}px)`,
             }}
           >
-            <AnimatedTerra 
-              rotation={terraRotation}
-            />
+            <AnimatedTerra rotation={terraRotation} />
           </div>
         </div>
 

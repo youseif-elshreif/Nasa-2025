@@ -3,6 +3,7 @@
 ## Components Overview
 
 ### 1. InteractiveTerra.tsx
+
 - **الاستخدام**: HeroSection
 - **الوظيفة**: Terra تفاعلي مع controls
 - **المميزات**:
@@ -10,7 +11,8 @@
   - AutoRotate مفعل
   - Controls للمستخدم
 
-### 2. AnimatedTerra.tsx  
+### 2. AnimatedTerra.tsx
+
 - **الاستخدام**: EarthSection
 - **الوظيفة**: Terra مبرمج بدون تحكم المستخدم
 - **المميزات**:
@@ -19,10 +21,12 @@
   - حركة مبرمجة بالـ CSS transforms
 
 ### 3. TerraModel.tsx (قديم)
+
 - **الحالة**: متروك للتوافق مع أي imports قديمة
 - **يُفضل عدم استخدامه**: استخدم المكونين الجديدين بدلاً منه
 
 ## الفوائد:
+
 1. **لا توجد تضارب** بين الـ Canvas instances
 2. **تحكم منفصل** في كل مكون
 3. **أداء أفضل** - كل مكون محسن لاستخدامه

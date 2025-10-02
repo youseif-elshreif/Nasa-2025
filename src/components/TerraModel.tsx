@@ -14,21 +14,35 @@ interface TerraProps {
   position?: [number, number, number];
 }
 
-function Terra({ rotation = 0, scale = 0.00015, position = [1.5, 0, 0] }: TerraProps) {
+function Terra({
+  rotation = 0,
+  scale = 0.00015,
+  position = [1.5, 0, 0],
+}: TerraProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { scene } = useGLTF("/assets/Terra.glb");
 
   useEffect(() => {
     if (scene) {
-      // إصلاح مشكلة الـ textures المفقودة
+      // إصلاح مشكلة الـ textures المفقودة فقط عند الحاجة
       scene.traverse((child) => {
-        if (child.type === 'Mesh') {
+        if (child.type === "Mesh") {
           const mesh = child as THREE.Mesh;
           if (mesh.material) {
-            // إضافة fallback color للمواد اللي textures بتاعتها مش شغالة
             const material = mesh.material as THREE.MeshStandardMaterial;
-            if (material.map && !material.map.image) {
-              material.color.setHex(0x666666); // لون رمادي كـ fallback
+
+            // فقط إزالة الـ textures المكسورة، والحفاظ على الألوان الأصلية
+            if (
+              material.map &&
+              (!material.map.image || material.map.image.complete === false)
+            ) {
+              material.map = null;
+              material.needsUpdate = true;
+
+              // إضافة لون fallback فقط للـ textures المكسورة
+              material.color.setHex(0xf0f0f0); // لون فاتح محايد
+              material.metalness = 0.3;
+              material.roughness = 0.7;
             }
           }
         }
@@ -68,13 +82,13 @@ interface TerraModelProps {
   autoRotateSpeed?: number;
 }
 
-function TerraModelCanvas({ 
-  rotation = 0, 
-  scale = 0.00015, 
+function TerraModelCanvas({
+  rotation = 0,
+  scale = 0.00015,
   position = [1.5, 0, 0],
   enableControls = true,
   autoRotate = true,
-  autoRotateSpeed = 0.5
+  autoRotateSpeed = 0.5,
 }: TerraModelProps) {
   return (
     <div className="w-full h-full">

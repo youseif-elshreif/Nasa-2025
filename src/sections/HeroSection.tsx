@@ -3,9 +3,12 @@
 import dynamic from "next/dynamic";
 import { FaSatellite, FaChevronDown } from "react-icons/fa";
 
-const InteractiveTerra = dynamic(() => import("../components/InteractiveTerra"), {
-  ssr: false,
-});
+const InteractiveTerra = dynamic(
+  () => import("../components/InteractiveTerra"),
+  {
+    ssr: false,
+  }
+);
 
 export default function HeroSection() {
   return (
@@ -14,15 +17,18 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         {/* نجوم */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.15),_transparent_70%)]"></div>
-        <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: `radial-gradient(2px 2px at 20px 30px, #fff, transparent),
                            radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
                            radial-gradient(1px 1px at 90px 40px, #fff, transparent),
                            radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
                            radial-gradient(2px 2px at 160px 30px, #fff, transparent)`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: '200px 100px'
-        }}></div>
+            backgroundRepeat: "repeat",
+            backgroundSize: "200px 100px",
+          }}
+        ></div>
         {/* نيبولا */}
         <div className="absolute w-[500px] h-[500px] bg-purple-600/30 blur-3xl rounded-full top-1/3 left-1/4"></div>
         <div className="absolute w-[400px] h-[400px] bg-blue-500/20 blur-3xl rounded-full bottom-1/4 right-1/3"></div>

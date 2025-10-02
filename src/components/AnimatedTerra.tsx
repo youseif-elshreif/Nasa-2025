@@ -14,10 +14,10 @@ interface AnimatedTerraProps {
   position?: [number, number, number];
 }
 
-function AnimatedTerraGeometry({ 
-  rotation = 0, 
-  scale = 0.00015, 
-  position = [1.5, 0, 0] 
+function AnimatedTerraGeometry({
+  rotation = 0,
+  scale = 0.00015,
+  position = [1.5, 0, 0],
 }: AnimatedTerraProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { scene } = useGLTF("/assets/Terra.glb");
@@ -26,36 +26,52 @@ function AnimatedTerraGeometry({
     if (scene) {
       // نسخ الـ scene لتجنب التضارب مع المكون الآخر
       const clonedScene = scene.clone();
-      
-      // إصلاح مشكلة الـ textures المفقودة
+
+      // تحسين المواد والألوان
       clonedScene.traverse((child) => {
-        if (child.type === 'Mesh') {
+        if (child.type === "Mesh") {
           const mesh = child as THREE.Mesh;
           if (mesh.material) {
             // نسخ المادة لتجنب التضارب
-            const originalMaterial = mesh.material as THREE.MeshStandardMaterial;
+            const originalMaterial =
+              mesh.material as THREE.MeshStandardMaterial;
             const material = originalMaterial.clone();
             mesh.material = material;
-            
-            // إضافة ألوان fallback حسب نوع الجزء
-            if (material.name?.includes('Solar') || material.name?.includes('Panel')) {
-              material.color.setHex(0x1a1a2e); // أزرق داكن للألواح الشمسية
-              material.metalness = 0.8;
-              material.roughness = 0.2;
-            } else if (material.name?.includes('Side')) {
-              material.color.setHex(0x4a4a4a); // رمادي للجوانب
-              material.metalness = 0.6;
-              material.roughness = 0.4;
-            } else {
-              material.color.setHex(0x666666); // لون افتراضي
-              material.metalness = 0.5;
-              material.roughness = 0.5;
-            }
-            
-            // إزالة الـ textures المكسورة
-            if (material.map && !material.map.image) {
+
+            // تحسين خصائص المادة
+            material.needsUpdate = true;
+
+            // فقط معالجة الـ textures المكسورة
+            if (
+              material.map &&
+              (!material.map.image || material.map.image.complete === false)
+            ) {
+              console.log("Removing broken texture for:", material.name);
               material.map = null;
-              material.needsUpdate = true;
+
+              // إضافة ألوان fallback واقعية فقط للـ textures المكسورة
+              if (
+                material.name?.toLowerCase().includes("solar") ||
+                material.name?.toLowerCase().includes("panel")
+              ) {
+                material.color.setHex(0x1a4d72); // أزرق للألواح الشمسية
+                material.metalness = 0.8;
+                material.roughness = 0.2;
+              } else if (material.name?.toLowerCase().includes("side")) {
+                material.color.setHex(0xd4d4d4); // فضي للجوانب
+                material.metalness = 0.6;
+                material.roughness = 0.4;
+              } else {
+                material.color.setHex(0xf5f5f5); // أبيض مائل للرمادي
+                material.metalness = 0.2;
+                material.roughness = 0.8;
+              }
+            } else if (material.color) {
+              // تحسين السطوع للألوان الموجودة
+              const currentColor = material.color.getHex();
+              if (currentColor === 0x000000 || currentColor === 0x808080) {
+                material.color.setHex(0xf0f0f0); // تفتيح الألوان الداكنة
+              }
             }
           }
         }
@@ -86,10 +102,10 @@ function AnimatedTerraGeometry({
   );
 }
 
-function AnimatedTerraCanvas({ 
-  rotation = 0, 
-  scale = 0.00015, 
-  position = [1.5, 0, 0] 
+function AnimatedTerraCanvas({
+  rotation = 0,
+  scale = 0.00015,
+  position = [1.5, 0, 0],
 }: AnimatedTerraProps) {
   return (
     <div className="w-full h-full">
@@ -103,9 +119,10 @@ function AnimatedTerraCanvas({
           gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         }}
       >
-        <ambientLight intensity={1.0} />
-        <directionalLight position={[8, 8, 5]} intensity={0.8} />
-        <directionalLight position={[-8, -8, -5]} intensity={0.4} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[8, 8, 5]} intensity={1.0} />
+        <directionalLight position={[-8, -8, -5]} intensity={0.6} />
+        <pointLight position={[0, 0, 8]} intensity={0.4} color="#ffffff" />
         <Suspense
           fallback={
             <mesh>
@@ -114,10 +131,10 @@ function AnimatedTerraCanvas({
             </mesh>
           }
         >
-          <AnimatedTerraGeometry 
-            rotation={rotation} 
-            scale={scale} 
-            position={position} 
+          <AnimatedTerraGeometry
+            rotation={rotation}
+            scale={scale}
+            position={position}
           />
         </Suspense>
         {/* لا توجد OrbitControls هنا - فقط عرض */}
