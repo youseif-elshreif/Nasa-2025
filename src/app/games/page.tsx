@@ -57,7 +57,8 @@ export default function GamesPage() {
       id: "satellite-game",
       title: "TerraQuest",
       subtitle: "Satellite Data Explorer",
-      description: "Pilot Terra satellite and collect data from its 5 amazing instruments. Learn about Earth's climate while having fun!",
+      description:
+        "Pilot Terra satellite and collect data from its 5 amazing instruments. Learn about Earth's climate while having fun!",
       features: [
         "Interactive satellite piloting",
         "Learn about Terra's instruments",
@@ -77,7 +78,8 @@ export default function GamesPage() {
       id: "coming-soon-1",
       title: "Earth Explorer",
       subtitle: "Climate Detective",
-      description: "Analyze climate data and discover patterns in Earth's changing environment. Coming soon...",
+      description:
+        "Analyze climate data and discover patterns in Earth's changing environment. Coming soon...",
       features: [
         "Climate data analysis",
         "Pattern recognition challenges",
@@ -116,7 +118,7 @@ export default function GamesPage() {
                   left: Math.random() * 100 + "%",
                   top: Math.random() * 100 + "%",
                   animationDelay: Math.random() * 3 + "s",
-                  animationDuration: (Math.random() * 2 + 2) + "s",
+                  animationDuration: Math.random() * 2 + 2 + "s",
                   opacity: Math.random() * 0.8 + 0.2,
                 }}
               />
@@ -125,11 +127,11 @@ export default function GamesPage() {
 
           {/* Moving nebulas */}
           <div className="absolute w-[800px] h-[800px] bg-gradient-to-r from-blue-500/8 via-purple-500/12 to-cyan-500/8 blur-3xl rounded-full -top-20 -right-20 animate-float"></div>
-          <div 
+          <div
             className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-500/6 via-indigo-500/10 to-blue-500/6 blur-3xl rounded-full -bottom-20 -left-20 animate-float"
             style={{ animationDelay: "3s", animationDirection: "reverse" }}
           ></div>
-          <div 
+          <div
             className="absolute w-[500px] h-[500px] bg-gradient-to-r from-cyan-500/4 via-blue-500/8 to-purple-500/4 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
             style={{ animationDelay: "1.5s" }}
           ></div>
@@ -168,7 +170,8 @@ export default function GamesPage() {
               </h1>
 
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Explore the cosmos through interactive games and learn about NASA&apos;s Terra satellite mission
+                Explore the cosmos through interactive games and learn about
+                NASA&apos;s Terra satellite mission
               </p>
 
               <motion.div
@@ -210,7 +213,7 @@ export default function GamesPage() {
                   left: Math.random() * 100 + "%",
                   top: Math.random() * 100 + "%",
                   animationDelay: Math.random() * 4 + "s",
-                  animationDuration: (Math.random() * 3 + 2) + "s",
+                  animationDuration: Math.random() * 3 + 2 + "s",
                   opacity: Math.random() * 0.6 + 0.2,
                 }}
               />
@@ -234,7 +237,8 @@ export default function GamesPage() {
               <span className="text-white">Games</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-              Interactive experiences that make learning about space science fun and engaging
+              Interactive experiences that make learning about space science fun
+              and engaging
             </p>
           </motion.div>
 
@@ -247,7 +251,7 @@ export default function GamesPage() {
                 animate={gamesVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className={`group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 cursor-pointer overflow-hidden ${
-                  game.comingSoon ? 'opacity-75' : ''
+                  game.comingSoon ? "opacity-75" : ""
                 }`}
                 style={{
                   background: `linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.04) 100%)`,
@@ -257,12 +261,18 @@ export default function GamesPage() {
               >
                 {/* Enhanced glow effects */}
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${game.gradient} blur-xl`}></div>
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${game.gradient}`}></div>
+                  <div
+                    className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${game.gradient} blur-xl`}
+                  ></div>
+                  <div
+                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${game.gradient}`}
+                  ></div>
                 </div>
 
                 {/* Border glow */}
-                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border bg-gradient-to-r ${game.borderGradient}`}></div>
+                <div
+                  className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border bg-gradient-to-r ${game.borderGradient}`}
+                ></div>
 
                 {/* Coming Soon Badge */}
                 {game.comingSoon && (
@@ -274,14 +284,18 @@ export default function GamesPage() {
                 <div className="relative z-10 space-y-6">
                   {/* Game Icon and Title */}
                   <div className="flex items-start gap-6">
-                    <div className={`p-4 rounded-2xl bg-gradient-to-br ${game.gradient} group-hover:${game.hoverGradient} transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg`}>
+                    <div
+                      className={`p-4 rounded-2xl bg-gradient-to-br ${game.gradient} group-hover:${game.hoverGradient} transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg`}
+                    >
                       {game.icon}
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1 group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                         {game.title}
                       </h3>
-                      <p className="text-sm text-gray-400 font-medium">{game.subtitle}</p>
+                      <p className="text-sm text-gray-400 font-medium">
+                        {game.subtitle}
+                      </p>
                     </div>
                   </div>
 
@@ -298,7 +312,9 @@ export default function GamesPage() {
                         className="text-gray-400 group-hover:text-gray-300 text-sm flex items-center transition-colors duration-300"
                       >
                         <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3 group-hover:shadow-lg group-hover:shadow-blue-400/50 transition-all duration-300"></div>
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">{feature}</span>
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -322,8 +338,12 @@ export default function GamesPage() {
                     </div>
                   ) : (
                     <Link href={`/games/${game.id}`}>
-                      <button className={`group/btn relative w-full px-6 py-4 bg-gradient-to-r ${game.buttonGradient} hover:${game.hoverGradient} border bg-gradient-to-r ${game.borderGradient} hover:border-opacity-75 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden`}>
-                        <div className={`absolute inset-0 bg-gradient-to-r ${game.gradient} rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300`}></div>
+                      <button
+                        className={`group/btn relative w-full px-6 py-4 bg-gradient-to-r ${game.buttonGradient} hover:${game.hoverGradient} border bg-gradient-to-r ${game.borderGradient} hover:border-opacity-75 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden`}
+                      >
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-r ${game.gradient} rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300`}
+                        ></div>
                         <span className="relative z-10 flex items-center justify-center gap-3">
                           <FaPlay className="text-lg" />
                           <span>Play Now</span>

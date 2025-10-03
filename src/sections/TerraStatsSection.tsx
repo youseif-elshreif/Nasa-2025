@@ -184,7 +184,7 @@ export default function TerraStatsSection() {
       <div className="absolute inset-0 z-0">
         {/* Dynamic nebulas */}
         <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500/6 via-purple-500/10 to-cyan-500/6 blur-3xl rounded-full top-1/4 left-1/4 animate-float"></div>
-        <div 
+        <div
           className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 via-indigo-500/6 to-blue-500/8 blur-3xl rounded-full bottom-1/3 right-1/4 animate-float"
           style={{ animationDelay: "2s", animationDirection: "reverse" }}
         ></div>
@@ -201,7 +201,7 @@ export default function TerraStatsSection() {
                 left: Math.random() * 100 + "%",
                 top: Math.random() * 100 + "%",
                 animationDelay: Math.random() * 4 + "s",
-                animationDuration: (Math.random() * 3 + 2) + "s",
+                animationDuration: Math.random() * 3 + 2 + "s",
                 opacity: Math.random() * 0.7 + 0.2,
               }}
             />
@@ -209,7 +209,7 @@ export default function TerraStatsSection() {
         </div>
 
         {/* Space dust */}
-        <div 
+        <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02),_transparent_70%)]"
           id="terra-stats"
         ></div>

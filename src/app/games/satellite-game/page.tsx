@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { FaArrowLeft, FaSatellite, FaGamepad } from 'react-icons/fa';
-import Link from 'next/link';
-import TerraGame from '@/components/TerraGame';
+import { useEffect, useState } from "react";
+import { FaArrowLeft, FaSatellite, FaGamepad } from "react-icons/fa";
+import Link from "next/link";
+import TerraGame from "@/components/TerraGame";
 
 export default function SatelliteGamePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,27 +39,39 @@ export default function SatelliteGamePage() {
 
           {/* Enhanced Nebulas */}
           <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-600/25 via-blue-500/20 to-indigo-600/25 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
-          <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/20 via-cyan-500/15 to-purple-600/20 blur-3xl rounded-full bottom-20 right-10 animate-pulse" style={{ animationDelay: "2s" }}></div>
+          <div
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/20 via-cyan-500/15 to-purple-600/20 blur-3xl rounded-full bottom-20 right-10 animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
         </div>
 
         {/* Loading Content */}
         <div className="relative z-10 text-center">
           <div className="mb-8">
-            <FaSatellite className="w-20 h-20 mx-auto text-blue-400 animate-spin" style={{ animationDuration: '3s' }} />
+            <FaSatellite
+              className="w-20 h-20 mx-auto text-blue-400 animate-spin"
+              style={{ animationDuration: "3s" }}
+            />
           </div>
-          
+
           <h1 className="text-4xl font-bold text-white mb-4 animate-fade-in">
             <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
               TerraQuest
             </span>
           </h1>
-          
-          <p className="text-gray-300 text-lg animate-slide-up" style={{ animationDelay: "0.5s" }}>
+
+          <p
+            className="text-gray-300 text-lg animate-slide-up"
+            style={{ animationDelay: "0.5s" }}
+          >
             Preparing your space mission...
           </p>
-          
+
           {/* Loading Bar */}
-          <div className="mt-8 w-64 h-2 bg-gray-700 rounded-full mx-auto overflow-hidden animate-slide-up" style={{ animationDelay: "1s" }}>
+          <div
+            className="mt-8 w-64 h-2 bg-gray-700 rounded-full mx-auto overflow-hidden animate-slide-up"
+            style={{ animationDelay: "1s" }}
+          >
             <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
           </div>
         </div>
@@ -97,7 +109,9 @@ export default function SatelliteGamePage() {
           {/* Status Indicator */}
           <div className="flex items-center gap-2 px-3 py-2 bg-green-500/20 border border-green-500/30 rounded-lg">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-300 text-sm font-medium">Game Ready</span>
+            <span className="text-green-300 text-sm font-medium">
+              Game Ready
+            </span>
           </div>
         </div>
       </header>
@@ -122,7 +136,10 @@ export default function SatelliteGamePage() {
 
           {/* Enhanced Nebulas */}
           <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-600/15 via-blue-500/10 to-indigo-600/15 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
-          <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/10 via-cyan-500/8 to-purple-600/10 blur-3xl rounded-full bottom-20 right-10 animate-pulse" style={{ animationDelay: "2s" }}></div>
+          <div
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/10 via-cyan-500/8 to-purple-600/10 blur-3xl rounded-full bottom-20 right-10 animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
         </div>
 
         {/* Game Content */}

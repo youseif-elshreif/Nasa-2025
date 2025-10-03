@@ -180,7 +180,7 @@ export default function InstrumentsPage() {
                   left: Math.random() * 100 + "%",
                   top: Math.random() * 100 + "%",
                   animationDelay: Math.random() * 3 + "s",
-                  animationDuration: (Math.random() * 2 + 2) + "s",
+                  animationDuration: Math.random() * 2 + 2 + "s",
                   opacity: Math.random() * 0.8 + 0.2,
                 }}
               />
@@ -189,11 +189,11 @@ export default function InstrumentsPage() {
 
           {/* Moving nebulas */}
           <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/10 via-purple-500/15 to-cyan-500/10 blur-3xl rounded-full -top-20 -right-20 animate-float"></div>
-          <div 
+          <div
             className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 via-indigo-500/12 to-blue-500/8 blur-3xl rounded-full -bottom-20 -left-20 animate-float"
             style={{ animationDelay: "3s", animationDirection: "reverse" }}
           ></div>
-          <div 
+          <div
             className="absolute w-[400px] h-[400px] bg-gradient-to-r from-cyan-500/6 via-blue-500/10 to-purple-500/6 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
             style={{ animationDelay: "1.5s" }}
           ></div>
@@ -304,7 +304,7 @@ export default function InstrumentsPage() {
         <div className="absolute inset-0 z-0">
           {/* Dynamic nebulas */}
           <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500/8 via-purple-500/12 to-cyan-500/8 blur-3xl rounded-full top-1/4 left-1/4 animate-float"></div>
-          <div 
+          <div
             className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/10 via-indigo-500/8 to-blue-500/10 blur-3xl rounded-full bottom-1/3 right-1/4 animate-float"
             style={{ animationDelay: "2s", animationDirection: "reverse" }}
           ></div>
@@ -321,7 +321,7 @@ export default function InstrumentsPage() {
                   left: Math.random() * 100 + "%",
                   top: Math.random() * 100 + "%",
                   animationDelay: Math.random() * 4 + "s",
-                  animationDuration: (Math.random() * 3 + 2) + "s",
+                  animationDuration: Math.random() * 3 + 2 + "s",
                   opacity: Math.random() * 0.6 + 0.2,
                 }}
               />
@@ -364,7 +364,9 @@ export default function InstrumentsPage() {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = e.clientX - rect.left - rect.width / 2;
                   const y = e.clientY - rect.top - rect.height / 2;
-                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${y / 30}deg) rotateY(${-x / 30}deg) scale(1.05)`;
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${
+                    y / 30
+                  }deg) rotateY(${-x / 30}deg) scale(1.05)`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "";
@@ -407,7 +409,9 @@ export default function InstrumentsPage() {
                         className="text-gray-400 group-hover:text-gray-300 text-sm flex items-start transition-colors duration-300"
                       >
                         <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3 mt-1.5 flex-shrink-0 group-hover:shadow-lg group-hover:shadow-blue-400/50 transition-all duration-300"></div>
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">{detail}</span>
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {detail}
+                        </span>
                       </li>
                     ))}
                   </ul>

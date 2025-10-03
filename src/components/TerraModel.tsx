@@ -145,13 +145,13 @@ export default dynamic(() => Promise.resolve(TerraModelCanvas), {
                 left: Math.random() * 100 + "%",
                 top: Math.random() * 100 + "%",
                 animationDelay: Math.random() * 3 + "s",
-                animationDuration: (Math.random() * 2 + 2) + "s",
+                animationDuration: Math.random() * 2 + 2 + "s",
               }}
             />
           ))}
         </div>
       </div>
-      
+
       {/* Loading content */}
       <div className="relative z-10 flex flex-col items-center space-y-4">
         {/* Spinning satellite icon */}
@@ -161,14 +161,25 @@ export default dynamic(() => Promise.resolve(TerraModelCanvas), {
             <div className="w-8 h-8 bg-blue-500/20 rounded-full animate-pulse"></div>
           </div>
         </div>
-        
+
         {/* Loading text */}
         <div className="text-center space-y-2">
-          <p className="text-blue-400 font-medium animate-pulse">Loading Terra Model...</p>
+          <p className="text-blue-400 font-medium animate-pulse">
+            Loading Terra Model...
+          </p>
           <div className="flex space-x-1">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "0s" }}></div>
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-            <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+            <div
+              className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"
+              style={{ animationDelay: "0s" }}
+            ></div>
+            <div
+              className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+              style={{ animationDelay: "0.1s" }}
+            ></div>
+            <div
+              className="w-2 h-2 bg-blue-300 rounded-full animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></div>
           </div>
         </div>
       </div>
