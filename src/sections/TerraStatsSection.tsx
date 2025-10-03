@@ -49,7 +49,8 @@ function StatCard({ icon, value, label, index }: StatCardProps) {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
       style={{
-        background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",
+        background:
+          "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",
         backdropFilter: "blur(20px)",
         border: "1px solid rgba(255,255,255,0.1)",
         boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.2)",
