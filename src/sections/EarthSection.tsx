@@ -248,14 +248,10 @@ export default function EarthSection() {
                     "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
                 }}
               >
-
-
                 {/* Icon Section */}
                 <div className="flex items-center justify-center mb-6">
                   <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20">
-                    <div className="text-4xl">
-                      {phase.icon}
-                    </div>
+                    <div className="text-4xl">{phase.icon}</div>
                   </div>
                 </div>
 
@@ -283,8 +279,6 @@ export default function EarthSection() {
                     </div>
                   ))}
                 </div>
-
-
               </div>
             </div>
           ))}
