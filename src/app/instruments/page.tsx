@@ -3,14 +3,14 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { 
-  FaBurn, 
-  FaSun, 
-  FaCloud, 
-  FaSearch, 
+import {
+  FaBurn,
+  FaSun,
+  FaCloud,
+  FaSearch,
   FaCity,
   FaArrowDown,
-  FaExternalLinkAlt 
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 import ModelPanel from "../../components/ModelPanel";
 
@@ -21,8 +21,12 @@ const instruments = [
     description:
       "MOPITT monitored carbon monoxide and air pollution from wildfires and factories, showing how human activity impacts the atmosphere.",
     icon: <FaBurn className="text-red-400 text-3xl" />,
-    details: ["Urban pollution mapping","Wildfire smoke monitoring","Factory emissions tracking"],
-    stats: ["Resolution: 22 km","Swath: 640 km","Operational: 1999–2025"]
+    details: [
+      "Urban pollution mapping",
+      "Wildfire smoke monitoring",
+      "Factory emissions tracking",
+    ],
+    stats: ["Resolution: 22 km", "Swath: 640 km", "Operational: 1999–2025"],
   },
   {
     id: "ceres",
@@ -30,8 +34,16 @@ const instruments = [
     description:
       "CERES studies the balance between incoming sunlight and outgoing heat, providing critical insights into climate change.",
     icon: <FaSun className="text-yellow-400 text-3xl" />,
-    details: ["Incoming solar radiation","Heat reflected by Earth","Direct climate indicators"],
-    stats: ["Measures: Solar + Infrared radiation","Provides: Global energy budget","Legacy: 25+ years of data"]
+    details: [
+      "Incoming solar radiation",
+      "Heat reflected by Earth",
+      "Direct climate indicators",
+    ],
+    stats: [
+      "Measures: Solar + Infrared radiation",
+      "Provides: Global energy budget",
+      "Legacy: 25+ years of data",
+    ],
   },
   {
     id: "modis",
@@ -39,8 +51,16 @@ const instruments = [
     description:
       "MODIS captures daily imagery of Earth, from cloud movements and ocean currents to wildfires and polar ice changes.",
     icon: <FaCloud className="text-blue-300 text-3xl" />,
-    details: ["Global daily images","Weather and cloud tracking","Forest fire detection"],
-    stats: ["Bands: 36 (0.4–14µm)","Resolution: 250m–1km","Swath: 2330 km (daily global coverage)"]
+    details: [
+      "Global daily images",
+      "Weather and cloud tracking",
+      "Forest fire detection",
+    ],
+    stats: [
+      "Bands: 36 (0.4–14µm)",
+      "Resolution: 250m–1km",
+      "Swath: 2330 km (daily global coverage)",
+    ],
   },
   {
     id: "aster",
@@ -48,8 +68,16 @@ const instruments = [
     description:
       "ASTER zooms into fine details such as urban heat, volcanoes, and natural resources, offering precise data for environmental studies.",
     icon: <FaSearch className="text-green-400 text-3xl" />,
-    details: ["Urban heat tracking","Volcano monitoring","Natural resource exploration"],
-    stats: ["Resolution: 15–90m","Bands: 14 (visible–thermal IR)","Built by: Japan (METI/JAXA)"]
+    details: [
+      "Urban heat tracking",
+      "Volcano monitoring",
+      "Natural resource exploration",
+    ],
+    stats: [
+      "Resolution: 15–90m",
+      "Bands: 14 (visible–thermal IR)",
+      "Built by: Japan (METI/JAXA)",
+    ],
   },
   {
     id: "misr",
@@ -57,8 +85,16 @@ const instruments = [
     description:
       "MISR provides multiple perspectives of the Earth, helping scientists study storms, haze, cloud heights, and megacities' growth.",
     icon: <FaCity className="text-purple-400 text-3xl" />,
-    details: ["Storm & haze analysis","Cloud height measurement","Megacity growth monitoring"],
-    stats: ["Views: 9 angles","Bands: 4 (blue–NIR)","Unique: 3D aerosol & cloud data"]
+    details: [
+      "Storm & haze analysis",
+      "Cloud height measurement",
+      "Megacity growth monitoring",
+    ],
+    stats: [
+      "Views: 9 angles",
+      "Bands: 4 (blue–NIR)",
+      "Unique: 3D aerosol & cloud data",
+    ],
   },
 ];
 
@@ -103,9 +139,9 @@ export default function InstrumentsPage() {
   }, []);
 
   const scrollToInstruments = () => {
-    cardsRef.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
+    cardsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
     });
   };
 
@@ -176,7 +212,9 @@ export default function InstrumentsPage() {
                 </h1>
 
                 <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                  Terra carries 5 advanced instruments that together provide a complete picture of Earth&apos;s climate, atmosphere, and surface.
+                  Terra carries 5 advanced instruments that together provide a
+                  complete picture of Earth&apos;s climate, atmosphere, and
+                  surface.
                 </p>
 
                 <button
@@ -207,7 +245,9 @@ export default function InstrumentsPage() {
                 </h1>
 
                 <p className="text-xl text-gray-300 leading-relaxed">
-                  Terra carries 5 advanced instruments that together provide a complete picture of Earth&apos;s climate, atmosphere, and surface.
+                  Terra carries 5 advanced instruments that together provide a
+                  complete picture of Earth&apos;s climate, atmosphere, and
+                  surface.
                 </p>
 
                 <button
@@ -269,7 +309,8 @@ export default function InstrumentsPage() {
               <span className="text-white">Instruments</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-              Each instrument aboard Terra provides unique capabilities for studying Earth&apos;s systems
+              Each instrument aboard Terra provides unique capabilities for
+              studying Earth&apos;s systems
             </p>
           </div>
 
@@ -296,9 +337,7 @@ export default function InstrumentsPage() {
 
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className="mb-4">
-                    {instrument.icon}
-                  </div>
+                  <div className="mb-4">{instrument.icon}</div>
 
                   {/* Title */}
                   <h3 className="text-xl font-bold text-white mb-3">
@@ -313,7 +352,10 @@ export default function InstrumentsPage() {
                   {/* Details */}
                   <ul className="space-y-2 mb-6">
                     {instrument.details.map((detail, idx) => (
-                      <li key={idx} className="text-gray-400 text-sm flex items-center">
+                      <li
+                        key={idx}
+                        className="text-gray-400 text-sm flex items-center"
+                      >
                         <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
                         {detail}
                       </li>
