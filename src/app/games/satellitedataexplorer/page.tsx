@@ -82,12 +82,12 @@ export default function SatelliteGamePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a]">
       {/* Enhanced Header */}
-      <header className="relative z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
+      <header className="relative z-50 bg-black/20 backdrop-blur-xl border-b border-white/10 pt-[75px]">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           {/* Back Button */}
           <Link
             href="/"
-            className="group flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
+            className="group flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 "
           >
             <FaArrowLeft className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
             <span className="font-medium">Back to Home</span>

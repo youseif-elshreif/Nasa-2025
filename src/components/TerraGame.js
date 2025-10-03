@@ -264,7 +264,7 @@ const TerraGame = () => {
 
         {/* Game Menu Card */}
         <div
-          className="relative z-10 max-w-2xl w-full mx-4 rounded-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
+          className="relative z-10 max-w-2xl w-full mx-4 rounded-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25"
           style={{
             background:
               "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)",
@@ -309,21 +309,6 @@ const TerraGame = () => {
               <h2 className="text-2xl font-bold text-white mb-4 text-center">
                 Learn About NASA&apos;s Terra Satellite!
               </h2>
-
-              {/* Instruments Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {instruments.map((inst) => (
-                  <div
-                    key={inst.id}
-                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-white/5 to-white/10 rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-105"
-                  >
-                    <span className="text-2xl">{inst.icon}</span>
-                    <span className="font-semibold text-gray-200 text-sm">
-                      {inst.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Action Buttons */}

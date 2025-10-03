@@ -1,6 +1,7 @@
 "use client";
 
 import { FaSatellite, FaChevronDown } from "react-icons/fa";
+import NASALogo from "../components/NASALogo";
 
 export default function HeroSection() {
   return (
@@ -151,8 +152,10 @@ export default function HeroSection() {
           {/* Background Glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-cyan-500/10 blur-3xl rounded-full animate-pulse"></div>
 
-          {/* nasa Model */}
-          <div className="relative w-full h-full"></div>
+          {/* NASA Model */}
+          <div className="relative w-full h-full">
+            <NASALogo />
+          </div>
         </div>
       </div>
 
