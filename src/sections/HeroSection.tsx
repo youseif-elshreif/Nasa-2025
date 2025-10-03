@@ -44,13 +44,31 @@ export default function HeroSection() {
           Discover NASA&apos;s Terra satellite and its mission to observe our
           planet from space, all in an immersive interactive 3D journey.
         </p>
-        <a
-          href="#earth-section"
-          className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold shadow-lg transition"
+        <button
+          onClick={() => {
+            const earthSection = document.getElementById("earth-section");
+            if (earthSection) {
+              // استخدام smooth scroll مع fallback
+              try {
+                earthSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                  inline: "nearest",
+                });
+              } catch {
+                // fallback للمتصفحات القديمة
+                window.scrollTo({
+                  top: earthSection.offsetTop,
+                  behavior: "smooth",
+                });
+              }
+            }
+          }}
+          className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
         >
-          <FaSatellite className="text-lg" />
+          <FaSatellite className="text-lg transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
           Start the Journey
-        </a>
+        </button>
       </div>
 
       {/* Terra التفاعلي يمين */}

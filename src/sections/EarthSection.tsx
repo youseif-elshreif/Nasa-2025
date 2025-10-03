@@ -3,7 +3,14 @@
 import { useState, useEffect } from "react";
 import EarthModel from "../components/EarthModel";
 import dynamic from "next/dynamic";
-import { FaCloud, FaSun, FaBurn, FaCity, FaGlobe } from "react-icons/fa";
+import {
+  FaCloud,
+  FaSun,
+  FaBurn,
+  FaCity,
+  FaGlobe,
+  FaSearch,
+} from "react-icons/fa";
 
 const AnimatedTerra = dynamic(() => import("../components/AnimatedTerra"), {
   ssr: false,
@@ -34,16 +41,20 @@ export default function EarthSection() {
         setCurrentPhase(0);
         setTerraPosition({ x: 200, y: -100 });
         setTerraRotation(0);
-      } else if (progress < 0.45) {
+      } else if (progress < 0.35) {
         setCurrentPhase(1);
         setTerraPosition({ x: -200, y: -80 });
         setTerraRotation(Math.PI);
-      } else if (progress < 0.7) {
+      } else if (progress < 0.5) {
         setCurrentPhase(2);
         setTerraPosition({ x: 220, y: 100 });
         setTerraRotation(0);
-      } else {
+      } else if (progress < 0.65) {
         setCurrentPhase(3);
+        setTerraPosition({ x: -180, y: 120 });
+        setTerraRotation(Math.PI / 2);
+      } else {
+        setCurrentPhase(4);
         setTerraPosition({ x: -220, y: 120 });
         setTerraRotation(Math.PI);
       }
@@ -88,14 +99,25 @@ export default function EarthSection() {
       ],
     },
     {
-      title: "ASTER & MISR – Detail and Perspective",
+      title: "ASTER – High-Resolution Imaging",
       description:
-        "ASTER zooms into fine details like city heat and natural resources, while MISR provides multiple perspectives of storms, haze, and megacities’ growth.",
-      icon: <FaCity className="text-purple-400 text-3xl" />,
+        "ASTER zooms into fine details such as urban heat, volcanoes, and natural resources, offering precise data for environmental studies.",
+      icon: <FaSearch className="text-green-400 text-3xl" />,
       details: [
         "Urban heat tracking",
+        "Volcano monitoring",
         "Natural resource exploration",
-        "Storm & haze multi-angle analysis",
+      ],
+    },
+    {
+      title: "MISR – Multi-Angle Observations",
+      description:
+        "MISR provides multiple perspectives of the Earth, helping scientists study storms, haze, cloud heights, and megacities’ growth.",
+      icon: <FaCity className="text-purple-400 text-3xl" />,
+      details: [
+        "Storm & haze analysis",
+        "Cloud height measurement",
+        "Megacity growth monitoring",
       ],
     },
   ];
@@ -103,7 +125,7 @@ export default function EarthSection() {
   return (
     <section
       id="earth-section"
-      className="min-h-[400vh] relative bg-gradient-to-b from-black via-[#050a18] to-[#0b1a2a] text-white"
+      className="min-h-[500vh] relative bg-gradient-to-b from-black via-[#050a18] to-[#0b1a2a] text-white"
     >
       {/* Space background */}
       <div className="absolute inset-0 z-0">
@@ -112,10 +134,10 @@ export default function EarthSection() {
         <div
           className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `radial-gradient(2px 2px at 20px 30px, #fff, transparent),
-                           radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-                           radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-                           radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+            backgroundImage: `radial-gradient(2px 2px at 20px 30px, #fff, transparent), 
+                           radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent), 
+                           radial-gradient(1px 1px at 90px 40px, #fff, transparent), 
+                           radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent), 
                            radial-gradient(2px 2px at 160px 30px, #fff, transparent)`,
             backgroundRepeat: "repeat",
             backgroundSize: "200px 100px",
