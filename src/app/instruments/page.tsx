@@ -164,7 +164,7 @@ export default function InstrumentsPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden"
+        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden pt-[50px]"
       >
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">

@@ -49,12 +49,10 @@ function StatCard({ icon, value, label, index }: StatCardProps) {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
       style={{
-        background:
-          "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.05) 100%)",
-        backdropFilter: "blur(15px)",
-        border: "1px solid rgba(255,255,255,0.15)",
-        boxShadow:
-          "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
+        background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",
+        backdropFilter: "blur(20px)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.2)",
       }}
       onMouseEnter={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -179,39 +177,29 @@ export default function TerraStatsSection() {
   ];
 
   return (
-    <section className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-black via-blue-900/10 to-black text-white overflow-hidden">
-      {/* Enhanced Background Effects */}
+    <section className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-[#0b1a2a] via-[#081126] to-[#050a18] text-white overflow-hidden">
+      {/* Enhanced Space Background */}
       <div className="absolute inset-0 z-0">
-        {/* Dynamic nebulas */}
-        <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500/6 via-purple-500/10 to-cyan-500/6 blur-3xl rounded-full top-1/4 left-1/4 animate-float"></div>
+        {/* Stars */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)]"></div>
         <div
-          className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 via-indigo-500/6 to-blue-500/8 blur-3xl rounded-full bottom-1/3 right-1/4 animate-float"
-          style={{ animationDelay: "2s", animationDirection: "reverse" }}
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `radial-gradient(2px 2px at 30px 40px, #fff, transparent),
+                             radial-gradient(2px 2px at 50px 80px, rgba(255,255,255,0.6), transparent),
+                             radial-gradient(1px 1px at 100px 50px, #fff, transparent),
+                             radial-gradient(1px 1px at 140px 90px, rgba(255,255,255,0.4), transparent),
+                             radial-gradient(3px 3px at 190px 30px, rgba(59,130,246,0.6), transparent)`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "250px 150px",
+          }}
         ></div>
 
-        {/* Enhanced stars field */}
-        <div className="absolute inset-0">
-          {[...Array(80)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white rounded-full animate-twinkle"
-              style={{
-                width: Math.random() * 3 + 1 + "px",
-                height: Math.random() * 3 + 1 + "px",
-                left: Math.random() * 100 + "%",
-                top: Math.random() * 100 + "%",
-                animationDelay: Math.random() * 4 + "s",
-                animationDuration: Math.random() * 3 + 2 + "s",
-                opacity: Math.random() * 0.7 + 0.2,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Space dust */}
+        {/* Nebulas */}
+        <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-600/15 via-purple-600/10 to-cyan-600/15 blur-3xl rounded-full top-20 right-20 animate-pulse"></div>
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02),_transparent_70%)]"
-          id="terra-stats"
+          className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-600/10 via-indigo-600/8 to-blue-600/12 blur-3xl rounded-full bottom-40 left-20 animate-pulse"
+          style={{ animationDelay: "3s" }}
         ></div>
       </div>
 

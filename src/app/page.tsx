@@ -4,7 +4,6 @@ import MissionOverview from "../components/MissionOverview";
 import TerraStatsSection from "../sections/TerraStatsSection";
 import EarthSection from "../sections/EarthSection";
 
-
 export default function Home() {
   return (
     <>

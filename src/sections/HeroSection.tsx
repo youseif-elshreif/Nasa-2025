@@ -12,7 +12,7 @@ const InteractiveTerra = dynamic(
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center justify-between px-8 md:px-16 lg:px-20 bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden">
+    <section className="relative h-screen flex items-center justify-between px-8 md:px-16 lg:px-20 bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden pt-[75px]">
       {/* Enhanced Space Background */}
       <div className="absolute inset-0 z-0">
         {/* Animated Stars */}

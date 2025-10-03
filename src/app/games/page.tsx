@@ -94,7 +94,7 @@ export default function GamesPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden flex items-center"
+        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden flex items-center pt-[75px]"
       >
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">

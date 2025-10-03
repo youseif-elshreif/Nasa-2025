@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import EarthModel from "../components/EarthModel";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import {
   FaCloud,
   FaSun,
@@ -266,7 +267,7 @@ export default function EarthSection() {
                 </p>
 
                 {/* Details List */}
-                <div className="space-y-3">
+                <div className="space-y-3 mb-6">
                   {phase.details.map((item, i) => (
                     <div
                       key={i}
@@ -278,6 +279,23 @@ export default function EarthSection() {
                       <span className="text-sm lg:text-base">{item}</span>
                     </div>
                   ))}
+                </div>
+
+                {/* Learn More Button */}
+                <div className="text-center">
+                  <Link
+                    href="/instruments"
+                    className="group relative inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-blue-800 hover:to-purple-700 rounded-xl text-white font-bold shadow-2xl shadow-blue-500/25 transition-all duration-500 hover:scale-105 hover:shadow-blue-500/40 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
+                  >
+                    {/* Button Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl"></div>
+
+                    {/* Button Content */}
+                    <div className="relative flex items-center gap-3">
+                      <span className="text-sm lg:text-base">Learn More</span>
+                      <FaSearch className="text-sm group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
