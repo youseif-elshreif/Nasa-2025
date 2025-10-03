@@ -12,6 +12,12 @@ import {
 export default function Footer() {
   const teamMembers = [
     {
+      name: "Ammar Soliman",
+      role: "Project Lead, Video Editor",
+      linkedin: "https://linkedin.com/in/ammar-soliman",
+      github: "https://github.com/ammar-soliman",
+    },
+    {
       name: "Youseif Elshreif",
       role: "Frontend Developer",
       linkedin: "https://linkedin.com/in/youseif-elshreif",
@@ -28,12 +34,6 @@ export default function Footer() {
       role: "AI Specialist",
       linkedin: "https://linkedin.com/in/ziad-sheashe",
       github: "https://github.com/ziad-sheashe",
-    },
-    {
-      name: "Ammar Soliman",
-      role: "Project Lead, Video Editor",
-      linkedin: "https://linkedin.com/in/ammar-soliman",
-      github: "https://github.com/ammar-soliman",
     },
   ];
 

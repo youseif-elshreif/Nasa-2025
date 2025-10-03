@@ -13,6 +13,7 @@ import {
   FaExternalLinkAlt,
   FaInfoCircle,
   FaChartLine,
+  FaPlay,
 } from "react-icons/fa";
 
 const instruments = [
@@ -22,6 +23,8 @@ const instruments = [
     fullDescription:
       "The Measurements of Pollution in the Troposphere (MOPITT) instrument was developed by the Canadian Space Agency and has been monitoring carbon monoxide in Earth's lower atmosphere since 1999. MOPITT has created the first continuous global record of CO, providing crucial data on wildfire emissions, industrial pollution, and atmospheric transport patterns. This instrument has revolutionized our understanding of how human activities impact air quality on a global scale.",
     icon: <FaBurn className="text-red-400 text-4xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Urban pollution mapping",
       "Wildfire smoke monitoring",
@@ -59,6 +62,8 @@ const instruments = [
     fullDescription:
       "The Clouds and the Earth's Radiant Energy System (CERES) instruments measure both solar-reflected and Earth-emitted radiation from the top of the atmosphere to the Earth's surface. CERES data provides critical insights into Earth's energy budget and how it's changing over time. This information is fundamental to understanding climate change, as it reveals how much energy Earth absorbs from the sun versus how much it radiates back to space.",
     icon: <FaSun className="text-yellow-400 text-4xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Incoming solar radiation measurement",
       "Earth's reflected heat monitoring",
@@ -93,6 +98,8 @@ const instruments = [
     fullDescription:
       "The Moderate Resolution Imaging Spectroradiometer (MODIS) is Terra's most well-known instrument, capturing daily images of the entire Earth in 36 spectral bands. MODIS data supports a wide range of applications from weather forecasting and wildfire detection to monitoring ocean productivity and tracking changes in polar ice. Its comprehensive daily coverage has made it indispensable for understanding rapid environmental changes.",
     icon: <FaCloud className="text-blue-300 text-4xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Daily global Earth imagery",
       "Weather and cloud tracking",
@@ -130,6 +137,8 @@ const instruments = [
     fullDescription:
       "The Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) provides high-resolution imaging in 14 spectral bands from visible to thermal infrared. Built by Japan's METI in cooperation with NASA, ASTER specializes in detailed studies of land surface processes, including urban heat islands, volcanic activity, and mineral mapping. Its high resolution makes it ideal for focused environmental studies.",
     icon: <FaSearch className="text-green-400 text-4xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Urban heat island mapping",
       "Volcanic eruption monitoring",
@@ -164,6 +173,8 @@ const instruments = [
     fullDescription:
       "The Multi-angle Imaging SpectroRadiometer (MISR) views Earth with cameras pointed in 9 different directions, providing unique 3D information about clouds, aerosols, and land surfaces. This multi-angle approach allows MISR to distinguish between different types of particles in the atmosphere and measure cloud heights with unprecedented accuracy. MISR data is crucial for understanding air quality and climate interactions.",
     icon: <FaCity className="text-purple-400 text-4xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Multi-angle atmospheric analysis",
       "Cloud height measurements",
@@ -324,6 +335,41 @@ export default function InstrumentDetailsPage() {
               <p className="text-gray-300 leading-relaxed">
                 {instrument.fullDescription}
               </p>
+            </motion.div>
+
+            {/* Video Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="p-6 rounded-2xl"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(59,130,246,0.1) 100%)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <FaPlay className="text-blue-400" />
+                Instrument Animation
+              </h2>
+
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-gray-900/50 to-gray-800/50">
+                {/* Video Player */}
+                <video
+                  src={instrument.video}
+                  className="w-full h-full object-cover rounded-xl"
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src={instrument.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </motion.div>
 
             {/* Key Capabilities */}

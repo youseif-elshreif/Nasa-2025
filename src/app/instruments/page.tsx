@@ -21,6 +21,8 @@ const instruments = [
     description:
       "MOPITT monitored carbon monoxide and air pollution from wildfires and factories, showing how human activity impacts the atmosphere.",
     icon: <FaBurn className="text-red-400 text-3xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Urban pollution mapping",
       "Wildfire smoke monitoring",
@@ -34,6 +36,8 @@ const instruments = [
     description:
       "CERES studies the balance between incoming sunlight and outgoing heat, providing critical insights into climate change.",
     icon: <FaSun className="text-yellow-400 text-3xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Incoming solar radiation",
       "Heat reflected by Earth",
@@ -51,6 +55,8 @@ const instruments = [
     description:
       "MODIS captures daily imagery of Earth, from cloud movements and ocean currents to wildfires and polar ice changes.",
     icon: <FaCloud className="text-blue-300 text-3xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Global daily images",
       "Weather and cloud tracking",
@@ -68,6 +74,8 @@ const instruments = [
     description:
       "ASTER zooms into fine details such as urban heat, volcanoes, and natural resources, offering precise data for environmental studies.",
     icon: <FaSearch className="text-green-400 text-3xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Urban heat tracking",
       "Volcano monitoring",
@@ -85,6 +93,8 @@ const instruments = [
     description:
       "MISR provides multiple perspectives of the Earth, helping scientists study storms, haze, cloud heights, and megacities' growth.",
     icon: <FaCity className="text-purple-400 text-3xl" />,
+    video:
+      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
     details: [
       "Storm & haze analysis",
       "Cloud height measurement",
