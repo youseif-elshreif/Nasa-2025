@@ -33,7 +33,14 @@ const TerraGame = () => {
         icon: "🌍",
         color: "bg-blue-500",
         description: "Captures images of Earth's surface, clouds, and aerosols",
-        fact: "MODIS views the entire Earth every 1-2 days and has 36 spectral bands!",
+        facts: [
+          "MODIS views the entire Earth every 1-2 days and has 36 spectral bands!",
+          "MODIS data supports wildfire detection and early warning systems worldwide.",
+          "The instrument can detect clouds as small as 250 meters across!",
+          "MODIS has tracked Arctic sea ice decline for over two decades.",
+          "It captures data at 6.1 Mbps, creating terabytes of Earth data daily.",
+          "MODIS imagery is used in weather forecasting around the globe.",
+        ],
       },
       {
         id: "ceres",
@@ -42,7 +49,14 @@ const TerraGame = () => {
         icon: "☀️",
         color: "bg-yellow-500",
         description: "Measures Earth's energy balance and radiation",
-        fact: "CERES helps us understand how much solar energy Earth absorbs and reflects.",
+        facts: [
+          "CERES helps us understand how much solar energy Earth absorbs and reflects.",
+          "CERES data revealed Earth's energy imbalance due to climate change.",
+          "The instrument measures radiation in three spectral ranges simultaneously.",
+          "CERES provided crucial data for IPCC climate assessment reports.",
+          "It can detect changes in Earth's energy budget as small as 0.3%.",
+          "CERES revealed how clouds affect our planet's temperature balance.",
+        ],
       },
       {
         id: "mopitt",
@@ -51,7 +65,14 @@ const TerraGame = () => {
         icon: "💨",
         color: "bg-gray-500",
         description: "Monitors carbon monoxide and methane pollution",
-        fact: "MOPITT can detect pollution from wildfires and urban areas from space!",
+        facts: [
+          "MOPITT can detect pollution from wildfires and urban areas from space!",
+          "It created the first continuous global record of carbon monoxide spanning 25+ years.",
+          "MOPITT tracked major wildfire events including Australian bushfires.",
+          "The instrument can measure CO from Earth's surface up to 150 hPa altitude.",
+          "MOPITT data helped develop air quality policies worldwide.",
+          "It revealed seasonal patterns in global atmospheric pollution.",
+        ],
       },
       {
         id: "aster",
@@ -61,7 +82,14 @@ const TerraGame = () => {
         icon: "🏔️",
         color: "bg-red-500",
         description: "Creates detailed 3D maps of land surface temperature",
-        fact: "ASTER can map volcanoes and detect heat signatures from volcanic activity.",
+        facts: [
+          "ASTER can map volcanoes and detect heat signatures from volcanic activity.",
+          "It created the most complete global digital elevation model (GDEM).",
+          "ASTER monitors hundreds of active volcanoes worldwide.",
+          "The instrument can detect objects as small as 15 meters across!",
+          "ASTER mapped urban growth in major metropolitan areas globally.",
+          "It was built by Japan in cooperation with NASA.",
+        ],
       },
       {
         id: "misr",
@@ -71,7 +99,14 @@ const TerraGame = () => {
         color: "bg-purple-500",
         description:
           "Views Earth from multiple angles to study clouds and aerosols",
-        fact: "MISR has 9 cameras pointing at different angles to create 3D views of clouds!",
+        facts: [
+          "MISR has 9 cameras pointing at different angles to create 3D views of clouds!",
+          "It pioneered 3D atmospheric particle analysis from space.",
+          "MISR can measure cloud heights with unprecedented accuracy.",
+          "The instrument tracks megacity air pollution in incredible detail.",
+          "MISR improved climate model representations of aerosols.",
+          "It provides unique 3D information about Earth's atmosphere.",
+        ],
       },
     ],
     []
@@ -209,7 +244,16 @@ const TerraGame = () => {
             setCollectedData((c) => [...c, point.instrument.id]);
             setCombo((c) => c + 1);
             lastComboTime.current = Date.now();
-            setShowFact(point.instrument);
+
+            // اختيار فاكت عشوائي من مجموعة الفاكتس الخاصة بالأداة
+            const randomFact =
+              point.instrument.facts[
+                Math.floor(Math.random() * point.instrument.facts.length)
+              ];
+            setShowFact({
+              ...point.instrument,
+              fact: randomFact,
+            });
             setTimeout(() => setShowFact(null), 12000);
             return false;
           }
@@ -304,11 +348,83 @@ const TerraGame = () => {
               )}
             </div>
 
-            {/* Game Description */}
-            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-6 mb-8 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-white mb-4 text-center">
-                Learn About NASA&apos;s Terra Satellite!
-              </h2>
+            {/* Enhanced Game Description */}
+            <div className="relative bg-gradient-to-r from-blue-500/15 to-purple-500/15 border border-blue-500/30 rounded-2xl p-8 mb-8 backdrop-blur-xl overflow-hidden group hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500">
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/15 to-cyan-500/10 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              {/* Floating particles */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-40 animate-pulse"
+                    style={{
+                      left: `${10 + Math.random() * 80}%`,
+                      top: `${10 + Math.random() * 80}%`,
+                      animationDelay: `${Math.random() * 3}s`,
+                      animationDuration: `${2 + Math.random() * 2}s`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Main content */}
+              <div className="relative z-10">
+                {/* Icon and title */}
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-blue-500/30 group-hover:scale-110 transition-transform duration-300">
+                      <FaSatellite className="w-8 h-8 text-blue-400 drop-shadow-lg" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl animate-pulse"></div>
+                  </div>
+
+                  <div className="text-center">
+                    <h2 className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-2">
+                      Terra Mission
+                    </h2>
+                    <p className="text-gray-300 font-medium">
+                      Explore NASA&apos;s Earth Observation Satellite
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mission highlights */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
+                    <span className="text-2xl">🌍</span>
+                    <div>
+                      <p className="text-sm font-bold text-blue-300">
+                        Earth Observer
+                      </p>
+                      <p className="text-xs text-gray-400">Since 1999</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
+                    <span className="text-2xl">🛰️</span>
+                    <div>
+                      <p className="text-sm font-bold text-purple-300">
+                        5 Instruments
+                      </p>
+                      <p className="text-xs text-gray-400">Advanced Sensors</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
+                    <span className="text-2xl">📊</span>
+                    <div>
+                      <p className="text-sm font-bold text-cyan-300">
+                        Climate Data
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        Real-time Monitoring
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Action Buttons */}
@@ -421,9 +537,16 @@ const TerraGame = () => {
                     <p className="text-sm text-gray-300 mb-3 leading-relaxed">
                       {inst.description}
                     </p>
-                    <p className="text-xs text-blue-300 italic border-l-2 border-blue-400/30 pl-3">
-                      {inst.fact}
-                    </p>
+                    <div className="space-y-2">
+                      {inst.facts.slice(0, 2).map((fact, factIndex) => (
+                        <p
+                          key={factIndex}
+                          className="text-xs text-blue-300 italic border-l-2 border-blue-400/30 pl-3"
+                        >
+                          {fact}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
