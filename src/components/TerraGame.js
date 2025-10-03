@@ -309,11 +309,6 @@ const TerraGame = () => {
               <h2 className="text-2xl font-bold text-white mb-4 text-center">
                 Learn About NASA&apos;s Terra Satellite!
               </h2>
-              <p className="text-gray-300 mb-6 text-center leading-relaxed">
-                Terra was launched in 1999 and orbits Earth collecting vital
-                climate data. Use arrow keys to pilot the satellite and collect
-                data from its 5 amazing instruments!
-              </p>
 
               {/* Instruments Grid */}
               <div className="grid grid-cols-2 gap-4">
@@ -785,7 +780,7 @@ const TerraGame = () => {
         {dataPoints.map((point) => (
           <div
             key={point.id}
-            className="absolute z-10 animate-float"
+            className="absolute z-10"
             style={{
               left: `${point.x}%`,
               top: `${point.y}%`,

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaSatellite, FaGamepad } from "react-icons/fa";
 import Link from "next/link";
-import TerraGame from "@/components/TerraGame";
+import TerraGame from "@/components/TerraGame.js";
 
 export default function SatelliteGamePage() {
   const [isLoading, setIsLoading] = useState(true);
