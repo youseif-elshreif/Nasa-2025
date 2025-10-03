@@ -164,42 +164,53 @@ export default function InstrumentsPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-gradient-to-b from-black via-blue-900/20 to-black text-white overflow-hidden"
+        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden"
       >
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">
-          {/* Animated stars */}
+          {/* Animated Stars */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.2),_transparent_70%)] animate-pulse"></div>
+          <div
+            className="absolute inset-0 opacity-50 animate-pulse"
+            style={{
+              backgroundImage: `radial-gradient(2px 2px at 25px 35px, #fff, transparent),
+                               radial-gradient(2px 2px at 45px 75px, rgba(255,255,255,0.8), transparent),
+                               radial-gradient(1px 1px at 95px 45px, #fff, transparent),
+                               radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.6), transparent),
+                               radial-gradient(3px 3px at 180px 25px, rgba(59,130,246,0.8), transparent),
+                               radial-gradient(2px 2px at 220px 90px, rgba(147,51,234,0.6), transparent)`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "250px 120px",
+              animation: "twinkle 4s ease-in-out infinite alternate",
+            }}
+          ></div>
+
+          {/* Enhanced Nebulas with Animation */}
+          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-600/25 via-blue-500/20 to-indigo-600/25 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
+          <div
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/20 via-cyan-500/15 to-purple-600/20 blur-3xl rounded-full bottom-20 right-10 animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
+          <div
+            className="absolute w-[300px] h-[300px] bg-gradient-to-r from-indigo-600/15 to-purple-500/10 blur-2xl rounded-full top-1/2 left-1/3 animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+
+          {/* Floating Particles */}
           <div className="absolute inset-0">
-            {[...Array(100)].map((_, i) => (
+            {[...Array(20)].map((_, i) => (
               <div
                 key={i}
-                className="absolute bg-white rounded-full animate-twinkle"
+                className="absolute w-1 h-1 bg-blue-400/60 rounded-full animate-float"
                 style={{
-                  width: Math.random() * 3 + 1 + "px",
-                  height: Math.random() * 3 + 1 + "px",
-                  left: Math.random() * 100 + "%",
-                  top: Math.random() * 100 + "%",
-                  animationDelay: Math.random() * 3 + "s",
-                  animationDuration: Math.random() * 2 + 2 + "s",
-                  opacity: Math.random() * 0.8 + 0.2,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${3 + Math.random() * 4}s`,
                 }}
               />
             ))}
           </div>
-
-          {/* Moving nebulas */}
-          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/10 via-purple-500/15 to-cyan-500/10 blur-3xl rounded-full -top-20 -right-20 animate-float"></div>
-          <div
-            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 via-indigo-500/12 to-blue-500/8 blur-3xl rounded-full -bottom-20 -left-20 animate-float"
-            style={{ animationDelay: "3s", animationDirection: "reverse" }}
-          ></div>
-          <div
-            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-cyan-500/6 via-blue-500/10 to-purple-500/6 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
-            style={{ animationDelay: "1.5s" }}
-          ></div>
-
-          {/* Space dust */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02),_transparent_70%)]"></div>
         </div>
 
         {/* Hero Content */}
@@ -218,68 +229,119 @@ export default function InstrumentsPage() {
               </motion.div>
 
               {/* Text Content - Mobile */}
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8 }}
-                className="text-center"
-              >
-                <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-                  <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
-                    Terra&apos;s
-                  </span>
-                  <br />
-                  <span className="text-white">Instruments</span>
-                </h1>
+              <div className="text-center space-y-8 animate-fade-in">
+                <div className="space-y-4">
+                  <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                    <span className="block text-white mb-2 animate-slide-up">
+                      Terra&apos;s
+                    </span>
+                    <span className="block">
+                      <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl animate-glow">
+                        Instruments
+                      </span>
+                    </span>
+                  </h1>
 
-                <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                  {/* Subtitle Badge */}
+                  <div
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-sm text-blue-300 animate-slide-up"
+                    style={{ animationDelay: "0.2s" }}
+                  >
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    Scientific Instruments
+                  </div>
+                </div>
+
+                <p
+                  className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed animate-slide-up"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   Terra carries 5 advanced instruments that together provide a
-                  complete picture of Earth&apos;s climate, atmosphere, and
-                  surface.
+                  complete picture of Earth&apos;s{" "}
+                  <span className="text-blue-400 font-semibold">
+                    climate, atmosphere, and surface
+                  </span>
+                  .
                 </p>
 
-                <button
-                  onClick={scrollToInstruments}
-                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                <div
+                  className="animate-slide-up"
+                  style={{ animationDelay: "0.8s" }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative z-10">Explore Instruments</span>
-                  <FaArrowDown className="relative z-10 text-sm group-hover:translate-y-1 transition-transform duration-300" />
-                </button>
-              </motion.div>
+                  <button
+                    onClick={scrollToInstruments}
+                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-blue-800 hover:to-purple-700 rounded-xl text-white font-bold shadow-2xl shadow-blue-500/25 transition-all duration-500 hover:scale-105 hover:shadow-blue-500/40 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
+                  >
+                    {/* Button Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl"></div>
+
+                    {/* Button Content */}
+                    <div className="relative flex items-center gap-3">
+                      <span className="text-lg">Explore Instruments</span>
+                      <FaArrowDown className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
+                    </div>
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Desktop: Split layout */}
             <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-center">
               {/* Left side - Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={heroVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-                className="space-y-8"
-              >
-                <h1 className="text-5xl xl:text-6xl font-extrabold">
-                  <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
-                    Terra&apos;s
-                  </span>
-                  <br />
-                  <span className="text-white">Instruments</span>
-                </h1>
+              <div className="space-y-8 animate-fade-in">
+                <div className="space-y-4">
+                  <h1 className="text-5xl xl:text-6xl font-extrabold leading-tight">
+                    <span className="block text-white mb-2 animate-slide-up">
+                      Terra&apos;s
+                    </span>
+                    <span className="block">
+                      <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl animate-glow">
+                        Instruments
+                      </span>
+                    </span>
+                  </h1>
 
-                <p className="text-xl text-gray-300 leading-relaxed">
+                  {/* Subtitle Badge */}
+                  <div
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-sm text-blue-300 animate-slide-up"
+                    style={{ animationDelay: "0.2s" }}
+                  >
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    Scientific Instruments
+                  </div>
+                </div>
+
+                <p
+                  className="text-lg xl:text-xl text-gray-300 max-w-lg leading-relaxed animate-slide-up"
+                  style={{ animationDelay: "0.4s" }}
+                >
                   Terra carries 5 advanced instruments that together provide a
-                  complete picture of Earth&apos;s climate, atmosphere, and
-                  surface.
+                  complete picture of Earth&apos;s{" "}
+                  <span className="text-blue-400 font-semibold">
+                    climate, atmosphere, and surface
+                  </span>
+                  .
                 </p>
 
-                <button
-                  onClick={scrollToInstruments}
-                  className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600/80 to-purple-600/80 hover:from-blue-600 hover:to-purple-600 rounded-lg text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                <div
+                  className="animate-slide-up"
+                  style={{ animationDelay: "0.8s" }}
                 >
-                  <span>Explore Instruments</span>
-                  <FaArrowDown className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
-                </button>
-              </motion.div>
+                  <button
+                    onClick={scrollToInstruments}
+                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-blue-800 hover:to-purple-700 rounded-xl text-white font-bold shadow-2xl shadow-blue-500/25 transition-all duration-500 hover:scale-105 hover:shadow-blue-500/40 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
+                  >
+                    {/* Button Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl"></div>
+
+                    {/* Button Content */}
+                    <div className="relative flex items-center gap-3">
+                      <span className="text-lg">Explore Instruments</span>
+                      <FaArrowDown className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
+                    </div>
+                  </button>
+                </div>
+              </div>
 
               {/* Right side - Model Panel */}
               <motion.div
@@ -298,50 +360,59 @@ export default function InstrumentsPage() {
       {/* Instruments Cards Section */}
       <section
         ref={cardsRef}
-        className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-black via-blue-900/10 to-black text-white overflow-hidden"
+        className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-[#0b1a2a] via-[#081126] to-[#050a18] text-white overflow-hidden"
       >
-        {/* Enhanced Background Effects */}
+        {/* Enhanced Space Background */}
         <div className="absolute inset-0 z-0">
-          {/* Dynamic nebulas */}
-          <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500/8 via-purple-500/12 to-cyan-500/8 blur-3xl rounded-full top-1/4 left-1/4 animate-float"></div>
+          {/* Stars */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)]"></div>
           <div
-            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/10 via-indigo-500/8 to-blue-500/10 blur-3xl rounded-full bottom-1/3 right-1/4 animate-float"
-            style={{ animationDelay: "2s", animationDirection: "reverse" }}
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `radial-gradient(2px 2px at 30px 40px, #fff, transparent),
+                               radial-gradient(2px 2px at 50px 80px, rgba(255,255,255,0.6), transparent),
+                               radial-gradient(1px 1px at 100px 50px, #fff, transparent),
+                               radial-gradient(1px 1px at 140px 90px, rgba(255,255,255,0.4), transparent),
+                               radial-gradient(3px 3px at 190px 30px, rgba(59,130,246,0.6), transparent)`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "250px 150px",
+            }}
           ></div>
 
-          {/* Scattered stars */}
-          <div className="absolute inset-0">
-            {[...Array(60)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute bg-white rounded-full animate-twinkle"
-                style={{
-                  width: Math.random() * 2 + 1 + "px",
-                  height: Math.random() * 2 + 1 + "px",
-                  left: Math.random() * 100 + "%",
-                  top: Math.random() * 100 + "%",
-                  animationDelay: Math.random() * 4 + "s",
-                  animationDuration: Math.random() * 3 + 2 + "s",
-                  opacity: Math.random() * 0.6 + 0.2,
-                }}
-              />
-            ))}
-          </div>
+          {/* Nebulas */}
+          <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-600/15 via-purple-600/10 to-cyan-600/15 blur-3xl rounded-full top-20 right-20 animate-pulse"></div>
+          <div
+            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-600/10 via-indigo-600/8 to-blue-600/12 blur-3xl rounded-full bottom-40 left-20 animate-pulse"
+            style={{ animationDelay: "3s" }}
+          ></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
+            <h2
+              className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+                cardsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
                 Scientific
               </span>
               <br />
               <span className="text-white">Instruments</span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+            <p
+              className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${
+                cardsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
               Each instrument aboard Terra provides unique capabilities for
-              studying Earth&apos;s systems
+              studying Earth&apos;s{" "}
+              <span className="text-blue-400 font-semibold">systems</span>
             </p>
           </div>
 
@@ -353,33 +424,21 @@ export default function InstrumentsPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={cardsVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 cursor-pointer overflow-hidden"
+                className="group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)",
+                    "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",
                   backdropFilter: "blur(20px)",
                   border: "1px solid rgba(255,255,255,0.1)",
                 }}
-                onMouseEnter={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const x = e.clientX - rect.left - rect.width / 2;
-                  const y = e.clientY - rect.top - rect.height / 2;
-                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${
-                    y / 30
-                  }deg) rotateY(${-x / 30}deg) scale(1.05)`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "";
-                }}
               >
-                {/* Multiple glow layers */}
+                {/* Simple glow effect */}
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/15 via-purple-500/10 to-cyan-500/15 blur-xl"></div>
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/5 via-transparent to-purple-400/5"></div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/8 to-cyan-500/10 blur-xl"></div>
                 </div>
 
                 {/* Border glow */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-blue-400/30"></div>
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-blue-400/20"></div>
 
                 <div className="relative z-10 space-y-6">
                   {/* Icon with enhanced styling */}
@@ -416,10 +475,10 @@ export default function InstrumentsPage() {
                     ))}
                   </ul>
 
-                  {/* Enhanced Button */}
+                  {/* Button */}
                   <button
                     onClick={() => handleShowDetails(instrument.id)}
-                    className="group/btn relative w-full px-4 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
+                    className="group/btn relative w-full px-4 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                     <span className="relative z-10 flex items-center justify-center gap-2">

@@ -3,15 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  FaGamepad,
-  FaSatellite,
-  FaRocket,
-  FaPlay,
-  FaTrophy,
-  FaUsers,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaSatellite, FaRocket, FaPlay, FaArrowRight } from "react-icons/fa";
 
 export default function GamesPage() {
   const [heroVisible, setHeroVisible] = useState(false);
@@ -102,47 +94,53 @@ export default function GamesPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-gradient-to-b from-black via-blue-900/20 to-black text-white overflow-hidden flex items-center"
+        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden flex items-center"
       >
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">
-          {/* Animated stars */}
+          {/* Animated Stars */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.2),_transparent_70%)] animate-pulse"></div>
+          <div
+            className="absolute inset-0 opacity-50 animate-pulse"
+            style={{
+              backgroundImage: `radial-gradient(2px 2px at 25px 35px, #fff, transparent),
+                               radial-gradient(2px 2px at 45px 75px, rgba(255,255,255,0.8), transparent),
+                               radial-gradient(1px 1px at 95px 45px, #fff, transparent),
+                               radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.6), transparent),
+                               radial-gradient(3px 3px at 180px 25px, rgba(59,130,246,0.8), transparent),
+                               radial-gradient(2px 2px at 220px 90px, rgba(147,51,234,0.6), transparent)`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "250px 120px",
+              animation: "twinkle 4s ease-in-out infinite alternate",
+            }}
+          ></div>
+
+          {/* Enhanced Nebulas with Animation */}
+          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-600/25 via-blue-500/20 to-indigo-600/25 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
+          <div
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/20 via-cyan-500/15 to-purple-600/20 blur-3xl rounded-full bottom-20 right-10 animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
+          <div
+            className="absolute w-[300px] h-[300px] bg-gradient-to-r from-indigo-600/15 to-purple-500/10 blur-2xl rounded-full top-1/2 left-1/3 animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+
+          {/* Floating Particles */}
           <div className="absolute inset-0">
-            {[...Array(120)].map((_, i) => (
+            {[...Array(20)].map((_, i) => (
               <div
                 key={i}
-                className="absolute bg-white rounded-full animate-twinkle"
+                className="absolute w-1 h-1 bg-blue-400/60 rounded-full animate-float"
                 style={{
-                  width: Math.random() * 3 + 1 + "px",
-                  height: Math.random() * 3 + 1 + "px",
-                  left: Math.random() * 100 + "%",
-                  top: Math.random() * 100 + "%",
-                  animationDelay: Math.random() * 3 + "s",
-                  animationDuration: Math.random() * 2 + 2 + "s",
-                  opacity: Math.random() * 0.8 + 0.2,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${3 + Math.random() * 4}s`,
                 }}
               />
             ))}
           </div>
-
-          {/* Enhanced Moving nebulas */}
-          <div className="absolute w-[900px] h-[900px] bg-gradient-to-r from-blue-500/10 via-purple-500/15 to-cyan-500/10 blur-3xl rounded-full -top-32 -right-32 animate-float"></div>
-          <div
-            className="absolute w-[700px] h-[700px] bg-gradient-to-r from-purple-500/8 via-indigo-500/12 to-blue-500/8 blur-3xl rounded-full -bottom-32 -left-32 animate-float"
-            style={{ animationDelay: "3s", animationDirection: "reverse" }}
-          ></div>
-          <div
-            className="absolute w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/6 via-blue-500/10 to-purple-500/6 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
-            style={{ animationDelay: "1.5s" }}
-          ></div>
-          <div
-            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-pink-500/4 via-purple-500/8 to-indigo-500/4 blur-3xl rounded-full top-1/4 right-1/4 animate-float"
-            style={{ animationDelay: "4s" }}
-          ></div>
-          <div
-            className="absolute w-[350px] h-[350px] bg-gradient-to-r from-emerald-500/3 via-cyan-500/6 to-blue-500/3 blur-3xl rounded-full bottom-1/4 left-1/4 animate-float"
-            style={{ animationDelay: "2.5s", animationDirection: "reverse" }}
-          ></div>
         </div>
 
         {/* Hero Content */}
@@ -154,86 +152,55 @@ export default function GamesPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Game controller icon */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={heroVisible ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex justify-center"
-              >
-                <div className="relative group">
-                  <div className="w-32 h-32 bg-gradient-to-br from-blue-500/20 via-purple-500/25 to-cyan-500/20 rounded-3xl flex items-center justify-center backdrop-blur-xl border border-blue-400/40 shadow-2xl group-hover:scale-110 transition-all duration-500">
-                    <FaGamepad className="text-6xl text-blue-300 drop-shadow-2xl group-hover:text-cyan-300 transition-colors duration-500" />
-                  </div>
-
-                  {/* Multiple glow layers */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-purple-500/20 to-cyan-500/15 rounded-3xl blur-2xl animate-pulse"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/15 to-purple-500/10 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                  {/* Floating particles */}
-                  <div
-                    className="absolute -top-2 -right-2 w-3 h-3 bg-cyan-400 rounded-full animate-bounce opacity-60"
-                    style={{ animationDelay: "0s" }}
-                  ></div>
-                  <div
-                    className="absolute -bottom-2 -left-2 w-2 h-2 bg-purple-400 rounded-full animate-bounce opacity-60"
-                    style={{ animationDelay: "0.5s" }}
-                  ></div>
-                  <div
-                    className="absolute top-1/2 -right-3 w-2 h-2 bg-blue-400 rounded-full animate-bounce opacity-60"
-                    style={{ animationDelay: "1s" }}
-                  ></div>
-                </div>
-              </motion.div>
-
-              <h1 className="text-5xl md:text-6xl lg:text-8xl font-extrabold leading-tight">
-                <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+                <span className="block text-white mb-2 animate-slide-up">
                   Space
                 </span>
-                <br />
-                <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent drop-shadow-lg">
-                  Games
+                <span className="block">
+                  <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl animate-glow">
+                    Games
+                  </span>
                 </span>
               </h1>
 
-              <div className="relative">
-                <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed mb-2">
-                  Explore the cosmos through interactive games and learn about
-                  <span className="text-cyan-300 font-semibold">
-                    {" "}
-                    NASA&apos;s Terra satellite
-                  </span>{" "}
-                  mission
-                </p>
-                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto rounded-full"></div>
+              {/* Subtitle Badge */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-sm text-blue-300 animate-slide-up"
+                style={{ animationDelay: "0.2s" }}
+              >
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                Interactive Learning Games
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-wrap justify-center gap-6 pt-8"
+              <p
+                className="text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed animate-slide-up m-auto mb-4"
+                style={{ animationDelay: "0.4s" }}
               >
-                <div className="group flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-yellow-500/15 via-orange-500/20 to-yellow-500/15 rounded-2xl border border-yellow-400/30 backdrop-blur-xl hover:border-yellow-300/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-500/20">
-                  <div className="relative">
-                    <FaTrophy className="text-2xl text-yellow-300 drop-shadow-lg group-hover:text-yellow-200 transition-colors duration-300" />
-                    <div className="absolute inset-0 bg-yellow-400/20 blur-lg rounded-full animate-pulse"></div>
-                  </div>
-                  <span className="text-gray-200 font-semibold group-hover:text-white transition-colors duration-300">
-                    Educational & Fun
-                  </span>
-                </div>
+                Explore the cosmos through interactive games and learn about{" "}
+                <span className="text-blue-400 font-semibold">
+                  NASA&apos;s Terra satellite
+                </span>{" "}
+                mission
+              </p>
 
-                <div className="group flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-cyan-500/15 via-blue-500/20 to-cyan-500/15 rounded-2xl border border-cyan-400/30 backdrop-blur-xl hover:border-cyan-300/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20">
-                  <div className="relative">
-                    <FaUsers className="text-2xl text-cyan-300 drop-shadow-lg group-hover:text-cyan-200 transition-colors duration-300" />
-                    <div className="absolute inset-0 bg-cyan-400/20 blur-lg rounded-full animate-pulse"></div>
+              <div
+                className="flex flex-wrap gap-4 animate-slide-up justify-center"
+                style={{ animationDelay: "0.6s" }}
+              >
+                {[
+                  "Interactive Games",
+                  "Educational Content",
+                  "Terra Mission",
+                ].map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg text-sm text-gray-300 hover:bg-white/10 transition-colors duration-300"
+                  >
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                    {feature}
                   </div>
-                  <span className="text-gray-200 font-semibold group-hover:text-white transition-colors duration-300">
-                    Interactive Learning
-                  </span>
-                </div>
-              </motion.div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -242,66 +209,61 @@ export default function GamesPage() {
       {/* Games Section */}
       <section
         ref={gamesRef}
-        className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-black via-blue-900/10 to-black text-white overflow-hidden"
+        className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-[#0b1a2a] via-[#081126] to-[#050a18] text-white overflow-hidden"
       >
-        {/* Background Effects */}
+        {/* Enhanced Space Background */}
         <div className="absolute inset-0 z-0">
-          {/* Scattered stars */}
-          <div className="absolute inset-0">
-            {[...Array(60)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute bg-white rounded-full animate-twinkle"
-                style={{
-                  width: Math.random() * 2 + 1 + "px",
-                  height: Math.random() * 2 + 1 + "px",
-                  left: Math.random() * 100 + "%",
-                  top: Math.random() * 100 + "%",
-                  animationDelay: Math.random() * 4 + "s",
-                  animationDuration: Math.random() * 3 + 2 + "s",
-                  opacity: Math.random() * 0.6 + 0.2,
-                }}
-              />
-            ))}
-          </div>
+          {/* Stars */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)]"></div>
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `radial-gradient(2px 2px at 30px 40px, #fff, transparent),
+                               radial-gradient(2px 2px at 50px 80px, rgba(255,255,255,0.6), transparent),
+                               radial-gradient(1px 1px at 100px 50px, #fff, transparent),
+                               radial-gradient(1px 1px at 140px 90px, rgba(255,255,255,0.4), transparent),
+                               radial-gradient(3px 3px at 190px 30px, rgba(59,130,246,0.6), transparent)`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "250px 150px",
+            }}
+          ></div>
+
+          {/* Nebulas */}
+          <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-600/15 via-purple-600/10 to-cyan-600/15 blur-3xl rounded-full top-20 right-20 animate-pulse"></div>
+          <div
+            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-600/10 via-indigo-600/8 to-blue-600/12 blur-3xl rounded-full bottom-40 left-20 animate-pulse"
+            style={{ animationDelay: "3s" }}
+          ></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={gamesVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <div className="relative inline-block mb-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl">
-                  Available
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent drop-shadow-lg">
-                  Games
-                </span>
-              </h2>
-
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-6 h-6 border-2 border-cyan-400/60 rounded-full animate-ping"></div>
-              <div className="absolute -bottom-4 -left-4 w-4 h-4 bg-purple-400/60 rounded-full animate-pulse"></div>
-            </div>
-
-            <div className="relative max-w-4xl mx-auto">
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed mb-4">
-                Interactive experiences that make learning about
-                <span className="text-cyan-300 font-semibold">
-                  {" "}
-                  space science
-                </span>{" "}
-                fun and engaging
-              </p>
-              <div className="w-32 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto rounded-full"></div>
-            </div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2
+              className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+                gamesVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Available
+              </span>
+              <br />
+              <span className="text-white">Games</span>
+            </h2>
+            <p
+              className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${
+                gamesVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              Interactive experiences that make learning about{" "}
+              <span className="text-blue-400 font-semibold">space science</span>{" "}
+              fun and engaging
+            </p>
+          </div>
 
           {/* Games Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -311,51 +273,23 @@ export default function GamesPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={gamesVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`group relative p-10 rounded-3xl transition-all duration-700 hover:scale-105 cursor-pointer overflow-hidden ${
+                className={`group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden ${
                   game.comingSoon ? "opacity-80" : ""
                 }`}
                 style={{
-                  background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)`,
-                  backdropFilter: "blur(25px)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                }}
-                onMouseEnter={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const x = e.clientX - rect.left - rect.width / 2;
-                  const y = e.clientY - rect.top - rect.height / 2;
-                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${
-                    y / 20
-                  }deg) rotateY(${-x / 20}deg) scale(1.05)`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "";
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255,255,255,0.1)",
                 }}
               >
-                {/* Multiple enhanced glow effects */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700">
-                  <div
-                    className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${game.gradient} blur-2xl`}
-                  ></div>
-                  <div
-                    className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${game.gradient} opacity-60`}
-                  ></div>
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-white/5 to-transparent"></div>
+                {/* Simple glow effect */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/8 to-cyan-500/10 blur-xl"></div>
                 </div>
 
-                {/* Animated border glow */}
-                <div
-                  className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 border-2 ${game.borderGradient} shadow-2xl`}
-                ></div>
-
-                {/* Floating particles */}
-                <div
-                  className="absolute top-4 right-8 w-2 h-2 bg-cyan-400/60 rounded-full animate-bounce opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ animationDelay: "0s" }}
-                ></div>
-                <div
-                  className="absolute top-8 right-4 w-1 h-1 bg-purple-400/60 rounded-full animate-bounce opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ animationDelay: "0.5s" }}
-                ></div>
+                {/* Border glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-blue-400/20"></div>
 
                 {/* Coming Soon Badge */}
                 {game.comingSoon && (
@@ -364,95 +298,70 @@ export default function GamesPage() {
                   </div>
                 )}
 
-                <div className="relative z-10 space-y-8">
-                  {/* Enhanced Game Icon and Title */}
-                  <div className="flex items-start gap-8">
-                    <div className="relative group/icon">
-                      <div
-                        className={`p-6 rounded-3xl bg-gradient-to-br ${game.gradient} group-hover:${game.hoverGradient} transition-all duration-700 group-hover:scale-110 shadow-2xl border border-white/10`}
-                      >
-                        <div className="relative z-10">{game.icon}</div>
+                <div className="relative z-10 space-y-6">
+                  {/* Game Icon and Title */}
+                  <div className="flex items-start gap-6">
+                    <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-blue-600/10 group-hover:from-blue-400/20 group-hover:via-purple-400/15 group-hover:to-blue-500/20 transition-all duration-500 group-hover:scale-110">
+                      <div className="text-4xl transition-all duration-300 group-hover:drop-shadow-lg">
+                        {game.icon}
                       </div>
-
-                      {/* Icon glow effects */}
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${game.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-700`}
-                      ></div>
-                      <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                     </div>
 
                     <div className="flex-1">
-                      <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-blue-400 group-hover:to-purple-400 transition-all duration-500 drop-shadow-lg">
+                      <h3 className="text-2xl font-bold mb-2 group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                         {game.title}
                       </h3>
-                      <p className="text-base text-gray-300 font-medium group-hover:text-gray-200 transition-colors duration-300">
+                      <p className="text-sm text-gray-300 group-hover:text-gray-200 transition-colors duration-300">
                         {game.subtitle}
                       </p>
                     </div>
                   </div>
 
-                  {/* Enhanced Description */}
-                  <div className="bg-gradient-to-r from-white/5 to-white/10 rounded-2xl p-6 border border-white/10 group-hover:border-white/20 transition-all duration-500">
-                    <p className="text-gray-200 group-hover:text-white leading-relaxed text-lg transition-colors duration-300">
-                      {game.description}
-                    </p>
-                  </div>
+                  {/* Description */}
+                  <p className="text-gray-300 group-hover:text-gray-200 text-sm leading-relaxed transition-colors duration-300">
+                    {game.description}
+                  </p>
 
-                  {/* Enhanced Features */}
-                  <ul className="space-y-4">
+                  {/* Features */}
+                  <ul className="space-y-3">
                     {game.features.map((feature, idx) => (
                       <li
                         key={idx}
-                        className="text-gray-300 group-hover:text-gray-200 flex items-start transition-all duration-300 hover:translate-x-2"
+                        className="text-gray-400 group-hover:text-gray-300 text-sm flex items-start transition-colors duration-300"
                       >
-                        <div className="relative mt-2 mr-4 flex-shrink-0">
-                          <div className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full group-hover:shadow-lg group-hover:shadow-cyan-400/50 transition-all duration-300"></div>
-                          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full blur-sm opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
-                        </div>
-                        <span className="leading-relaxed">{feature}</span>
+                        <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3 mt-1.5 flex-shrink-0 group-hover:shadow-lg group-hover:shadow-blue-400/50 transition-all duration-300"></div>
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* Enhanced Game Info */}
-                  <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 rounded-2xl border border-blue-400/30 backdrop-blur-sm group-hover:border-blue-300/50 transition-all duration-300">
-                      <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                      <span className="text-blue-300 font-medium">
-                        Difficulty:
-                      </span>
-                      <span className="text-white font-bold">
-                        {game.difficulty}
-                      </span>
+                  {/* Game Info */}
+                  <div className="flex flex-wrap gap-3 text-sm">
+                    <div className="flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg text-gray-300 hover:bg-white/10 transition-colors duration-300">
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                      <span>Difficulty: {game.difficulty}</span>
                     </div>
-                    <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-500/15 to-pink-500/15 rounded-2xl border border-purple-400/30 backdrop-blur-sm group-hover:border-purple-300/50 transition-all duration-300">
-                      <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
-                      <span className="text-purple-300 font-medium">
-                        Players:
-                      </span>
-                      <span className="text-white font-bold">
-                        {game.players}
-                      </span>
+                    <div className="flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg text-gray-300 hover:bg-white/10 transition-colors duration-300">
+                      <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                      <span>{game.players}</span>
                     </div>
                   </div>
 
                   {/* Play Button */}
                   {game.comingSoon ? (
-                    <div className="w-full px-6 py-4 bg-gradient-to-r from-gray-500/20 to-gray-600/20 border border-gray-500/30 rounded-xl text-gray-400 font-medium text-center backdrop-blur-sm cursor-not-allowed">
+                    <div className="w-full px-4 py-3 bg-gradient-to-r from-gray-500/20 to-gray-600/20 border border-gray-500/30 rounded-xl text-gray-400 font-medium text-center backdrop-blur-sm cursor-not-allowed">
                       Coming Soon
                     </div>
                   ) : (
                     <Link href={`/games/${game.id}`}>
-                      <button
-                        className={`group/btn relative w-full px-6 py-4 bg-gradient-to-r ${game.buttonGradient} hover:${game.hoverGradient} border bg-gradient-to-r ${game.borderGradient} hover:border-opacity-75 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden`}
-                      >
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-r ${game.gradient} rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300`}
-                        ></div>
-                        <span className="relative z-10 flex items-center justify-center gap-3">
-                          <FaPlay className="text-lg" />
+                      <button className="group/btn relative w-full px-4 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <FaPlay className="text-sm" />
                           <span>Play Now</span>
-                          <FaArrowRight className="text-sm opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
+                          <FaArrowRight className="text-xs opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
                         </span>
                       </button>
                     </Link>
