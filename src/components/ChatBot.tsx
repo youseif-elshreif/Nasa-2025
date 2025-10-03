@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { FaRobot, FaTimes, FaPaperPlane, FaSpinner } from "react-icons/fa";
+import api from "@/utils/api";
 
 interface Message {
   id: string;
@@ -79,21 +80,11 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3001/api/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: inputMessage,
-        }),
+      const response = await api.post("/api/message", {
+        message: inputMessage,
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to get response from server");
-      }
-
-      const botResponseText = await response.text();
+      const botResponseText = response.data;
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
