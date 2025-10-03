@@ -164,31 +164,42 @@ export default function InstrumentsPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-gradient-to-b from-[#0b1a2a] via-[#081126] to-[#050a18] text-white overflow-hidden"
+        className="relative min-h-screen bg-gradient-to-b from-black via-blue-900/20 to-black text-white overflow-hidden"
       >
-        {/* Background Effects */}
+        {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">
-          {/* Stars */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)]"></div>
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `radial-gradient(2px 2px at 30px 40px, #fff, transparent),
-                               radial-gradient(2px 2px at 50px 80px, rgba(255,255,255,0.6), transparent),
-                               radial-gradient(1px 1px at 100px 50px, #fff, transparent),
-                               radial-gradient(1px 1px at 140px 90px, rgba(255,255,255,0.4), transparent),
-                               radial-gradient(3px 3px at 190px 30px, rgba(59,130,246,0.6), transparent)`,
-              backgroundRepeat: "repeat",
-              backgroundSize: "250px 150px",
-            }}
+          {/* Animated stars */}
+          <div className="absolute inset-0">
+            {[...Array(100)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle"
+                style={{
+                  width: Math.random() * 3 + 1 + "px",
+                  height: Math.random() * 3 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  animationDelay: Math.random() * 3 + "s",
+                  animationDuration: (Math.random() * 2 + 2) + "s",
+                  opacity: Math.random() * 0.8 + 0.2,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Moving nebulas */}
+          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/10 via-purple-500/15 to-cyan-500/10 blur-3xl rounded-full -top-20 -right-20 animate-float"></div>
+          <div 
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 via-indigo-500/12 to-blue-500/8 blur-3xl rounded-full -bottom-20 -left-20 animate-float"
+            style={{ animationDelay: "3s", animationDirection: "reverse" }}
+          ></div>
+          <div 
+            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-cyan-500/6 via-blue-500/10 to-purple-500/6 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
+            style={{ animationDelay: "1.5s" }}
           ></div>
 
-          {/* Nebulas */}
-          <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-600/15 via-purple-600/10 to-cyan-600/15 blur-3xl rounded-full top-20 right-20 animate-pulse"></div>
-          <div
-            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-600/10 via-indigo-600/8 to-blue-600/12 blur-3xl rounded-full bottom-40 left-20 animate-pulse"
-            style={{ animationDelay: "3s" }}
-          ></div>
+          {/* Space dust */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02),_transparent_70%)]"></div>
         </div>
 
         {/* Hero Content */}
@@ -229,10 +240,11 @@ export default function InstrumentsPage() {
 
                 <button
                   onClick={scrollToInstruments}
-                  className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600/80 to-purple-600/80 hover:from-blue-600 hover:to-purple-600 rounded-lg text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
                 >
-                  <span>Explore Instruments</span>
-                  <FaArrowDown className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative z-10">Explore Instruments</span>
+                  <FaArrowDown className="relative z-10 text-sm group-hover:translate-y-1 transition-transform duration-300" />
                 </button>
               </motion.div>
             </div>
@@ -286,26 +298,35 @@ export default function InstrumentsPage() {
       {/* Instruments Cards Section */}
       <section
         ref={cardsRef}
-        className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-[#050a18] via-[#0f1f35] to-[#0b1a2a] text-white overflow-hidden"
+        className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-black via-blue-900/10 to-black text-white overflow-hidden"
       >
-        {/* Background Effects */}
+        {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">
-          {/* Nebula effects */}
-          <div className="absolute w-[600px] h-[600px] bg-blue-600/10 blur-3xl rounded-full top-1/4 left-1/4 animate-pulse"></div>
-          <div className="absolute w-[400px] h-[400px] bg-purple-600/15 blur-3xl rounded-full bottom-1/3 right-1/4 animate-pulse"></div>
-
-          {/* Stars pattern */}
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `radial-gradient(2px 2px at 25px 35px, #fff, transparent),
-                               radial-gradient(2px 2px at 45px 75px, rgba(255,255,255,0.6), transparent),
-                               radial-gradient(1px 1px at 95px 45px, #fff, transparent),
-                               radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.4), transparent)`,
-              backgroundRepeat: "repeat",
-              backgroundSize: "200px 150px",
-            }}
+          {/* Dynamic nebulas */}
+          <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500/8 via-purple-500/12 to-cyan-500/8 blur-3xl rounded-full top-1/4 left-1/4 animate-float"></div>
+          <div 
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/10 via-indigo-500/8 to-blue-500/10 blur-3xl rounded-full bottom-1/3 right-1/4 animate-float"
+            style={{ animationDelay: "2s", animationDirection: "reverse" }}
           ></div>
+
+          {/* Scattered stars */}
+          <div className="absolute inset-0">
+            {[...Array(60)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle"
+                style={{
+                  width: Math.random() * 2 + 1 + "px",
+                  height: Math.random() * 2 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  animationDelay: Math.random() * 4 + "s",
+                  animationDuration: (Math.random() * 3 + 2) + "s",
+                  opacity: Math.random() * 0.6 + 0.2,
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -332,54 +353,74 @@ export default function InstrumentsPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={cardsVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                className="group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 cursor-pointer overflow-hidden"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(59,130,246,0.1) 100%)",
+                    "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)",
                   backdropFilter: "blur(20px)",
                   border: "1px solid rgba(255,255,255,0.1)",
                 }}
+                onMouseEnter={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left - rect.width / 2;
+                  const y = e.clientY - rect.top - rect.height / 2;
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${y / 30}deg) rotateY(${-x / 30}deg) scale(1.05)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "";
+                }}
               >
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 blur-sm"></div>
+                {/* Multiple glow layers */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/15 via-purple-500/10 to-cyan-500/15 blur-xl"></div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/5 via-transparent to-purple-400/5"></div>
                 </div>
 
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="mb-4">{instrument.icon}</div>
+                {/* Border glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-blue-400/30"></div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-3">
+                <div className="relative z-10 space-y-6">
+                  {/* Icon with enhanced styling */}
+                  <div className="flex justify-center">
+                    <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-blue-600/10 group-hover:from-blue-400/20 group-hover:via-purple-400/15 group-hover:to-blue-500/20 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/25">
+                      <div className="text-4xl transition-all duration-300 group-hover:drop-shadow-lg">
+                        {instrument.icon}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Title with gradient */}
+                  <h3 className="text-xl font-bold text-center mb-3 group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                     {instrument.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                  <p className="text-gray-300 group-hover:text-gray-200 text-sm text-center leading-relaxed transition-colors duration-300">
                     {instrument.description}
                   </p>
 
-                  {/* Details */}
-                  <ul className="space-y-2 mb-6">
+                  {/* Enhanced Details */}
+                  <ul className="space-y-3">
                     {instrument.details.map((detail, idx) => (
                       <li
                         key={idx}
-                        className="text-gray-400 text-sm flex items-center"
+                        className="text-gray-400 group-hover:text-gray-300 text-sm flex items-start transition-colors duration-300"
                       >
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
-                        {detail}
+                        <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3 mt-1.5 flex-shrink-0 group-hover:shadow-lg group-hover:shadow-blue-400/50 transition-all duration-300"></div>
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">{detail}</span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* Button */}
+                  {/* Enhanced Button */}
                   <button
                     onClick={() => handleShowDetails(instrument.id)}
-                    className="w-full px-4 py-3 bg-gradient-to-r from-blue-600/70 to-purple-600/70 hover:from-blue-600 hover:to-purple-600 rounded-lg text-white font-medium shadow-lg transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent group"
+                    className="group/btn relative w-full px-4 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
                   >
-                    <span className="flex items-center justify-center gap-2">
-                      Show Details
-                      <FaExternalLinkAlt className="text-xs opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <span>Show Details</span>
+                      <FaExternalLinkAlt className="text-xs opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
                     </span>
                   </button>
                 </div>

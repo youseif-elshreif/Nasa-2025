@@ -179,24 +179,38 @@ export default function TerraStatsSection() {
   ];
 
   return (
-    <section className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-[#0b1a2a] via-[#0f1f35] to-[#050a18] text-white overflow-hidden">
-      {/* Background Effects */}
+    <section className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-black via-blue-900/10 to-black text-white overflow-hidden">
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0 z-0">
-        {/* Nebula effects */}
-        <div className="absolute w-[600px] h-[600px] bg-blue-600/10 blur-3xl rounded-full top-1/4 left-1/4 animate-pulse"></div>
-        <div className="absolute w-[400px] h-[400px] bg-purple-600/15 blur-3xl rounded-full bottom-1/3 right-1/4 animate-pulse"></div>
+        {/* Dynamic nebulas */}
+        <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-blue-500/6 via-purple-500/10 to-cyan-500/6 blur-3xl rounded-full top-1/4 left-1/4 animate-float"></div>
+        <div 
+          className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 via-indigo-500/6 to-blue-500/8 blur-3xl rounded-full bottom-1/3 right-1/4 animate-float"
+          style={{ animationDelay: "2s", animationDirection: "reverse" }}
+        ></div>
 
-        {/* Stars pattern */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `radial-gradient(2px 2px at 25px 35px, #fff, transparent),
-                             radial-gradient(2px 2px at 45px 75px, rgba(255,255,255,0.6), transparent),
-                             radial-gradient(1px 1px at 95px 45px, #fff, transparent),
-                             radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.4), transparent)`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "200px 150px",
-          }}
+        {/* Enhanced stars field */}
+        <div className="absolute inset-0">
+          {[...Array(80)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-twinkle"
+              style={{
+                width: Math.random() * 3 + 1 + "px",
+                height: Math.random() * 3 + 1 + "px",
+                left: Math.random() * 100 + "%",
+                top: Math.random() * 100 + "%",
+                animationDelay: Math.random() * 4 + "s",
+                animationDuration: (Math.random() * 3 + 2) + "s",
+                opacity: Math.random() * 0.7 + 0.2,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Space dust */}
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02),_transparent_70%)]"
           id="terra-stats"
         ></div>
       </div>

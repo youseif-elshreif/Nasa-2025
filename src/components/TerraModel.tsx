@@ -130,9 +130,47 @@ function TerraModelCanvas({
 export default dynamic(() => Promise.resolve(TerraModelCanvas), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-transparent">
-      <div className="animate-pulse">
-        <div className="w-20 h-20 bg-gray-600 rounded-lg"></div>
+    <div className="w-full h-full flex items-center justify-center relative overflow-hidden">
+      {/* Space background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-blue-900/30 to-black/20">
+        {/* Animated stars */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-twinkle"
+              style={{
+                width: Math.random() * 2 + 1 + "px",
+                height: Math.random() * 2 + 1 + "px",
+                left: Math.random() * 100 + "%",
+                top: Math.random() * 100 + "%",
+                animationDelay: Math.random() * 3 + "s",
+                animationDuration: (Math.random() * 2 + 2) + "s",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      
+      {/* Loading content */}
+      <div className="relative z-10 flex flex-col items-center space-y-4">
+        {/* Spinning satellite icon */}
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-8 h-8 bg-blue-500/20 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        
+        {/* Loading text */}
+        <div className="text-center space-y-2">
+          <p className="text-blue-400 font-medium animate-pulse">Loading Terra Model...</p>
+          <div className="flex space-x-1">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "0s" }}></div>
+            <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+            <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+          </div>
+        </div>
       </div>
     </div>
   ),
