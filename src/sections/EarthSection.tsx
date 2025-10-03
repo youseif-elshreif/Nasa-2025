@@ -297,27 +297,6 @@ export default function EarthSection() {
           ))}
         </div>
       </div>
-
-      {/* Progress Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex items-center gap-2">
-          {phases.map((_, index) => (
-            <div
-              key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-500 ${
-                index === currentPhase
-                  ? "bg-blue-400 scale-125 shadow-lg shadow-blue-400/50"
-                  : "bg-white/30 hover:bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
-        <div className="text-center mt-2">
-          <span className="text-gray-400 text-xs">
-            Scroll to explore instruments
-          </span>
-        </div>
-      </div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   FaRocket,
   FaGlobeAmericas,
@@ -19,24 +19,6 @@ interface StatCardProps {
   value: string;
   label: string;
   index: number;
-}
-
-function TypingText({ text, delay = 0 }: { text: string; delay?: number }) {
-  const [displayText, setDisplayText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText((prev) => prev + text[currentIndex]);
-        setCurrentIndex((prev) => prev + 1);
-      }, 50 + delay);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, text, delay]);
-
-  return <span>{displayText}</span>;
 }
 
 function StatCard({ icon, value, label, index }: StatCardProps) {
@@ -230,20 +212,10 @@ export default function TerraStatsSection() {
             }`}
           >
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
-              {titleVisible ? (
-                <TypingText text="Terra Satellite" delay={500} />
-              ) : (
-                "Terra Satellite"
-              )}
+              Terra Satellite
             </span>
             <br />
-            <span className="text-white">
-              {titleVisible ? (
-                <TypingText text="Key Stats" delay={1500} />
-              ) : (
-                "Key Stats"
-              )}
-            </span>
+            <span className="text-white">Key Stats</span>
           </h2>
 
           {/* Gradient underline */}
