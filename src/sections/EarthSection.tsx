@@ -68,56 +68,56 @@ export default function EarthSection() {
     {
       title: "MOPITT – Air Pollution Tracking",
       description:
-        "MOPITT monitors carbon monoxide and air pollution from wildfires and factories, showing how human activity impacts the atmosphere.",
+        "MOPITT (from Canada) measured carbon monoxide in the lower atmosphere for 25 years, creating the first continuous global CO record and tracking wildfire smoke and industrial emissions.",
       icon: <FaBurn className="text-red-400 text-3xl" />,
       details: [
-        "Urban pollution mapping",
-        "Wildfire smoke monitoring",
-        "Factory emissions tracking",
+        "Global carbon monoxide trends",
+        "Wildfire smoke transport",
+        "Industrial & urban pollution sources",
       ],
     },
     {
       title: "CERES – Earth's Energy Balance",
       description:
-        "CERES studies the balance between incoming sunlight and outgoing heat, providing critical insights into climate change.",
+        "CERES radiometers measure Earth's radiation budget – how much sunlight is absorbed versus how much heat is emitted – providing vital data for climate models.",
       icon: <FaSun className="text-yellow-400 text-3xl" />,
       details: [
-        "Incoming solar radiation",
-        "Heat reflected by Earth",
-        "Direct climate indicators",
+        "Incoming solar energy",
+        "Reflected sunlight (albedo)",
+        "Emitted infrared heat",
       ],
     },
     {
       title: "MODIS – Daily Global Imaging",
       description:
-        "MODIS captures daily imagery of Earth, from cloud movements and ocean currents to wildfires and polar ice changes.",
+        "MODIS captures global images twice daily in 36 spectral bands, monitoring clouds, land, oceans, ice, and active fires at resolutions from 250 m to 1 km.",
       icon: <FaCloud className="text-blue-300 text-3xl" />,
       details: [
-        "Global daily images",
-        "Weather and cloud tracking",
-        "Forest fire detection",
+        "Vegetation & land cover maps",
+        "Cloud & weather monitoring",
+        "Wildfire & polar ice detection",
       ],
     },
     {
       title: "ASTER – High-Resolution Imaging",
       description:
-        "ASTER zooms into fine details such as urban heat, volcanoes, and natural resources, offering precise data for environmental studies.",
+        "ASTER (from Japan) provides high-resolution visible to thermal infrared images, serving as Terra’s ‘zoom lens’ for detailed views of volcanoes, cities, and land changes.",
       icon: <FaSearch className="text-green-400 text-3xl" />,
       details: [
-        "Urban heat tracking",
-        "Volcano monitoring",
+        "Urban heat & land surface maps",
+        "Volcano & geology studies",
         "Natural resource exploration",
       ],
     },
     {
       title: "MISR – Multi-Angle Observations",
       description:
-        "MISR provides multiple perspectives of the Earth, helping scientists study storms, haze, cloud heights, and megacities’ growth.",
+        "MISR’s 9 cameras view Earth from different angles, allowing 3D studies of clouds, aerosols, storms, and surface features like vegetation and megacities.",
       icon: <FaCity className="text-purple-400 text-3xl" />,
       details: [
-        "Storm & haze analysis",
-        "Cloud height measurement",
-        "Megacity growth monitoring",
+        "3D cloud height retrieval",
+        "Aerosol & haze characterization",
+        "Urban growth & storm analysis",
       ],
     },
   ];
