@@ -1,14 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { FaSatellite, FaChevronDown } from "react-icons/fa";
-
-const InteractiveTerra = dynamic(
-  () => import("../components/InteractiveTerra"),
-  {
-    ssr: false,
-  }
-);
 
 export default function HeroSection() {
   return (
@@ -159,32 +151,8 @@ export default function HeroSection() {
           {/* Background Glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-cyan-500/10 blur-3xl rounded-full animate-pulse"></div>
 
-          {/* Terra Model */}
-          <div className="relative w-full h-full">
-            <InteractiveTerra />
-          </div>
-
-          {/* Floating Info Cards */}
-          <div className="absolute top-20 right-10 animate-float">
-            <div className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-sm text-white">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                Status: Active
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="absolute bottom-32 left-10 animate-float"
-            style={{ animationDelay: "2s" }}
-          >
-            <div className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-sm text-white">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                Orbit: 705 km
-              </div>
-            </div>
-          </div>
+          {/* nasa Model */}
+          <div className="relative w-full h-full"></div>
         </div>
       </div>
 

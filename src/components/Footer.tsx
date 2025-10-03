@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaLinkedin,
   FaGithub,
@@ -56,13 +57,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <FaSatellite className="text-white text-xl" />
-              </div>
-              <div className="text-3xl font-extrabold tracking-wider bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Spatium
-              </div>
+            <div className="flex items-center">
+              <Image
+                src="/assets/logo.png"
+                alt="Spatium"
+                width={150}
+                height={50}
+                className="h-12 w-auto drop-shadow-lg"
+              />
             </div>
             <p className="text-gray-300 leading-relaxed">
               Exploring the cosmos through NASA&apos;s Terra satellite mission.

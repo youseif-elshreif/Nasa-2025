@@ -2,14 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import {
-  FaBars,
-  FaTimes,
-  FaSatellite,
-  FaGamepad,
-  FaHome,
-} from "react-icons/fa";
+import { FaBars, FaTimes, FaGamepad, FaHome } from "react-icons/fa";
+import { FaMicroscope } from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +13,7 @@ export default function Navbar() {
 
   const links = [
     { name: "Home", href: "/", icon: FaHome },
-    { name: "Instruments", href: "/instruments", icon: FaSatellite },
+    { name: "Instruments", href: "/instruments", icon: FaMicroscope },
     { name: "Games", href: "/games", icon: FaGamepad },
   ];
 
@@ -25,13 +21,14 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-xl border-b border-white/10 shadow-lg">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
         {/* Left: Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-            <FaSatellite className="text-white text-lg group-hover:rotate-12 transition-transform duration-300" />
-          </div>
-          <div className="text-2xl md:text-3xl font-extrabold tracking-wider bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-            Spatium
-          </div>
+        <Link href="/" className="flex items-center group">
+          <Image
+            src="/assets/logo.png"
+            alt="Spatium"
+            width={120}
+            height={40}
+            className="h-8 md:h-10 w-auto group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
+          />
         </Link>
 
         {/* Right: Navigation Links */}

@@ -1,0 +1,57 @@
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for the compass -->
+    <radialGradient id="compassGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="40%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#06B6D4"/>
+    </radialGradient>
+    
+    <!-- Gradient for the text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="25%" style="stop-color:#3B82F6"/>
+      <stop offset="50%" style="stop-color:#06B6D4"/>
+      <stop offset="75%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#06B6D4"/>
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Compass Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Outer glow ring -->
+    <circle cx="40" cy="40" r="38" fill="url(#compassGradient)" opacity="0.2" filter="url(#glow)"/>
+    
+    <!-- Main compass circle -->
+    <circle cx="40" cy="40" r="32" fill="url(#compassGradient)" opacity="0.9"/>
+    
+    <!-- Compass star shape -->
+    <g fill="rgba(30, 41, 59, 0.8)">
+      <!-- North point -->
+      <polygon points="40,12 46,34 40,40 34,34"/>
+      <!-- South point -->
+      <polygon points="40,68 34,46 40,40 46,46"/>
+      <!-- West point -->
+      <polygon points="12,40 34,34 40,40 34,46"/>
+      <!-- East point -->
+      <polygon points="68,40 46,46 40,40 46,34"/>
+    </g>
+    
+    <!-- Center circle with highlight -->
+    <circle cx="40" cy="40" r="7" fill="#06B6D4" opacity="0.9"/>
+    <circle cx="40" cy="40" r="4" fill="#1E293B"/>
+    <circle cx="38" cy="38" r="1.5" fill="#06B6D4" opacity="0.6"/>
+  </g>
+  
+  <!-- SPATIUM Text -->
+  <text x="100" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="800" fill="url(#textGradient)" filter="url(#glow)">SPATIUM</text>
+</svg>
