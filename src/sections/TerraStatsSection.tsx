@@ -28,8 +28,8 @@ function TypingText({ text, delay = 0 }: { text: string; delay?: number }) {
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
+        setDisplayText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
       }, 50 + delay);
 
       return () => clearTimeout(timeout);
@@ -64,32 +64,34 @@ function StatCard({ icon, value, label, index }: StatCardProps) {
     <div
       ref={cardRef}
       className={`group relative p-6 md:p-8 rounded-2xl transition-all duration-700 transform hover:scale-105 hover:-rotate-2 hover:translate-y-[-8px] cursor-pointer ${
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-12"
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
       style={{
-        background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.05) 100%)",
+        background:
+          "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.05) 100%)",
         backdropFilter: "blur(15px)",
         border: "1px solid rgba(255,255,255,0.15)",
-        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
+        boxShadow:
+          "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
       }}
       onMouseEnter={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        e.currentTarget.style.transform = `perspective(1000px) rotateX(${y / 20}deg) rotateY(${-x / 20}deg) scale(1.05) translateZ(20px)`;
+        e.currentTarget.style.transform = `perspective(1000px) rotateX(${
+          y / 20
+        }deg) rotateY(${-x / 20}deg) scale(1.05) translateZ(20px)`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform = '';
+        e.currentTarget.style.transform = "";
       }}
     >
       {/* Glow effect on hover */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-blue-500/25 via-purple-500/20 to-blue-500/25 blur-xl -z-10 group-hover:scale-110"></div>
-      
+
       {/* Inner glow */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-400/10"></div>
-      
+
       {/* Content */}
       <div className="relative z-10 text-center space-y-4">
         {/* Icon */}
@@ -201,7 +203,7 @@ export default function TerraStatsSection() {
         {/* Nebula effects */}
         <div className="absolute w-[600px] h-[600px] bg-blue-600/10 blur-3xl rounded-full top-1/4 left-1/4 animate-pulse"></div>
         <div className="absolute w-[400px] h-[400px] bg-purple-600/15 blur-3xl rounded-full bottom-1/3 right-1/4 animate-pulse"></div>
-        
+
         {/* Stars pattern */}
         <div
           className="absolute inset-0 opacity-30"
@@ -228,21 +230,29 @@ export default function TerraStatsSection() {
             }`}
           >
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
-              {titleVisible ? <TypingText text="Terra Satellite" delay={500} /> : "Terra Satellite"}
+              {titleVisible ? (
+                <TypingText text="Terra Satellite" delay={500} />
+              ) : (
+                "Terra Satellite"
+              )}
             </span>
             <br />
             <span className="text-white">
-              {titleVisible ? <TypingText text="Key Stats" delay={1500} /> : "Key Stats"}
+              {titleVisible ? (
+                <TypingText text="Key Stats" delay={1500} />
+              ) : (
+                "Key Stats"
+              )}
             </span>
           </h2>
-          
+
           {/* Gradient underline */}
           <div
             className={`mx-auto h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent transition-all duration-1000 ${
               titleVisible ? "w-32 opacity-100" : "w-0 opacity-0"
             }`}
           ></div>
-          
+
           {/* Glow effect */}
           <div
             className={`mx-auto mt-2 h-8 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent blur-sm transition-all duration-1000 ${

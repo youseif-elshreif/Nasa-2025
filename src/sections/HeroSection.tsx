@@ -30,7 +30,7 @@ export default function HeroSection() {
           }}
         ></div>
         {/* نيبولا */}
-        <div className="absolute w-[500px] h-[500px] bg-purple-600/30 blur-3xl rounded-full top-1/3 left-1/4"></div>
+        <div className="absolute w-[350px] h-[500px] bg-purple-600/30 blur-3xl rounded-full top-1/7 left-1/4"></div>
         <div className="absolute w-[400px] h-[400px] bg-blue-500/20 blur-3xl rounded-full bottom-1/4 right-1/3"></div>
       </div>
 

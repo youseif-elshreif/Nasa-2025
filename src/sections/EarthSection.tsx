@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import EarthModel from "../components/EarthModel";
 import dynamic from "next/dynamic";
 import {
@@ -20,6 +20,25 @@ export default function EarthSection() {
   const [currentPhase, setCurrentPhase] = useState(0);
   const [terraPosition, setTerraPosition] = useState({ x: 200, y: -100 });
   const [terraRotation, setTerraRotation] = useState(0);
+  const [titleVisible, setTitleVisible] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTitleVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,27 +54,27 @@ export default function EarthSection() {
         sectionHeight
       );
 
-      const progress = scrolledInSection / sectionHeight - 0.1;
+      const progress = scrolledInSection / sectionHeight - 0.15;
 
-      if (progress < 0.2) {
+      if (progress < 0.18) {
         setCurrentPhase(0);
-        setTerraPosition({ x: 200, y: -100 });
+        setTerraPosition({ x: 220, y: -100 });
         setTerraRotation(0);
-      } else if (progress < 0.35) {
+      } else if (progress < 0.32) {
         setCurrentPhase(1);
-        setTerraPosition({ x: -200, y: -80 });
+        setTerraPosition({ x: -220, y: -80 });
         setTerraRotation(Math.PI);
-      } else if (progress < 0.5) {
+      } else if (progress < 0.46) {
         setCurrentPhase(2);
-        setTerraPosition({ x: 220, y: 100 });
+        setTerraPosition({ x: 240, y: 100 });
         setTerraRotation(0);
-      } else if (progress < 0.65) {
+      } else if (progress < 0.6) {
         setCurrentPhase(3);
-        setTerraPosition({ x: -180, y: 120 });
+        setTerraPosition({ x: -200, y: 120 });
         setTerraRotation(Math.PI / 2);
       } else {
         setCurrentPhase(4);
-        setTerraPosition({ x: -220, y: 120 });
+        setTerraPosition({ x: -240, y: 130 });
         setTerraRotation(Math.PI);
       }
     };
@@ -125,27 +144,70 @@ export default function EarthSection() {
   return (
     <section
       id="earth-section"
-      className="min-h-[500vh] relative bg-gradient-to-b from-black via-[#050a18] to-[#0b1a2a] text-white"
+      className="min-h-[600vh] relative bg-gradient-to-b from-[#050a18] via-[#0f1f35] to-[#0b1a2a] text-white"
     >
       {/* Space background */}
       <div className="absolute inset-0 z-0">
         {/* Stars */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.15),_transparent_70%)]"></div>
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `radial-gradient(2px 2px at 20px 30px, #fff, transparent), 
-                           radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent), 
-                           radial-gradient(1px 1px at 90px 40px, #fff, transparent), 
-                           radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent), 
-                           radial-gradient(2px 2px at 160px 30px, #fff, transparent)`,
+            backgroundImage: `radial-gradient(2px 2px at 25px 35px, #fff, transparent),
+                             radial-gradient(2px 2px at 45px 75px, rgba(255,255,255,0.6), transparent),
+                             radial-gradient(1px 1px at 95px 45px, #fff, transparent),
+                             radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.4), transparent)`,
             backgroundRepeat: "repeat",
-            backgroundSize: "200px 100px",
+            backgroundSize: "200px 150px",
           }}
         ></div>
         {/* Nebulas */}
-        <div className="absolute w-[500px] h-[500px] bg-purple-600/30 blur-3xl rounded-full top-1/3 left-1/4"></div>
-        <div className="absolute w-[400px] h-[400px] bg-blue-500/20 blur-3xl rounded-full bottom-1/4 right-1/3"></div>
+        <div className="absolute w-[600px] h-[600px] bg-blue-600/10 blur-3xl rounded-full top-1/4 left-1/4 animate-pulse"></div>
+        <div className="absolute w-[400px] h-[400px] bg-purple-600/15 blur-3xl rounded-full bottom-1/3 right-1/4 animate-pulse"></div>
+      </div>
+
+      {/* Section Header */}
+      <div className="relative z-10 pt-20 pb-10">
+        <div className="text-center max-w-4xl mx-auto px-8">
+          <h2
+            ref={titleRef}
+            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+              titleVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
+              Terra&apos;s Instruments
+            </span>
+          </h2>
+
+          {/* Gradient underline */}
+          <div
+            className={`mx-auto h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-2 transition-all duration-1000 ${
+              titleVisible ? "w-32 opacity-100" : "w-0 opacity-0"
+            }`}
+          ></div>
+
+          {/* Glow effect */}
+          <div
+            className={`mx-auto h-8 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent blur-sm mb-6 transition-all duration-1000 ${
+              titleVisible ? "w-32 opacity-100" : "w-0 opacity-0"
+            }`}
+          ></div>
+
+          <p
+            className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-500 ${
+              titleVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+          >
+            Explore Terra&apos;s five scientific instruments as they orbit
+            Earth, each providing unique perspectives on our planet&apos;s
+            climate, atmosphere, and surface changes.
+          </p>
+        </div>
       </div>
 
       <div className="h-screen flex items-center sticky top-0 z-10">
@@ -171,33 +233,89 @@ export default function EarthSection() {
               key={index}
               className={`absolute w-full transition-all duration-1000 ease-out ${
                 index === currentPhase
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-12 scale-95"
               }`}
             >
-              <div className="bg-white/5 backdrop-blur-md rounded-xl p-8 shadow-lg border border-white/10">
-                <div className="flex items-center gap-4 mb-6">
-                  {phase.icon}
-                  <h2 className="text-3xl lg:text-4xl font-bold text-blue-300">
-                    {phase.title}
-                  </h2>
+              <div
+                className="group relative p-8 rounded-2xl transition-all duration-700 hover:scale-105 cursor-pointer"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.08) 100%)",
+                  backdropFilter: "blur(15px)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  boxShadow:
+                    "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-blue-500/25 via-purple-500/20 to-blue-500/25 blur-xl -z-10 group-hover:scale-110"></div>
+
+                {/* Inner glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-400/10"></div>
+
+                {/* Icon Section */}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20 group-hover:from-blue-400/30 group-hover:via-purple-400/25 group-hover:to-blue-500/30 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25">
+                    <div className="text-4xl transition-all duration-300 group-hover:scale-110 transform group-hover:drop-shadow-lg">
+                      {phase.icon}
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-300 text-lg mb-6">
+
+                {/* Title */}
+                <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300 bg-clip-text text-transparent group-hover:from-blue-200 group-hover:via-white group-hover:to-blue-200 transition-all duration-300">
+                  {phase.title}
+                </h2>
+
+                {/* Description */}
+                <p className="text-gray-300 group-hover:text-gray-200 text-base lg:text-lg mb-6 leading-relaxed transition-colors duration-300">
                   {phase.description}
                 </p>
-                <ul className="space-y-3">
+
+                {/* Details List */}
+                <div className="space-y-3">
                   {phase.details.map((item, i) => (
-                    <li
+                    <div
                       key={i}
-                      className="flex items-center gap-2 text-gray-300"
+                      className="flex items-center gap-3 text-gray-300 group-hover:text-gray-200 transition-all duration-300 p-2 rounded-lg hover:bg-white/5"
                     >
-                      <FaGlobe className="text-cyan-400" /> {item}
-                    </li>
+                      <div className="p-1 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
+                        <FaGlobe className="text-cyan-400 text-sm group-hover:text-cyan-300 transition-colors duration-300" />
+                      </div>
+                      <span className="text-sm lg:text-base">{item}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
+
+                {/* Hover border glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-blue-500/50 blur-sm"></div>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Progress Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="flex items-center gap-2">
+          {phases.map((_, index) => (
+            <div
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-500 ${
+                index === currentPhase
+                  ? "bg-blue-400 scale-125 shadow-lg shadow-blue-400/50"
+                  : "bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+        <div className="text-center mt-2">
+          <span className="text-gray-400 text-xs">
+            Scroll to explore instruments
+          </span>
         </div>
       </div>
     </section>
