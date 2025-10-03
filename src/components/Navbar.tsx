@@ -3,37 +3,53 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSatellite, FaGamepad, FaHome } from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   const links = [
-    { name: "Home", href: "/" },
-    { name: "Instruments", href: "/instruments" },
-    { name: "Games", href: "/games" },
+    { name: "Home", href: "/", icon: FaHome },
+    { name: "Instruments", href: "/instruments", icon: FaSatellite },
+    { name: "Games", href: "/games", icon: FaGamepad },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/10">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-xl border-b border-white/10 shadow-lg">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
-        {/* Left: Tabs */}
+        {/* Left: Brand */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+            <FaSatellite className="text-white text-lg group-hover:rotate-12 transition-transform duration-300" />
+          </div>
+          <div className="text-2xl md:text-3xl font-extrabold tracking-wider bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            Spatium
+          </div>
+        </Link>
+
+        {/* Right: Navigation Links */}
         <div className="hidden md:flex items-center gap-8 font-medium">
           {links.map((link, index) => {
             const isActive = pathname === link.href;
+            const IconComponent = link.icon;
             return (
               <Link
                 key={index}
                 href={link.href}
-                className={`relative transition-colors duration-300 ${
-                  isActive ? "text-white" : "text-gray-300 hover:text-white"
+                className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 ${
+                  isActive 
+                    ? "text-white bg-white/10 shadow-lg" 
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
                 }`}
               >
+                <IconComponent className={`text-sm transition-all duration-300 ${
+                  isActive ? "text-blue-400" : "group-hover:text-blue-400"
+                }`} />
                 {link.name}
                 {/* Underline Active */}
                 <span
-                  className={`absolute bottom-[-6px] left-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 ${
+                  className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-500 rounded-full transition-all duration-300 ${
                     isActive ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 ></span>
@@ -42,14 +58,9 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right: Brand */}
-        <div className="text-2xl md:text-3xl font-extrabold tracking-wider bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
-          Spatium
-        </div>
-
         {/* Mobile Menu Icon */}
         <button
-          className="md:hidden text-gray-300 text-xl"
+          className="md:hidden text-gray-300 text-xl p-2 rounded-lg hover:bg-white/10 transition-all duration-300"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <FaTimes /> : <FaBars />}
@@ -58,20 +69,24 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-6 bg-black/40 backdrop-blur-md border-t border-white/10 py-6 animate-fade-in">
+        <div className="md:hidden flex flex-col items-center gap-4 bg-black/50 backdrop-blur-xl border-t border-white/10 py-6 animate-fade-in shadow-2xl">
           {links.map((link, index) => {
             const isActive = pathname === link.href;
+            const IconComponent = link.icon;
             return (
               <Link
                 key={index}
                 href={link.href}
-                className={`text-lg transition-colors duration-300 ${
+                className={`flex items-center gap-3 px-6 py-3 rounded-xl text-lg transition-all duration-300 ${
                   isActive
-                    ? "text-white font-semibold"
-                    : "text-gray-300 hover:text-white"
+                    ? "text-white font-semibold bg-white/10 shadow-lg"
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
+                <IconComponent className={`text-sm ${
+                  isActive ? "text-blue-400" : "text-gray-400"
+                }`} />
                 {link.name}
               </Link>
             );

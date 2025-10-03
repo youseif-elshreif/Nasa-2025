@@ -197,6 +197,7 @@ export default function TerraStatsSection() {
             backgroundRepeat: "repeat",
             backgroundSize: "200px 150px",
           }}
+          id="terra-stats"
         ></div>
       </div>
 

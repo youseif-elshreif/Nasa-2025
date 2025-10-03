@@ -238,7 +238,7 @@ export default function EarthSection() {
               }`}
             >
               <div
-                className="relative p-8 rounded-2xl"
+                className="relative p-8 rounded-l-2xl"
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.08) 100%)",

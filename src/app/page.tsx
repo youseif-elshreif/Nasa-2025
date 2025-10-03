@@ -4,6 +4,7 @@ import MissionOverview from "../components/MissionOverview";
 import TerraStatsSection from "../sections/TerraStatsSection";
 import EarthSection from "../sections/EarthSection";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
         {/* Earth Section - Terra يتحرك حول الأرض */}
         <EarthSection />
       </main>
+      
+      {/* Footer */}
+      <Footer />
     </>
   );
 }
