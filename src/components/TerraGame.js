@@ -232,59 +232,125 @@ const TerraGame = () => {
 
   if (gameState === "menu") {
     return (
-      <div className="w-full h-screen bg-gradient-to-b from-blue-900 via-blue-700 to-blue-500 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
-          <div className="text-center mb-6">
-            <FaSatellite className="w-20 h-20 mx-auto mb-4 text-blue-600" />
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">
-              TerraQuest
-            </h1>
-            <p className="text-xl text-gray-600">Satellite Data Explorer</p>
-            {highScore > 0 && (
-              <div className="mt-3 inline-block bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">
-                <span className="font-bold">High Score: {highScore}</span>
-              </div>
-            )}
+      <div className="w-full min-h-screen bg-gradient-to-b from-black via-blue-900/20 to-black flex items-center justify-center p-4 relative overflow-hidden">
+        {/* Space Background Effects */}
+        <div className="absolute inset-0 z-0">
+          {/* Animated stars */}
+          <div className="absolute inset-0">
+            {[...Array(80)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle"
+                style={{
+                  width: Math.random() * 3 + 1 + "px",
+                  height: Math.random() * 3 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  animationDelay: Math.random() * 3 + "s",
+                  animationDuration: (Math.random() * 2 + 2) + "s",
+                  opacity: Math.random() * 0.8 + 0.2,
+                }}
+              />
+            ))}
           </div>
+          
+          {/* Moving nebulas */}
+          <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/8 via-purple-500/12 to-cyan-500/8 blur-3xl rounded-full -top-20 -right-20 animate-float"></div>
+          <div 
+            className="absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/6 via-indigo-500/10 to-blue-500/6 blur-3xl rounded-full -bottom-20 -left-20 animate-float"
+            style={{ animationDelay: "3s", animationDirection: "reverse" }}
+          ></div>
+        </div>
 
-          <div className="bg-blue-50 rounded-lg p-6 mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              Learn About NASA&apos;s Terra Satellite!
-            </h2>
-            <p className="text-gray-700 mb-4">
-              Terra was launched in 1999 and orbits Earth collecting vital
-              climate data. Use arrow keys to pilot the satellite and collect
-              data from its 5 amazing instruments!
-            </p>
-            <div className="grid grid-cols-2 gap-3 text-sm">
-              {instruments.map((inst) => (
-                <div
-                  key={inst.id}
-                  className="flex items-center gap-2 bg-white p-2 rounded"
-                >
-                  <span className="text-2xl">{inst.icon}</span>
-                  <span className="font-semibold text-gray-700">
-                    {inst.name}
-                  </span>
+        {/* Game Menu Card */}
+        <div 
+          className="relative z-10 max-w-2xl w-full mx-4 rounded-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          {/* Glow effect */}
+          <div className="absolute inset-0 rounded-2xl opacity-50 bg-gradient-to-r from-blue-500/10 via-purple-500/8 to-cyan-500/10 blur-xl"></div>
+          
+          {/* Content */}
+          <div className="relative z-10 p-8">
+            <div className="text-center mb-8">
+              {/* Enhanced Satellite Icon */}
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-blue-500/30 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                    <FaSatellite className="w-12 h-12 text-blue-400 drop-shadow-lg" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl animate-pulse"></div>
                 </div>
-              ))}
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                TerraQuest
+              </h1>
+              <p className="text-xl text-gray-300 mb-4">Satellite Data Explorer</p>
+              
+              {highScore > 0 && (
+                <div className="mt-4 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-full backdrop-blur-sm">
+                  <FaTrophy className="text-yellow-400" />
+                  <span className="font-bold text-yellow-300">High Score: {highScore}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Game Description */}
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-6 mb-8 backdrop-blur-sm">
+              <h2 className="text-2xl font-bold text-white mb-4 text-center">
+                Learn About NASA&apos;s Terra Satellite!
+              </h2>
+              <p className="text-gray-300 mb-6 text-center leading-relaxed">
+                Terra was launched in 1999 and orbits Earth collecting vital
+                climate data. Use arrow keys to pilot the satellite and collect
+                data from its 5 amazing instruments!
+              </p>
+              
+              {/* Instruments Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {instruments.map((inst) => (
+                  <div
+                    key={inst.id}
+                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-white/5 to-white/10 rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-105"
+                  >
+                    <span className="text-2xl">{inst.icon}</span>
+                    <span className="font-semibold text-gray-200 text-sm">
+                      {inst.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-4">
+              <button
+                onClick={startGame}
+                className="group relative w-full px-8 py-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-bold text-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  <FaSatellite className="text-2xl" />
+                  Start Mission
+                </span>
+              </button>
+
+              <button
+                onClick={() => setGameState("info")}
+                className="group relative w-full px-6 py-3 bg-gradient-to-r from-gray-500/10 to-gray-600/10 hover:from-gray-500/20 hover:to-gray-600/20 border border-gray-500/20 hover:border-gray-400/30 rounded-xl text-gray-300 hover:text-white font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-500/5 to-gray-600/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  <FaBook className="text-lg" />
+                  Learn More About Terra
+                </span>
+              </button>
             </div>
           </div>
-
-          <button
-            onClick={startGame}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg text-xl transition-colors"
-          >
-            Start Mission
-          </button>
-
-          <button
-            onClick={() => setGameState("info")}
-            className="w-full mt-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
-          >
-            <FaBook className="w-5 h-5" />
-            Learn More About Terra
-          </button>
         </div>
       </div>
     );
@@ -292,82 +358,125 @@ const TerraGame = () => {
 
   if (gameState === "info") {
     return (
-      <div className="w-full h-screen bg-gradient-to-b from-blue-900 to-blue-600 overflow-auto p-4">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-8 my-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">
-            About NASA&apos;s Terra Satellite
-          </h1>
+      <div className="w-full min-h-screen bg-gradient-to-b from-black via-blue-900/20 to-black overflow-auto p-4 relative">
+        {/* Space Background Effects */}
+        <div className="absolute inset-0 z-0">
+          {/* Animated stars */}
+          <div className="absolute inset-0">
+            {[...Array(60)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle"
+                style={{
+                  width: Math.random() * 2 + 1 + "px",
+                  height: Math.random() * 2 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  animationDelay: Math.random() * 3 + "s",
+                  animationDuration: (Math.random() * 2 + 2) + "s",
+                  opacity: Math.random() * 0.7 + 0.2,
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Moving nebulas */}
+          <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/6 via-purple-500/8 to-cyan-500/6 blur-3xl rounded-full top-20 right-20 animate-float"></div>
+          <div 
+            className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-500/4 via-indigo-500/6 to-blue-500/4 blur-3xl rounded-full bottom-20 left-20 animate-float"
+            style={{ animationDelay: "2s", animationDirection: "reverse" }}
+          ></div>
+        </div>
 
-          <div className="space-y-6">
-            <div className="bg-blue-50 rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">
-                Mission Overview
-              </h2>
-              <p className="text-gray-700 leading-relaxed">
-                Terra (EOS AM-1) is a flagship satellite launched by NASA in
-                December 1999. It&apos;s part of the Earth Observing System
-                (EOS) and orbits 705 km above Earth, passing over the equator at
-                10:30 AM local time. Terra completes an orbit every 99 minutes,
-                viewing the entire Earth every 16 days.
-              </p>
-            </div>
+        <div 
+          className="relative z-10 max-w-4xl mx-auto my-8 rounded-2xl overflow-hidden backdrop-blur-xl"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          {/* Glow effect */}
+          <div className="absolute inset-0 rounded-2xl opacity-30 bg-gradient-to-r from-blue-500/10 via-purple-500/8 to-cyan-500/10 blur-xl"></div>
+          
+          <div className="relative z-10 p-8">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+              About NASA&apos;s Terra Satellite
+            </h1>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              {instruments.map((inst) => (
-                <div
-                  key={inst.id}
-                  className={`${inst.color} bg-opacity-10 rounded-lg p-5 border-l-4 ${inst.color}`}
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-3xl">{inst.icon}</span>
-                    <div>
-                      <h3 className="font-bold text-gray-800">{inst.name}</h3>
-                      <p className="text-xs text-gray-600">{inst.fullName}</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-700 mb-2">
-                    {inst.description}
-                  </p>
-                  <p className="text-xs text-gray-600 italic">{inst.fact}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-green-50 rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">
-                Why Terra Matters
-              </h2>
-              <div className="space-y-2 text-gray-700">
-                <p className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span>Monitors climate change and global warming trends</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span>
-                    Tracks deforestation, wildfires, and land use changes
-                  </span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span>Studies ocean temperatures and cloud formations</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span>
-                    Measures air pollution and atmospheric composition
-                  </span>
+            <div className="space-y-6">
+              {/* Mission Overview */}
+              <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-6 backdrop-blur-sm">
+                <h2 className="text-2xl font-bold text-white mb-3">
+                  Mission Overview
+                </h2>
+                <p className="text-gray-300 leading-relaxed">
+                  Terra (EOS AM-1) is a flagship satellite launched by NASA in
+                  December 1999. It&apos;s part of the Earth Observing System
+                  (EOS) and orbits 705 km above Earth, passing over the equator at
+                  10:30 AM local time. Terra completes an orbit every 99 minutes,
+                  viewing the entire Earth every 16 days.
                 </p>
               </div>
-            </div>
-          </div>
 
-          <button
-            onClick={() => setGameState("menu")}
-            className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
-          >
-            Back to Menu
-          </button>
+              {/* Instruments Grid */}
+              <div className="grid md:grid-cols-2 gap-4">
+                {instruments.map((inst) => (
+                  <div
+                    key={inst.id}
+                    className="bg-gradient-to-r from-white/5 to-white/10 border border-white/10 hover:border-blue-400/30 rounded-xl p-5 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl">{inst.icon}</span>
+                      <div>
+                        <h3 className="font-bold text-white">{inst.name}</h3>
+                        <p className="text-xs text-gray-400">{inst.fullName}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-300 mb-3 leading-relaxed">
+                      {inst.description}
+                    </p>
+                    <p className="text-xs text-blue-300 italic border-l-2 border-blue-400/30 pl-3">
+                      {inst.fact}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Why Terra Matters */}
+              <div className="bg-gradient-to-r from-green-500/10 to-cyan-500/10 border border-green-500/20 rounded-xl p-6 backdrop-blur-sm">
+                <h2 className="text-2xl font-bold text-white mb-4">
+                  Why Terra Matters
+                </h2>
+                <div className="space-y-3 text-gray-300">
+                  <p className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1 text-lg">✓</span>
+                    <span>Monitors climate change and global warming trends</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1 text-lg">✓</span>
+                    <span>Tracks deforestation, wildfires, and land use changes</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1 text-lg">✓</span>
+                    <span>Studies ocean temperatures and cloud formations</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1 text-lg">✓</span>
+                    <span>Measures air pollution and atmospheric composition</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Back Button */}
+            <button
+              onClick={() => setGameState("menu")}
+              className="group relative mt-8 w-full px-6 py-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-bold backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10">Back to Menu</span>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -381,66 +490,125 @@ const TerraGame = () => {
     ).toFixed(0);
 
     return (
-      <div className="w-full h-screen bg-gradient-to-b from-blue-900 to-blue-600 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
-          <div className="text-center">
-            <FaTrophy className="w-24 h-24 mx-auto mb-4 text-yellow-500" />
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">
+      <div className="w-full min-h-screen bg-gradient-to-b from-black via-blue-900/20 to-black flex items-center justify-center p-4 relative overflow-hidden">
+        {/* Space Background Effects */}
+        <div className="absolute inset-0 z-0">
+          {/* Animated stars */}
+          <div className="absolute inset-0">
+            {[...Array(100)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle"
+                style={{
+                  width: Math.random() * 3 + 1 + "px",
+                  height: Math.random() * 3 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  animationDelay: Math.random() * 3 + "s",
+                  animationDuration: (Math.random() * 2 + 2) + "s",
+                  opacity: Math.random() * 0.8 + 0.2,
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Celebration nebulas */}
+          <div className="absolute w-[700px] h-[700px] bg-gradient-to-r from-yellow-500/8 via-orange-500/12 to-red-500/8 blur-3xl rounded-full -top-20 -right-20 animate-pulse"></div>
+          <div 
+            className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-500/6 via-pink-500/10 to-blue-500/6 blur-3xl rounded-full -bottom-20 -left-20 animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+        </div>
+
+        <div 
+          className="relative z-10 max-w-2xl w-full mx-4 rounded-2xl overflow-hidden backdrop-blur-xl transition-all duration-500"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(59,130,246,0.06) 100%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          {/* Celebration glow */}
+          <div className="absolute inset-0 rounded-2xl opacity-60 bg-gradient-to-r from-yellow-500/10 via-orange-500/8 to-yellow-500/10 blur-xl animate-pulse"></div>
+          
+          <div className="relative z-10 p-8 text-center">
+            {/* Trophy with enhanced styling */}
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div className="w-32 h-32 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-yellow-500/30 animate-pulse">
+                  <FaTrophy className="w-16 h-16 text-yellow-400 drop-shadow-lg" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-full blur-xl animate-pulse"></div>
+              </div>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent">
               Mission Complete!
             </h1>
-            <p className="text-xl text-gray-600 mb-6">
+            <p className="text-xl text-gray-300 mb-8">
               Great job exploring Earth!
             </p>
 
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="bg-blue-50 rounded-lg p-4">
-                <p className="text-3xl font-bold text-blue-600">{score}</p>
-                <p className="text-gray-600 text-sm">Final Score</p>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-xl p-4 backdrop-blur-sm">
+                <p className="text-3xl font-bold text-blue-400 mb-1">{score}</p>
+                <p className="text-gray-300 text-sm">Final Score</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4">
-                <p className="text-3xl font-bold text-green-600">
+              <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-4 backdrop-blur-sm">
+                <p className="text-3xl font-bold text-green-400 mb-1">
                   {uniqueInstruments}/5
                 </p>
-                <p className="text-gray-600 text-sm">Instruments</p>
+                <p className="text-gray-300 text-sm">Instruments</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4">
-                <p className="text-3xl font-bold text-purple-600">
+              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-4 backdrop-blur-sm">
+                <p className="text-3xl font-bold text-purple-400 mb-1">
                   {collectedData.length}
                 </p>
-                <p className="text-gray-600 text-sm">Data Points</p>
+                <p className="text-gray-300 text-sm">Data Points</p>
               </div>
             </div>
 
+            {/* High Score Badge */}
             {score > highScore && (
-              <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-3 mb-4">
-                <p className="text-yellow-800 font-bold">
+              <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/40 rounded-xl p-4 mb-6 backdrop-blur-sm animate-pulse">
+                <p className="text-yellow-300 font-bold text-lg">
                   🎉 New High Score! 🎉
                 </p>
               </div>
             )}
 
-            <div className="bg-gray-200 rounded-full h-4 mb-2 overflow-hidden">
-              <div
-                className="bg-gradient-to-r from-blue-500 to-green-500 h-full transition-all duration-500"
-                style={{ width: `${completionRate}%` }}
-              />
+            {/* Progress Bar */}
+            <div className="mb-8">
+              <div className="bg-gray-700/50 rounded-full h-6 mb-3 overflow-hidden border border-gray-600/30">
+                <div
+                  className="bg-gradient-to-r from-blue-500 via-green-500 to-cyan-500 h-full transition-all duration-1000 shadow-lg"
+                  style={{ width: `${completionRate}%` }}
+                />
+              </div>
+              <p className="text-gray-300 text-center">
+                {completionRate}% Instrument Coverage
+              </p>
             </div>
-            <p className="text-gray-600 mb-6">
-              {completionRate}% Instrument Coverage
-            </p>
 
-            <div className="space-y-3">
+            {/* Action Buttons */}
+            <div className="space-y-4">
               <button
                 onClick={startGame}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                className="group relative w-full px-6 py-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-bold backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
               >
-                Play Again
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  <FaSatellite />
+                  Play Again
+                </span>
               </button>
+              
               <button
                 onClick={() => setGameState("menu")}
-                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors"
+                className="group relative w-full px-6 py-3 bg-gradient-to-r from-gray-500/10 to-gray-600/10 hover:from-gray-500/20 hover:to-gray-600/20 border border-gray-500/20 hover:border-gray-400/30 rounded-xl text-gray-300 hover:text-white font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden"
               >
-                Back to Menu
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-500/5 to-gray-600/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10">Back to Menu</span>
               </button>
             </div>
           </div>
@@ -450,59 +618,98 @@ const TerraGame = () => {
   }
 
   return (
-    <div className="w-full h-screen bg-gradient-to-b from-black via-blue-900 to-blue-700 relative overflow-hidden">
-      {/* Stars background */}
+    <div className="w-full h-screen bg-gradient-to-b from-black via-blue-900/30 to-black relative overflow-hidden">
+      {/* Enhanced Stars background */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(80)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-white rounded-full"
+            className="absolute bg-white rounded-full animate-twinkle"
             style={{
-              width: Math.random() * 2 + 1 + "px",
-              height: Math.random() * 2 + 1 + "px",
+              width: Math.random() * 3 + 1 + "px",
+              height: Math.random() * 3 + 1 + "px",
               left: Math.random() * 100 + "%",
               top: `calc(${Math.random() * 100}% + ${starOffset}px)`,
-              opacity: Math.random() * 0.7 + 0.3,
+              opacity: Math.random() * 0.8 + 0.2,
+              animationDelay: Math.random() * 3 + "s",
+              animationDuration: (Math.random() * 2 + 2) + "s",
             }}
           />
         ))}
       </div>
 
-      {/* HUD */}
-      <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4 z-10">
+      {/* Nebula effects */}
+      <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/6 via-purple-500/8 to-cyan-500/6 blur-3xl rounded-full top-20 right-20 animate-float"></div>
+      <div 
+        className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-500/4 via-indigo-500/6 to-blue-500/4 blur-3xl rounded-full bottom-20 left-20 animate-float"
+        style={{ animationDelay: "2s", animationDirection: "reverse" }}
+      ></div>
+
+      {/* Enhanced HUD */}
+      <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 via-black/60 to-transparent backdrop-blur-xl border-b border-white/10 text-white p-4 z-10">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <FaTrophy className="w-5 h-5 text-yellow-400" />
-              <span className="font-bold text-xl">{score}</span>
+            {/* Score */}
+            <div className="flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-full backdrop-blur-sm">
+              <FaTrophy className="w-5 h-5 text-yellow-400 drop-shadow-lg" />
+              <span className="font-bold text-xl text-yellow-300">{score}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <FaExclamationCircle className="w-5 h-5 text-red-400" />
-              <span className="font-bold text-xl">{timeLeft}s</span>
+            
+            {/* Timer */}
+            <div className={`flex items-center gap-3 px-4 py-2 bg-gradient-to-r border rounded-full backdrop-blur-sm transition-all duration-300 ${
+              timeLeft <= 10 
+                ? 'from-red-500/30 to-orange-500/30 border-red-500/40 animate-pulse' 
+                : 'from-blue-500/20 to-cyan-500/20 border-blue-500/30'
+            }`}>
+              <FaExclamationCircle className={`w-5 h-5 drop-shadow-lg ${timeLeft <= 10 ? 'text-red-400' : 'text-cyan-400'}`} />
+              <span className={`font-bold text-xl ${timeLeft <= 10 ? 'text-red-300' : 'text-cyan-300'}`}>{timeLeft}s</span>
             </div>
+            
+            {/* Combo */}
             {combo > 1 && (
-              <div className="flex items-center gap-2 bg-orange-500 bg-opacity-80 px-3 py-1 rounded-full">
-                <FaBolt className="w-4 h-4" />
-                <span className="font-bold">x{combo} Combo!</span>
+              <div className="flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-orange-500/30 to-red-500/30 border border-orange-500/40 rounded-full backdrop-blur-sm animate-pulse">
+                <FaBolt className="w-4 h-4 text-orange-400 drop-shadow-lg" />
+                <span className="font-bold text-orange-300">x{combo} Combo!</span>
               </div>
             )}
           </div>
-          <div className="text-sm">
-            <p>Collected: {new Set(collectedData).size}/5 instruments</p>
+          
+          {/* Progress */}
+          <div className="flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full backdrop-blur-sm">
+            <FaSatellite className="w-4 h-4 text-green-400 drop-shadow-lg" />
+            <span className="text-sm text-green-300">
+              Collected: <span className="font-bold">{new Set(collectedData).size}/5</span> instruments
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Fact popup */}
+      {/* Enhanced Fact popup */}
       {showFact && (
-        <div className="absolute top-24 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-2xl p-4 max-w-md z-20">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">{showFact.icon}</span>
-            <div>
-              <p className="font-bold text-gray-800">
-                {showFact.name} Collected!
-              </p>
-              <p className="text-sm text-gray-600">{showFact.fact}</p>
+        <div className="absolute top-28 left-1/2 transform -translate-x-1/2 max-w-md z-20 animate-fade-in">
+          <div 
+            className="rounded-xl p-6 backdrop-blur-xl border border-white/20 shadow-2xl"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.08) 100%)",
+            }}
+          >
+            {/* Glow effect */}
+            <div className="absolute inset-0 rounded-xl opacity-40 bg-gradient-to-r from-blue-500/20 via-purple-500/15 to-cyan-500/20 blur-xl"></div>
+            
+            <div className="relative z-10 flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center border border-blue-500/30">
+                  <span className="text-3xl">{showFact.icon}</span>
+                </div>
+              </div>
+              <div className="flex-1">
+                <p className="font-bold text-lg mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  {showFact.name} Collected!
+                </p>
+                <p className="text-sm text-gray-300 leading-relaxed border-l-2 border-blue-400/40 pl-3">
+                  {showFact.fact}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -525,9 +732,9 @@ const TerraGame = () => {
           />
         </div>
 
-        {/* Satellite */}
+        {/* Enhanced Satellite */}
         <div
-          className="absolute"
+          className="absolute z-20"
           style={{
             left: `${satellitePos.x}%`,
             top: `${satellitePos.y}%`,
@@ -535,29 +742,61 @@ const TerraGame = () => {
             transition: "none",
           }}
         >
-          <FaSatellite className="w-12 h-12 text-white drop-shadow-lg" />
-          <div className="absolute -inset-2 bg-blue-400 rounded-full opacity-30 blur-md" />
+          <div className="relative">
+            <FaSatellite className="w-14 h-14 text-white drop-shadow-2xl relative z-10" />
+            {/* Multiple glow layers */}
+            <div className="absolute -inset-3 bg-blue-400/40 rounded-full blur-lg animate-pulse" />
+            <div className="absolute -inset-2 bg-cyan-400/30 rounded-full blur-md" />
+            <div className="absolute -inset-1 bg-white/20 rounded-full blur-sm" />
+          </div>
         </div>
 
-        {/* Data points */}
+        {/* Enhanced Data points */}
         {dataPoints.map((point) => (
           <div
             key={point.id}
-            className={`absolute ${point.instrument.color} bg-opacity-80 rounded-full p-3 shadow-lg`}
+            className="absolute z-10 animate-float"
             style={{
               left: `${point.x}%`,
               top: `${point.y}%`,
               transform: "translate(-50%, -50%)",
+              animationDelay: Math.random() * 2 + "s",
             }}
           >
-            <span className="text-2xl">{point.instrument.icon}</span>
+            <div className="relative">
+              {/* Data point container */}
+              <div className={`${point.instrument.color} bg-opacity-90 rounded-full p-4 shadow-2xl border-2 border-white/30 backdrop-blur-sm transition-all duration-300 hover:scale-110`}>
+                <span className="text-2xl drop-shadow-lg">{point.instrument.icon}</span>
+              </div>
+              
+              {/* Glow effects */}
+              <div className={`absolute -inset-2 ${point.instrument.color} opacity-40 rounded-full blur-lg animate-pulse`} />
+              <div className="absolute -inset-1 bg-white/20 rounded-full blur-sm" />
+              
+              {/* Pulsing ring */}
+              <div className="absolute -inset-4 border-2 border-white/20 rounded-full animate-ping" />
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Instructions */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-3 rounded-full text-sm">
-        Use Arrow Keys (8 directions) • Collect data • Build combos!
+      {/* Enhanced Instructions */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+        <div 
+          className="px-6 py-3 rounded-full backdrop-blur-xl border border-white/20 text-center"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(59,130,246,0.08) 100%)",
+          }}
+        >
+          {/* Glow effect */}
+          <div className="absolute inset-0 rounded-full opacity-30 bg-gradient-to-r from-blue-500/20 via-purple-500/15 to-cyan-500/20 blur-lg"></div>
+          
+          <p className="relative z-10 text-sm text-gray-300 font-medium">
+            <span className="text-blue-400">↑↓←→</span> Move Satellite • 
+            <span className="text-purple-400 mx-2">🛰️</span> Collect Data • 
+            <span className="text-orange-400">⚡</span> Build Combos!
+          </p>
+        </div>
       </div>
     </div>
   );
