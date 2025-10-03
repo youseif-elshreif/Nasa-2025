@@ -23,7 +23,7 @@ export default function Home() {
         {/* Earth Section - Terra يتحرك حول الأرض */}
         <EarthSection />
       </main>
-      
+
       {/* Footer */}
       <Footer />
     </>

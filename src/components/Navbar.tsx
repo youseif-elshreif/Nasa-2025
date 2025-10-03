@@ -3,7 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBars, FaTimes, FaSatellite, FaGamepad, FaHome } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaSatellite,
+  FaGamepad,
+  FaHome,
+} from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,14 +44,16 @@ export default function Navbar() {
                 key={index}
                 href={link.href}
                 className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 ${
-                  isActive 
-                    ? "text-white bg-white/10 shadow-lg" 
+                  isActive
+                    ? "text-white bg-white/10 shadow-lg"
                     : "text-gray-300 hover:text-white hover:bg-white/5"
                 }`}
               >
-                <IconComponent className={`text-sm transition-all duration-300 ${
-                  isActive ? "text-blue-400" : "group-hover:text-blue-400"
-                }`} />
+                <IconComponent
+                  className={`text-sm transition-all duration-300 ${
+                    isActive ? "text-blue-400" : "group-hover:text-blue-400"
+                  }`}
+                />
                 {link.name}
                 {/* Underline Active */}
                 <span
@@ -84,9 +92,11 @@ export default function Navbar() {
                 }`}
                 onClick={() => setIsOpen(false)}
               >
-                <IconComponent className={`text-sm ${
-                  isActive ? "text-blue-400" : "text-gray-400"
-                }`} />
+                <IconComponent
+                  className={`text-sm ${
+                    isActive ? "text-blue-400" : "text-gray-400"
+                  }`}
+                />
                 {link.name}
               </Link>
             );

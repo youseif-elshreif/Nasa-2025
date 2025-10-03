@@ -94,19 +94,43 @@ export default function MissionOverview() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-16 lg:px-20">
         {/* Section Header */}
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="text-center mb-16">
           <h2
             id="mission-overview-title"
-            className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-cyan-300 mb-6"
+            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
-            Mission Overview
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
+              Mission
+            </span>
+            <br />
+            <span className="text-white">Overview</span>
           </h2>
 
-          <div className="max-w-4xl mx-auto space-y-4">
+          {/* Gradient underline */}
+          <div
+            className={`mx-auto h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-2 transition-all duration-1000 ${
+              isVisible ? "w-32 opacity-100" : "w-0 opacity-0"
+            }`}
+          ></div>
+
+          {/* Glow effect */}
+          <div
+            className={`mx-auto h-8 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent blur-sm mb-6 transition-all duration-1000 ${
+              isVisible ? "w-32 opacity-100" : "w-0 opacity-0"
+            }`}
+          ></div>
+
+          <div
+            className={`max-w-4xl mx-auto space-y-4 transition-all duration-1000 delay-500 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+          >
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
               Terra (launched Dec 18, 1999) is NASA&apos;s long-running
               Earth-observing flagship. With five instruments — MODIS, ASTER,
@@ -123,7 +147,13 @@ export default function MissionOverview() {
           </div>
 
           {/* CTA Button */}
-          <div className="mt-8">
+          <div
+            className={`mt-8 transition-all duration-1000 delay-700 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+          >
             <a
               href="https://terra.nasa.gov"
               target="_blank"
