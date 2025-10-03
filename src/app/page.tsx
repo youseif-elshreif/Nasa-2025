@@ -3,13 +3,11 @@ import HeroSection from "../sections/HeroSection";
 import MissionOverview from "../components/MissionOverview";
 import TerraStatsSection from "../sections/TerraStatsSection";
 import EarthSection from "../sections/EarthSection";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <main>
         {/* Hero Section - Terra تفاعلي */}
         <HeroSection />
@@ -25,7 +23,6 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <Footer />
     </>
   );
 }
