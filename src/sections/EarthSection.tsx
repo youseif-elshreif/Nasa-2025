@@ -238,7 +238,7 @@ export default function EarthSection() {
               }`}
             >
               <div
-                className="group relative p-8 rounded-2xl transition-all duration-700 hover:scale-105 cursor-pointer"
+                className="relative p-8 rounded-2xl"
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.08) 100%)",
@@ -248,28 +248,24 @@ export default function EarthSection() {
                     "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
                 }}
               >
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-blue-500/25 via-purple-500/20 to-blue-500/25 blur-xl -z-10 group-hover:scale-110"></div>
 
-                {/* Inner glow */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-400/10"></div>
 
                 {/* Icon Section */}
                 <div className="flex items-center justify-center mb-6">
-                  <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20 group-hover:from-blue-400/30 group-hover:via-purple-400/25 group-hover:to-blue-500/30 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25">
-                    <div className="text-4xl transition-all duration-300 group-hover:scale-110 transform group-hover:drop-shadow-lg">
+                  <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20">
+                    <div className="text-4xl">
                       {phase.icon}
                     </div>
                   </div>
                 </div>
 
                 {/* Title */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300 bg-clip-text text-transparent group-hover:from-blue-200 group-hover:via-white group-hover:to-blue-200 transition-all duration-300">
+                <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300 bg-clip-text text-transparent">
                   {phase.title}
                 </h2>
 
                 {/* Description */}
-                <p className="text-gray-300 group-hover:text-gray-200 text-base lg:text-lg mb-6 leading-relaxed transition-colors duration-300">
+                <p className="text-gray-300 text-base lg:text-lg mb-6 leading-relaxed">
                   {phase.description}
                 </p>
 
@@ -278,20 +274,17 @@ export default function EarthSection() {
                   {phase.details.map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 text-gray-300 group-hover:text-gray-200 transition-all duration-300 p-2 rounded-lg hover:bg-white/5"
+                      className="flex items-center gap-3 text-gray-300 p-2 rounded-lg"
                     >
                       <div className="p-1 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
-                        <FaGlobe className="text-cyan-400 text-sm group-hover:text-cyan-300 transition-colors duration-300" />
+                        <FaGlobe className="text-cyan-400 text-sm" />
                       </div>
                       <span className="text-sm lg:text-base">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Hover border glow */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-blue-500/50 blur-sm"></div>
-                </div>
+
               </div>
             </div>
           ))}
