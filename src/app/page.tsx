@@ -1,19 +1,27 @@
 "use client";
 import HeroSection from "../sections/HeroSection";
+import MissionOverview from "../components/MissionOverview";
 import TerraStatsSection from "../sections/TerraStatsSection";
 import EarthSection from "../sections/EarthSection";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <main>
-      {/* Hero Section - Terra تفاعلي */}
-      <HeroSection />
+    <>
+      <Navbar />
+      <main>
+        {/* Hero Section - Terra تفاعلي */}
+        <HeroSection />
 
-      {/* Terra Stats Section - إحصائيات القمر الصناعي */}
-      <TerraStatsSection />
+        {/* Mission Overview - نظرة عامة على المهمة */}
+        <MissionOverview />
 
-      {/* Earth Section - Terra يتحرك حول الأرض */}
-      <EarthSection />
-    </main>
+        {/* Terra Stats Section - إحصائيات القمر الصناعي */}
+        <TerraStatsSection />
+
+        {/* Earth Section - Terra يتحرك حول الأرض */}
+        <EarthSection />
+      </main>
+    </>
   );
 }
