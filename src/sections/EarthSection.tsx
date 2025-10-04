@@ -43,6 +43,8 @@ export default function EarthSection() {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (typeof window === 'undefined') return;
+      
       const section = document.getElementById("earth-section");
       if (!section) return;
 
@@ -80,8 +82,10 @@ export default function EarthSection() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const phases = [
@@ -221,9 +225,9 @@ export default function EarthSection() {
             className="absolute w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 transition-all duration-1000 ease-in-out pointer-events-none"
             style={{
               transform: `translate(${
-                terraPosition.x * (window.innerWidth > 1024 ? 1 : 0.6)
+                terraPosition.x * (typeof window !== 'undefined' && window.innerWidth > 1024 ? 1 : 0.6)
               }px, ${
-                terraPosition.y * (window.innerWidth > 1024 ? 1 : 0.6)
+                terraPosition.y * (typeof window !== 'undefined' && window.innerWidth > 1024 ? 1 : 0.6)
               }px)`,
             }}
           >

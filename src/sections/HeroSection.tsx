@@ -123,10 +123,12 @@ export default function HeroSection() {
                   });
                 } catch {
                   // fallback للمتصفحات القديمة
-                  window.scrollTo({
-                    top: earthSection.offsetTop,
-                    behavior: "smooth",
-                  });
+                  if (typeof window !== 'undefined') {
+                    window.scrollTo({
+                      top: earthSection.offsetTop,
+                      behavior: "smooth",
+                    });
+                  }
                 }
               }
             }}
