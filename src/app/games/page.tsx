@@ -65,6 +65,26 @@ export default function GamesPage() {
       buttonGradient: "from-blue-500/20 to-cyan-500/20",
       hoverGradient: "from-blue-500/30 to-cyan-500/30",
     },
+    {
+      id: "terra-flash-cards",
+      title: "Terra Flash Cards",
+      subtitle: "Knowledge Quiz Game",
+      description:
+        "Test your knowledge about Terra's instruments with interactive flash cards. Learn through engaging Q&A sessions!",
+      features: [
+        "5 Different instrument quizzes",
+        "Interactive flip card animations",
+        "Progress tracking and scoring",
+        "Detailed explanations for each answer",
+      ],
+      difficulty: "Medium",
+      players: "Single Player", 
+      icon: <span className="text-4xl">🎯</span>,
+      gradient: "from-green-500/20 to-emerald-500/20",
+      borderGradient: "from-green-500/30 to-emerald-500/30", 
+      buttonGradient: "from-green-500/20 to-emerald-500/20",
+      hoverGradient: "from-green-500/30 to-emerald-500/30",
+    },
     // Future games can be added here
     {
       id: "coming-soon-1",
