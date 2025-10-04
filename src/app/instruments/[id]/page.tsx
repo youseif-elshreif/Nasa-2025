@@ -51,10 +51,6 @@ const instruments = [
         title: "MOPITT Official Page",
         url: "https://terra.nasa.gov/about/terra-instruments/mopitt",
       },
-      {
-        title: "Data & Images",
-        url: "https://eosweb.larc.nasa.gov/project/mopitt/mopitt_table",
-      },
     ],
   },
   {
@@ -99,8 +95,7 @@ const instruments = [
     fullDescription:
       "The Moderate Resolution Imaging Spectroradiometer (MODIS) is Terra's most well-known instrument, capturing daily images of the entire Earth in 36 spectral bands. MODIS data supports a wide range of applications from weather forecasting and wildfire detection to monitoring ocean productivity and tracking changes in polar ice. Its comprehensive daily coverage has made it indispensable for understanding rapid environmental changes.",
     icon: <FaCloud className="text-blue-300 text-4xl" />,
-    video:
-      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
+    video: "/assets/videos/modis.mp4",
     details: [
       "Daily global Earth imagery",
       "Weather and cloud tracking",
@@ -138,8 +133,7 @@ const instruments = [
     fullDescription:
       "The Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) provides high-resolution imaging in 14 spectral bands from visible to thermal infrared. Built by Japan's METI in cooperation with NASA, ASTER specializes in detailed studies of land surface processes, including urban heat islands, volcanic activity, and mineral mapping. Its high resolution makes it ideal for focused environmental studies.",
     icon: <FaSearch className="text-green-400 text-4xl" />,
-    video:
-      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
+    video: "/assets/videos/aster.mp4",
     details: [
       "Urban heat island mapping",
       "Volcanic eruption monitoring",
@@ -377,7 +371,8 @@ export default function InstrumentDetailsPage() {
             {(instrumentId === "aster" ||
               instrumentId === "ceres" ||
               instrumentId === "modis" ||
-              instrumentId === "mopitt") && (
+              instrumentId === "mopitt" ||
+              instrumentId === "misr") && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -395,7 +390,13 @@ export default function InstrumentDetailsPage() {
                   Instrument Images
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  className={`grid gap-4 ${
+                    instrumentId === "misr"
+                      ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                      : "grid-cols-1 md:grid-cols-2"
+                  }`}
+                >
                   <div className="relative group overflow-hidden rounded-xl">
                     <Image
                       src={`/assets/imgs/${instrumentId}1.jpg`}
@@ -417,6 +418,32 @@ export default function InstrumentDetailsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
+
+                  {instrumentId === "misr" && (
+                    <>
+                      <div className="relative group overflow-hidden rounded-xl">
+                        <Image
+                          src={`/assets/imgs/${instrumentId}3.jpg`}
+                          alt={`${instrument.title} - Image 3`}
+                          width={400}
+                          height={192}
+                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+
+                      <div className="relative group overflow-hidden rounded-xl">
+                        <Image
+                          src={`/assets/imgs/${instrumentId}4.jpg`}
+                          alt={`${instrument.title} - Image 4`}
+                          width={400}
+                          height={192}
+                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </motion.div>
             )}
