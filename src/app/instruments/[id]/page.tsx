@@ -3,6 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   FaBurn,
   FaSun,
@@ -371,6 +372,51 @@ export default function InstrumentDetailsPage() {
                 </video>
               </div>
             </motion.div>
+
+            {/* Images Section - Only show for instruments with images */}
+            {(instrumentId === "aster" || instrumentId === "ceres" || instrumentId === "modis" || instrumentId === "mopitt") && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.28 }}
+                className="p-6 rounded-2xl"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(59,130,246,0.1) 100%)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
+              >
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <FaSearch className="text-purple-400" />
+                  Instrument Images
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="relative group overflow-hidden rounded-xl">
+                    <Image
+                      src={`/assets/imgs/${instrumentId}1.jpg`}
+                      alt={`${instrument.title} - Image 1`}
+                      width={400}
+                      height={192}
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  
+                  <div className="relative group overflow-hidden rounded-xl">
+                    <Image
+                      src={`/assets/imgs/${instrumentId}2.jpg`}
+                      alt={`${instrument.title} - Image 2`}
+                      width={400}
+                      height={192}
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
             {/* Key Capabilities */}
             <motion.div
