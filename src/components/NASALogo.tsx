@@ -179,12 +179,16 @@ export default function NASALogo() {
       renderer.setSize(width, height);
     };
 
-    window.addEventListener("resize", handleResize);
-    handleResize();
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+      handleResize();
+    }
 
     // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
 
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);

@@ -24,8 +24,7 @@ const instruments = [
     fullDescription:
       "The Measurements of Pollution in the Troposphere (MOPITT) instrument was developed by the Canadian Space Agency and has been monitoring carbon monoxide in Earth's lower atmosphere since 1999. MOPITT has created the first continuous global record of CO, providing crucial data on wildfire emissions, industrial pollution, and atmospheric transport patterns. This instrument has revolutionized our understanding of how human activities impact air quality on a global scale.",
     icon: <FaBurn className="text-red-400 text-4xl" />,
-    video:
-      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
+    video: "/assets/videos/mopitt.mp4",
     details: [
       "Urban pollution mapping",
       "Wildfire smoke monitoring",

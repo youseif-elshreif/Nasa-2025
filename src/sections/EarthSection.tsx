@@ -1,17 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import EarthModel from "../components/EarthModel";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import {
-  FaCloud,
-  FaSun,
-  FaBurn,
-  FaCity,
-  FaGlobe,
-  FaSearch,
-} from "react-icons/fa";
+import { FaCloud, FaSun, FaBurn, FaCity, FaGlobe, FaArrowRight } from "react-icons/fa";
 
 const AnimatedTerra = dynamic(() => import("../components/AnimatedTerra"), {
   ssr: false,
@@ -21,25 +13,6 @@ export default function EarthSection() {
   const [currentPhase, setCurrentPhase] = useState(0);
   const [terraPosition, setTerraPosition] = useState({ x: 200, y: -100 });
   const [terraRotation, setTerraRotation] = useState(0);
-  const [titleVisible, setTitleVisible] = useState(false);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTitleVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (titleRef.current) {
-      observer.observe(titleRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,27 +28,23 @@ export default function EarthSection() {
         sectionHeight
       );
 
-      const progress = scrolledInSection / sectionHeight - 0.15;
+      const progress = scrolledInSection / sectionHeight - 0.1;
 
-      if (progress < 0.18) {
+      if (progress < 0.2) {
         setCurrentPhase(0);
-        setTerraPosition({ x: 220, y: -100 });
+        setTerraPosition({ x: 200, y: -100 });
         setTerraRotation(0);
-      } else if (progress < 0.32) {
+      } else if (progress < 0.45) {
         setCurrentPhase(1);
-        setTerraPosition({ x: -220, y: -80 });
+        setTerraPosition({ x: -200, y: -80 });
         setTerraRotation(Math.PI);
-      } else if (progress < 0.46) {
+      } else if (progress < 0.7) {
         setCurrentPhase(2);
-        setTerraPosition({ x: 240, y: 100 });
+        setTerraPosition({ x: 220, y: 100 });
         setTerraRotation(0);
-      } else if (progress < 0.6) {
-        setCurrentPhase(3);
-        setTerraPosition({ x: -200, y: 120 });
-        setTerraRotation(Math.PI / 2);
       } else {
-        setCurrentPhase(4);
-        setTerraPosition({ x: -240, y: 130 });
+        setCurrentPhase(3);
+        setTerraPosition({ x: -220, y: 120 });
         setTerraRotation(Math.PI);
       }
     };
@@ -88,143 +57,89 @@ export default function EarthSection() {
     {
       title: "MOPITT – Air Pollution Tracking",
       description:
-        "MOPITT (from Canada) measured carbon monoxide in the lower atmosphere for 25 years, creating the first continuous global CO record and tracking wildfire smoke and industrial emissions.",
+        "MOPITT monitors carbon monoxide and air pollution from wildfires and factories, showing how human activity impacts the atmosphere.",
       icon: <FaBurn className="text-red-400 text-3xl" />,
       details: [
-        "Global carbon monoxide trends",
-        "Wildfire smoke transport",
-        "Industrial & urban pollution sources",
+        "Urban pollution mapping",
+        "Wildfire smoke monitoring",
+        "Factory emissions tracking",
       ],
+      slug: "mopitt",
     },
     {
       title: "CERES – Earth's Energy Balance",
       description:
-        "CERES radiometers measure Earth's radiation budget – how much sunlight is absorbed versus how much heat is emitted – providing vital data for climate models.",
+        "CERES studies the balance between incoming sunlight and outgoing heat, providing critical insights into climate change.",
       icon: <FaSun className="text-yellow-400 text-3xl" />,
       details: [
-        "Incoming solar energy",
-        "Reflected sunlight (albedo)",
-        "Emitted infrared heat",
+        "Incoming solar radiation",
+        "Heat reflected by Earth",
+        "Direct climate indicators",
       ],
+      slug: "ceres",
     },
     {
       title: "MODIS – Daily Global Imaging",
       description:
-        "MODIS captures global images twice daily in 36 spectral bands, monitoring clouds, land, oceans, ice, and active fires at resolutions from 250 m to 1 km.",
+        "MODIS captures daily imagery of Earth, from cloud movements and ocean currents to wildfires and polar ice changes.",
       icon: <FaCloud className="text-blue-300 text-3xl" />,
       details: [
-        "Vegetation & land cover maps",
-        "Cloud & weather monitoring",
-        "Wildfire & polar ice detection",
+        "Global daily images",
+        "Weather and cloud tracking",
+        "Forest fire detection",
       ],
+      slug: "modis",
     },
     {
-      title: "ASTER – High-Resolution Imaging",
+      title: "ASTER & MISR – Detail and Perspective",
       description:
-        "ASTER (from Japan) provides high-resolution visible to thermal infrared images, serving as Terra’s ‘zoom lens’ for detailed views of volcanoes, cities, and land changes.",
-      icon: <FaSearch className="text-green-400 text-3xl" />,
-      details: [
-        "Urban heat & land surface maps",
-        "Volcano & geology studies",
-        "Natural resource exploration",
-      ],
-    },
-    {
-      title: "MISR – Multi-Angle Observations",
-      description:
-        "MISR’s 9 cameras view Earth from different angles, allowing 3D studies of clouds, aerosols, storms, and surface features like vegetation and megacities.",
+        "ASTER zooms into fine details like city heat and natural resources, while MISR provides multiple perspectives of storms, haze, and megacities’ growth.",
       icon: <FaCity className="text-purple-400 text-3xl" />,
       details: [
-        "3D cloud height retrieval",
-        "Aerosol & haze characterization",
-        "Urban growth & storm analysis",
+        "Urban heat tracking",
+        "Natural resource exploration",
+        "Storm & haze multi-angle analysis",
       ],
+      slug: "aster-misr",
     },
   ];
 
   return (
     <section
       id="earth-section"
-      className="min-h-[600vh] relative bg-gradient-to-b from-[#050a18] via-[#0f1f35] to-[#0b1a2a] text-white"
+      className="min-h-[400vh] relative bg-gradient-to-b from-black via-[#050a18] to-[#0b1a2a] text-white"
     >
       {/* Space background */}
       <div className="absolute inset-0 z-0">
         {/* Stars */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.15),_transparent_70%)]"></div>
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `radial-gradient(2px 2px at 25px 35px, #fff, transparent),
-                             radial-gradient(2px 2px at 45px 75px, rgba(255,255,255,0.6), transparent),
-                             radial-gradient(1px 1px at 95px 45px, #fff, transparent),
-                             radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.4), transparent)`,
+            backgroundImage: `radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                           radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                           radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                           radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                           radial-gradient(2px 2px at 160px 30px, #fff, transparent)`,
             backgroundRepeat: "repeat",
-            backgroundSize: "200px 150px",
+            backgroundSize: "200px 100px",
           }}
         ></div>
         {/* Nebulas */}
-        <div className="absolute w-[600px] h-[600px] bg-blue-600/10 blur-3xl rounded-full top-1/4 left-1/4 animate-pulse"></div>
-        <div className="absolute w-[400px] h-[400px] bg-purple-600/15 blur-3xl rounded-full bottom-1/3 right-1/4 animate-pulse"></div>
+        <div className="absolute w-[500px] h-[500px] bg-purple-600/30 blur-3xl rounded-full top-1/3 left-1/4"></div>
+        <div className="absolute w-[400px] h-[400px] bg-blue-500/20 blur-3xl rounded-full bottom-1/4 right-1/3"></div>
       </div>
 
-      {/* Section Header */}
-      <div className="relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-8 lg:pb-10">
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            ref={titleRef}
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
-              titleVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
-              Terra&apos;s Instruments
-            </span>
-          </h2>
-
-          {/* Gradient underline */}
-          <div
-            className={`mx-auto h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-2 transition-all duration-1000 ${
-              titleVisible ? "w-32 opacity-100" : "w-0 opacity-0"
-            }`}
-          ></div>
-
-          {/* Glow effect */}
-          <div
-            className={`mx-auto h-8 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent blur-sm mb-6 transition-all duration-1000 ${
-              titleVisible ? "w-32 opacity-100" : "w-0 opacity-0"
-            }`}
-          ></div>
-
-          <p
-            className={`text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-500 ${
-              titleVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
-            }`}
-          >
-            Explore Terra&apos;s five scientific instruments as they orbit
-            Earth, each providing unique perspectives on our planet&apos;s
-            climate, atmosphere, and surface changes.
-          </p>
-        </div>
-      </div>
-
-      <div className="h-screen flex flex-col lg:flex-row items-center sticky top-0 z-10">
+      <div className="h-screen flex items-center sticky top-0 z-10">
         {/* Earth fixed */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex items-center justify-center relative">
+        <div className="w-1/2 h-full flex items-center justify-center relative">
           <EarthModel />
 
           {/* Terra orbiting */}
           <div
-            className="absolute w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 transition-all duration-1000 ease-in-out pointer-events-none"
+            className="absolute w-32 h-32 transition-all duration-1000 ease-in-out pointer-events-none"
             style={{
-              transform: `translate(${
-                terraPosition.x * (window.innerWidth > 1024 ? 1 : 0.6)
-              }px, ${
-                terraPosition.y * (window.innerWidth > 1024 ? 1 : 0.6)
-              }px)`,
+              transform: `translate(${terraPosition.x}px, ${terraPosition.y}px)`,
             }}
           >
             <AnimatedTerra rotation={terraRotation} />
@@ -232,77 +147,43 @@ export default function EarthSection() {
         </div>
 
         {/* Right Content */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex items-center justify-center relative p-4 sm:p-6 lg:p-8">
+        <div className="w-1/2 h-full flex items-center justify-center relative p-8">
           {phases.map((phase, index) => (
             <div
               key={index}
-              className={`absolute transition-all duration-1000 ease-out -top-[125px] lg:top-[100px] w-[90%] lg:w-full ${
+              className={`absolute w-full transition-all duration-1000 ease-out ${
                 index === currentPhase
-                  ? "opacity-100 translate-y-0 scale-100"
-                  : "opacity-0 translate-y-12 scale-95"
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
             >
-              <div
-                className="relative p-4 sm:p-6 lg:p-8 rounded-2xl lg:rounded-l-2xl lg:rounded-r-[0px]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.08) 100%)",
-                  backdropFilter: "blur(15px)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  boxShadow:
-                    "0 8px 32px 0 rgba(31, 38, 135, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
-                }}
-              >
-                {/* Icon Section */}
-                <div className="flex items-center justify-center mb-6">
-                  <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20">
-                    <div className="text-4xl">{phase.icon}</div>
-                  </div>
+              <div className="bg-white/5 backdrop-blur-md rounded-xl p-8 shadow-lg border border-white/10">
+                <div className="flex items-center gap-4 mb-6">
+                  {phase.icon}
+                  <h2 className="text-3xl lg:text-4xl font-bold text-blue-300">
+                    {phase.title}
+                  </h2>
                 </div>
-
-                {/* Title */}
-                <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-center mb-4 sm:mb-6 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300 bg-clip-text text-transparent">
-                  {phase.title}
-                </h2>
-
-                {/* Description */}
-                <p className="text-gray-300 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 leading-relaxed">
+                <p className="text-gray-300 text-lg mb-6">
                   {phase.description}
                 </p>
-
-                {/* Details List */}
-                <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                <ul className="space-y-3 mb-6">
                   {phase.details.map((item, i) => (
-                    <div
+                    <li
                       key={i}
-                      className="flex items-center gap-2 sm:gap-3 text-gray-300 p-2 rounded-lg"
+                      className="flex items-center gap-2 text-gray-300"
                     >
-                      <div className="p-1 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
-                        <FaGlobe className="text-cyan-400 text-xs sm:text-sm" />
-                      </div>
-                      <span className="text-xs sm:text-sm lg:text-base">
-                        {item}
-                      </span>
-                    </div>
+                      <FaGlobe className="text-cyan-400" /> {item}
+                    </li>
                   ))}
-                </div>
-
-                {/* Learn More Button */}
-                <div className="text-center">
-                  <Link
-                    href="/instruments"
-                    className="group relative inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 hover:from-blue-700 hover:via-blue-800 hover:to-purple-700 rounded-xl text-white font-bold shadow-2xl shadow-blue-500/25 transition-all duration-500 hover:scale-105 hover:shadow-blue-500/40 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
-                  >
-                    {/* Button Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl"></div>
-
-                    {/* Button Content */}
-                    <div className="relative flex items-center gap-3">
-                      <span className="text-sm lg:text-base">Learn More</span>
-                      <FaSearch className="text-sm group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                  </Link>
-                </div>
+                </ul>
+                <a
+                  href={`/instruments/${phase.slug}`}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/50 hover:scale-105"
+                >
+                  Learn More
+                  <FaArrowRight className="text-sm" />
+                </a>
               </div>
             </div>
           ))}

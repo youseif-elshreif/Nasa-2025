@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaSatellite, FaPlay, FaArrowRight } from "react-icons/fa";
+import { FaSatellite, FaPlay, FaArrowRight, FaCity } from "react-icons/fa";
 
 export default function GamesPage() {
   const [heroVisible, setHeroVisible] = useState(false);
@@ -84,6 +84,26 @@ export default function GamesPage() {
       borderGradient: "from-green-500/30 to-emerald-500/30",
       buttonGradient: "from-green-500/20 to-emerald-500/20",
       hoverGradient: "from-green-500/30 to-emerald-500/30",
+    },
+    {
+      id: "city-builder",
+      title: "Climate City Builder",
+      subtitle: "Environmental Strategy Game",
+      description:
+        "Build sustainable cities while managing environmental challenges. Make strategic decisions to balance growth with climate impact!",
+      features: [
+        "Design eco-friendly cities",
+        "Manage environmental resources",
+        "AI-powered sustainability feedback",
+        "Climate impact visualization",
+      ],
+      difficulty: "Hard",
+      players: "Single Player",
+      icon: <FaCity className="text-4xl text-orange-400" />,
+      gradient: "from-orange-500/20 to-red-500/20",
+      borderGradient: "from-orange-500/30 to-red-500/30",
+      buttonGradient: "from-orange-500/20 to-red-500/20",
+      hoverGradient: "from-orange-500/30 to-red-500/30",
     },
   ];
 

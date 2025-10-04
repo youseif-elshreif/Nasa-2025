@@ -30,7 +30,8 @@ export default function WeatherChart({
 
     // Set canvas size
     const container = containerRef.current;
-    const dpr = window.devicePixelRatio || 1;
+    const dpr =
+      (typeof window !== "undefined" ? window.devicePixelRatio : 1) || 1;
     const rect = container.getBoundingClientRect();
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -92,10 +93,15 @@ export default function WeatherChart({
     ctx.stroke();
 
     // Draw gradient fill
-    const gradientFill = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+    const gradientFill = ctx.createLinearGradient(
+      0,
+      padding.top,
+      0,
+      height - padding.bottom
+    );
     gradientFill.addColorStop(0, gradient[0]);
     gradientFill.addColorStop(1, gradient[1]);
-    
+
     ctx.beginPath();
     ctx.moveTo(points[0].x, height - padding.bottom);
     points.forEach((point) => {
@@ -131,7 +137,6 @@ export default function WeatherChart({
     ctx.font = "bold 16px Arial";
     ctx.textAlign = "center";
     ctx.fillText(title, width / 2, 25);
-
   }, [data, title, color, unit, gradient]);
 
   return (
