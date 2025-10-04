@@ -22,7 +22,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 2rem; /* offset for any fixed headers */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 body {
@@ -30,7 +30,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 /* تحسين smooth scroll للمتصفحات الحديثة */
