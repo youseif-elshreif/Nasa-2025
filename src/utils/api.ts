@@ -3,8 +3,7 @@ import type { AxiosResponse } from "axios";
 import type { InternalAxiosRequestConfig } from "axios";
 
 // API Base URL from environment variables - using Next.js internal API routes
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 // Create axios instance
 const api = axios.create({
