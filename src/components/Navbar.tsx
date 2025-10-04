@@ -34,7 +34,11 @@ export default function Navbar() {
         {/* Right: Navigation Links */}
         <div className="hidden md:flex items-center gap-8 font-medium">
           {links.map((link, index) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              link.href === "/"
+                ? pathname === link.href
+                : pathname === link.href ||
+                  pathname.startsWith(link.href + "/");
             const IconComponent = link.icon;
             return (
               <Link
@@ -76,7 +80,11 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden flex flex-col items-center gap-4 bg-black/50 backdrop-blur-xl border-t border-white/10 py-6 animate-fade-in shadow-2xl">
           {links.map((link, index) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              link.href === "/"
+                ? pathname === link.href
+                : pathname === link.href ||
+                  pathname.startsWith(link.href + "/");
             const IconComponent = link.icon;
             return (
               <Link
