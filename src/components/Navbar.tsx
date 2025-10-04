@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes, FaGamepad, FaHome } from "react-icons/fa";
 import { FaMicroscope } from "react-icons/fa";
+import { TiWeatherCloudy } from "react-icons/ti";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function Navbar() {
   const links = [
     { name: "Home", href: "/", icon: FaHome },
     { name: "Instruments", href: "/instruments", icon: FaMicroscope },
+    { name: "Weather", href: "/weather", icon: TiWeatherCloudy },
     { name: "Games", href: "/games", icon: FaGamepad },
   ];
 

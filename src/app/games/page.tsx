@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaSatellite, FaRocket, FaPlay, FaArrowRight } from "react-icons/fa";
+import { FaSatellite, FaPlay, FaArrowRight } from "react-icons/fa";
 
 export default function GamesPage() {
   const [heroVisible, setHeroVisible] = useState(false);
@@ -84,28 +84,6 @@ export default function GamesPage() {
       borderGradient: "from-green-500/30 to-emerald-500/30",
       buttonGradient: "from-green-500/20 to-emerald-500/20",
       hoverGradient: "from-green-500/30 to-emerald-500/30",
-    },
-    // Future games can be added here
-    {
-      id: "coming-soon-1",
-      title: "Earth Explorer",
-      subtitle: "Climate Detective",
-      description:
-        "Analyze climate data and discover patterns in Earth's changing environment. Coming soon...",
-      features: [
-        "Climate data analysis",
-        "Pattern recognition challenges",
-        "Real NASA datasets",
-        "Research simulation",
-      ],
-      difficulty: "Medium",
-      players: "Single Player",
-      icon: <FaRocket className="text-4xl text-purple-400" />,
-      gradient: "from-purple-500/20 to-indigo-500/20",
-      borderGradient: "from-purple-500/30 to-indigo-500/30",
-      buttonGradient: "from-purple-500/20 to-indigo-500/20",
-      hoverGradient: "from-purple-500/30 to-indigo-500/30",
-      comingSoon: true,
     },
   ];
 
@@ -293,9 +271,7 @@ export default function GamesPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={gamesVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`group relative p-4 sm:p-6 lg:p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden ${
-                  game.comingSoon ? "opacity-80" : ""
-                }`}
+                className="group relative p-4 sm:p-6 lg:p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden"
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",
@@ -310,13 +286,6 @@ export default function GamesPage() {
 
                 {/* Border glow */}
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-blue-400/20"></div>
-
-                {/* Coming Soon Badge */}
-                {game.comingSoon && (
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-full text-xs font-medium text-yellow-400 backdrop-blur-sm">
-                    Coming Soon
-                  </div>
-                )}
 
                 <div className="relative z-10 space-y-6">
                   {/* Game Icon and Title */}
@@ -370,22 +339,16 @@ export default function GamesPage() {
                   </div>
 
                   {/* Play Button */}
-                  {game.comingSoon ? (
-                    <div className="w-full px-4 py-3 bg-gradient-to-r from-gray-500/20 to-gray-600/20 border border-gray-500/30 rounded-xl text-gray-400 font-medium text-center backdrop-blur-sm cursor-not-allowed">
-                      Coming Soon
-                    </div>
-                  ) : (
-                    <Link href={`/games/${game.id}`}>
-                      <button className="group/btn relative w-full px-4 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                        <span className="relative z-10 flex items-center justify-center gap-2">
-                          <FaPlay className="text-sm" />
-                          <span>Play Now</span>
-                          <FaArrowRight className="text-xs opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
-                        </span>
-                      </button>
-                    </Link>
-                  )}
+                  <Link href={`/games/${game.id}`}>
+                    <button className="group/btn relative w-full px-4 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-400/50 rounded-xl text-white font-medium backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        <FaPlay className="text-sm" />
+                        <span>Play Now</span>
+                        <FaArrowRight className="text-xs opacity-70 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
+                      </span>
+                    </button>
+                  </Link>
                 </div>
               </motion.div>
             ))}

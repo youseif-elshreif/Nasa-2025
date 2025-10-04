@@ -356,7 +356,6 @@ export default function InstrumentDetailsPage() {
                   src={instrument.video}
                   className="w-full h-full object-cover rounded-xl"
                   controls
-                  autoPlay
                   muted
                   loop
                   playsInline
