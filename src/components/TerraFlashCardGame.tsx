@@ -93,6 +93,16 @@ export default function TerraFlashCardGame() {
     },
   ];
 
+  // Shuffle array function
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
   const fetchQuestions = async (instrument: InstrumentType) => {
     setLoading(true);
     setError(null);
@@ -104,7 +114,13 @@ export default function TerraFlashCardGame() {
         response.data.data &&
         response.data.data.length > 0
       ) {
-        setQuestions(response.data.data);
+        // Shuffle the questions and take up to 10 random ones
+        const shuffledQuestions = shuffleArray(
+          response.data.data as Question[]
+        );
+        const maxQuestions = Math.min(10, shuffledQuestions.length);
+        const selectedQuestions = shuffledQuestions.slice(0, maxQuestions);
+        setQuestions(selectedQuestions);
       } else {
         setError(
           `No questions found for ${instrument}. Please try another instrument.`
@@ -233,10 +249,16 @@ export default function TerraFlashCardGame() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent mb-4">
               Terra Flash Cards
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
               Test your knowledge about Terra&apos;s instruments with
               interactive flash cards
             </p>
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg px-4 py-2 mb-8">
+              <p className="text-blue-300 text-sm text-center">
+                🎲 Each quiz contains up to 10 random questions • New questions
+                every time!
+              </p>
+            </div>
           </motion.div>
 
           {/* Instrument Selection */}
@@ -442,7 +464,7 @@ export default function TerraFlashCardGame() {
             <div className="text-right">
               <p className="text-sm text-gray-400">Score</p>
               <p className="text-xl font-bold text-green-400">
-                {gameStats.correct}/{gameStats.total}
+                {gameStats.correct}/10
               </p>
             </div>
           </div>
