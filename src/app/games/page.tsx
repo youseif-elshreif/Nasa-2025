@@ -46,7 +46,7 @@ export default function GamesPage() {
 
   const games = [
     {
-      id: "satellitedataexplorer",
+      id: "satellite-data-explorer",
       title: "TerraQuest",
       subtitle: "Satellite Data Explorer",
       description:

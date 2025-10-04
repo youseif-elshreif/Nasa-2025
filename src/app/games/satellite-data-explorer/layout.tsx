@@ -9,7 +9,7 @@ export const metadata = {
     description:
       "Learn about NASA's Terra Satellite through an interactive space game",
     type: "website",
-    url: "https://your-domain.com/games/satellitedataexplorer",
+    url: "https://your-domain.com/games/satellite-data-explorer",
     images: [
       {
         url: "/assets/terra-game-preview.jpg",
