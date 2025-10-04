@@ -58,8 +58,7 @@ const instruments = [
     fullDescription:
       "The Clouds and the Earth's Radiant Energy System (CERES) instruments measure both solar-reflected and Earth-emitted radiation from the top of the atmosphere to the Earth's surface. CERES data provides critical insights into Earth's energy budget and how it's changing over time. This information is fundamental to understanding climate change, as it reveals how much energy Earth absorbs from the sun versus how much it radiates back to space.",
     icon: <FaSun className="text-yellow-400 text-4xl" />,
-    video:
-      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
+    video: "/assets/videos/mopitt.mp4",
     details: [
       "Incoming solar radiation measurement",
       "Earth's reflected heat monitoring",
@@ -167,8 +166,7 @@ const instruments = [
     fullDescription:
       "The Multi-angle Imaging SpectroRadiometer (MISR) views Earth with cameras pointed in 9 different directions, providing unique 3D information about clouds, aerosols, and land surfaces. This multi-angle approach allows MISR to distinguish between different types of particles in the atmosphere and measure cloud heights with unprecedented accuracy. MISR data is crucial for understanding air quality and climate interactions.",
     icon: <FaCity className="text-purple-400 text-4xl" />,
-    video:
-      "/assets/videos/__Create an 8-second semi-realistic cartoon-style animation showing a Muslim young man studying Isla (1).mp4",
+    video: "/assets/videos/mopitt.mp4",
     details: [
       "Multi-angle atmospheric analysis",
       "Cloud height measurements",
