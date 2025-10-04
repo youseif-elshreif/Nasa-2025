@@ -22,6 +22,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 2rem; /* offset for any fixed headers */
+  overflow-x: hidden;
 }
 
 body {

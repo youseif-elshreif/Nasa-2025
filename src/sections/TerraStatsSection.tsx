@@ -45,7 +45,7 @@ function StatCard({ icon, value, label, index }: StatCardProps) {
   return (
     <div
       ref={cardRef}
-      className={`group relative p-6 md:p-8 rounded-2xl transition-all duration-700 transform hover:scale-105 hover:-rotate-2 hover:translate-y-[-8px] cursor-pointer ${
+      className={`group relative p-4 sm:p-6 md:p-8 rounded-2xl transition-all duration-700 transform hover:scale-105 hover:-rotate-2 hover:translate-y-[-8px] cursor-pointer ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
       style={{
@@ -77,20 +77,20 @@ function StatCard({ icon, value, label, index }: StatCardProps) {
       <div className="relative z-10 text-center space-y-4">
         {/* Icon */}
         <div className="flex justify-center">
-          <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20 group-hover:from-blue-400/30 group-hover:via-purple-400/25 group-hover:to-blue-500/30 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25">
-            <div className="text-3xl md:text-4xl text-blue-400 group-hover:text-blue-300 transition-all duration-300 group-hover:scale-110 transform group-hover:drop-shadow-lg">
+          <div className="p-3 sm:p-4 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/15 to-blue-600/20 group-hover:from-blue-400/30 group-hover:via-purple-400/25 group-hover:to-blue-500/30 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25">
+            <div className="text-2xl sm:text-3xl md:text-4xl text-blue-400 group-hover:text-blue-300 transition-all duration-300 group-hover:scale-110 transform group-hover:drop-shadow-lg">
               {icon}
             </div>
           </div>
         </div>
 
         {/* Value */}
-        <div className="text-2xl md:text-3xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
+        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
           {value}
         </div>
 
         {/* Label */}
-        <div className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300 text-sm md:text-base">
+        <div className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300 text-xs sm:text-sm md:text-base">
           {label}
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function TerraStatsSection() {
   ];
 
   return (
-    <section className="relative py-20 px-4 md:px-8 lg:px-20 bg-gradient-to-b from-[#0b1a2a] via-[#081126] to-[#050a18] text-white overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-20 bg-gradient-to-b from-[#0b1a2a] via-[#081126] to-[#050a18] text-white overflow-hidden">
       {/* Enhanced Space Background */}
       <div className="absolute inset-0 z-0">
         {/* Stars */}
@@ -206,10 +206,10 @@ export default function TerraStatsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 lg:mb-16">
           <h2
             ref={titleRef}
-            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
               titleVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -238,7 +238,7 @@ export default function TerraStatsSection() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
           {stats.map((stat, index) => (
             <StatCard
               key={index}

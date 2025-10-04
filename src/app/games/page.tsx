@@ -94,7 +94,7 @@ export default function GamesPage() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden flex items-center pt-[75px]"
+        className="relative min-h-screen bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden flex items-center pt-[75px] px-4 sm:px-6 lg:px-8"
       >
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 z-0">
@@ -152,7 +152,7 @@ export default function GamesPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-center">
                 <span className="block text-white mb-2 animate-slide-up">
                   Space
                 </span>
@@ -173,7 +173,7 @@ export default function GamesPage() {
               </div>
 
               <p
-                className="text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed animate-slide-up m-auto mb-4"
+                className="text-base sm:text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed animate-slide-up mx-auto mb-4 text-center px-4 sm:px-0"
                 style={{ animationDelay: "0.4s" }}
               >
                 Explore the cosmos through interactive games and learn about{" "}
@@ -253,7 +253,7 @@ export default function GamesPage() {
               <span className="text-white">Games</span>
             </h2>
             <p
-              className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${
+              className={`text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-200 px-4 sm:px-0 ${
                 gamesVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -273,7 +273,7 @@ export default function GamesPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={gamesVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden ${
+                className={`group relative p-4 sm:p-6 lg:p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden ${
                   game.comingSoon ? "opacity-80" : ""
                 }`}
                 style={{

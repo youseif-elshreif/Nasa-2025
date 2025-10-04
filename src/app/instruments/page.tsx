@@ -215,9 +215,9 @@ export default function InstrumentsPage() {
 
         {/* Hero Content */}
         <div className="relative z-10 min-h-screen flex items-center">
-          <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-20 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 w-full">
             {/* Mobile: Model first, then text */}
-            <div className="flex flex-col lg:hidden gap-12">
+            <div className="flex flex-col lg:hidden gap-[120px]">
               {/* Model Panel - Mobile */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -231,7 +231,7 @@ export default function InstrumentsPage() {
               {/* Text Content - Mobile */}
               <div className="text-center space-y-8 animate-fade-in">
                 <div className="space-y-4">
-                  <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                     <span className="block text-white mb-2 animate-slide-up">
                       Terra&apos;s
                     </span>
@@ -312,7 +312,7 @@ export default function InstrumentsPage() {
                 </div>
 
                 <p
-                  className="text-lg xl:text-xl text-gray-300 max-w-lg leading-relaxed animate-slide-up"
+                  className="text-base sm:text-lg md:text-xl text-gray-300 max-w-lg mx-auto leading-relaxed animate-slide-up px-4 sm:px-0"
                   style={{ animationDelay: "0.4s" }}
                 >
                   Terra carries 5 advanced instruments that together provide a
@@ -404,7 +404,7 @@ export default function InstrumentsPage() {
               <span className="text-white">Instruments</span>
             </h2>
             <p
-              className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${
+              className={`text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-200 px-4 sm:px-0 ${
                 cardsVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -417,14 +417,14 @@ export default function InstrumentsPage() {
           </div>
 
           {/* Instruments Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {instruments.map((instrument, index) => (
               <motion.div
                 key={instrument.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={cardsVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden"
+                className="group relative p-4 sm:p-6 lg:p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer overflow-hidden"
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(59,130,246,0.03) 100%)",

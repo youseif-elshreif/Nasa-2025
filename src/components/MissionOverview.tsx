@@ -92,12 +92,12 @@ export default function MissionOverview() {
         ></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-16 lg:px-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:px-16 lg:px-20">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 lg:mb-16">
           <h2
             id="mission-overview-title"
-            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -131,7 +131,7 @@ export default function MissionOverview() {
                 : "opacity-0 translate-y-4"
             }`}
           >
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed px-4 sm:px-0">
               Terra (launched Dec 18, 1999) is NASA&apos;s long-running
               Earth-observing flagship. With five instruments — MODIS, ASTER,
               MOPITT, MISR, and CERES — Terra has produced multi-decadal data
@@ -140,7 +140,7 @@ export default function MissionOverview() {
               change.
             </p>
 
-            <p className="text-base md:text-lg text-gray-400">
+            <p className="text-sm sm:text-base md:text-lg text-gray-400 px-4 sm:px-0">
               The mission&apos;s archive exceeds 6 PB and continues to deliver
               vital science more than 25 years after launch.
             </p>
@@ -169,9 +169,9 @@ export default function MissionOverview() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start">
           {/* Left Column: Stats and Timeline */}
-          <div className="space-y-12">
+          <div className="space-y-8 lg:space-y-12">
             {/* Mission Stats */}
             <div
               className={`transition-all duration-1000 delay-300 ${
@@ -180,11 +180,11 @@ export default function MissionOverview() {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <h3 className="text-2xl font-bold text-white mb-8 text-center lg:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 lg:mb-8 text-center lg:text-left">
                 Mission Statistics
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {statsData.map((stat, index) => (
                   <StatCard
                     key={stat.label}

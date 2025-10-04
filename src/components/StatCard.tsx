@@ -27,16 +27,18 @@ export default function StatCard({
         animationDelay: `${delay}ms`,
       }}
     >
-      <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 shadow-lg border border-white/8 hover:scale-105 transition-all duration-300 hover:bg-white/8 animate-fade-in-up">
+      <div className="bg-white/5 backdrop-blur-md rounded-xl p-4 sm:p-6 shadow-lg border border-white/8 hover:scale-105 transition-all duration-300 hover:bg-white/8 animate-fade-in-up">
         {/* Glow effect on hover */}
         <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-blue-500/20 via-purple-500/15 to-cyan-500/20 blur-xl -z-10"></div>
 
         <div className="relative z-10">
           {/* Value */}
-          <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent mb-2">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent mb-2">
             {value}
             {unit && (
-              <span className="text-xl text-blue-300/80 ml-1">{unit}</span>
+              <span className="text-lg sm:text-xl text-blue-300/80 ml-1">
+                {unit}
+              </span>
             )}
           </div>
 

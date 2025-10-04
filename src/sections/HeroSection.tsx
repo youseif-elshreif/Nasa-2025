@@ -5,7 +5,7 @@ import NASALogo from "../components/NASALogo";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center justify-between px-8 md:px-16 lg:px-20 bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden pt-[75px]">
+    <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-16 lg:px-20 bg-gradient-to-br from-black via-[#0a1428] to-[#0b1a2a] text-white overflow-hidden pt-[75px] pb-8 lg:pb-0">
       {/* Enhanced Space Background */}
       <div className="absolute inset-0 z-0">
         {/* Animated Stars */}
@@ -54,10 +54,10 @@ export default function HeroSection() {
       </div>
 
       {/* Enhanced Content Left */}
-      <div className="w-1/2 relative z-10 space-y-8 animate-fade-in">
+      <div className="w-full lg:w-1/2 relative z-10 space-y-6 lg:space-y-8 animate-fade-in text-center lg:text-left">
         {/* Main Title */}
         <div className="space-y-4">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
             <span className="block text-white mb-2 animate-slide-up">
               Explore Space
             </span>
@@ -81,7 +81,7 @@ export default function HeroSection() {
 
         {/* Description */}
         <p
-          className="text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed animate-slide-up"
+          className="text-base sm:text-lg md:text-xl text-gray-300 max-w-lg mx-auto lg:mx-0 leading-relaxed animate-slide-up"
           style={{ animationDelay: "0.4s" }}
         >
           Discover NASA&apos;s Terra satellite and its mission to observe our
@@ -91,7 +91,7 @@ export default function HeroSection() {
 
         {/* Features List */}
         <div
-          className="flex flex-wrap gap-4 animate-slide-up"
+          className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 animate-slide-up"
           style={{ animationDelay: "0.6s" }}
         >
           {[
@@ -146,9 +146,9 @@ export default function HeroSection() {
       </div>
 
       {/* Enhanced Interactive Terra Right */}
-      <div className="w-1/2 h-full flex justify-center items-center z-1 relative">
+      <div className="w-full lg:w-1/2 h-64 sm:h-80 md:h-96 lg:h-full flex justify-center items-center z-1 relative mt-8 lg:mt-0">
         {/* Terra Container with Glow */}
-        <div className="relative w-[80%] h-full">
+        <div className="relative w-full max-w-md lg:w-[80%] h-full">
           {/* Background Glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-cyan-500/10 blur-3xl rounded-full animate-pulse"></div>
 

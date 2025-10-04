@@ -52,9 +52,9 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
       <div className="absolute inset-0 bg-[conic-gradient(at_center,_transparent_0deg,_rgba(59,130,246,0.1)_60deg,_transparent_120deg)]"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-12 sm:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-1 space-y-6">
             <div className="flex items-center">
@@ -66,7 +66,7 @@ export default function Footer() {
                 className="h-12 w-auto drop-shadow-lg"
               />
             </div>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Exploring the cosmos through NASA&apos;s Terra satellite mission.
               Bringing space science closer to Earth with interactive
               experiences.
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
               <FaRocket className="text-blue-400" />
               Quick Links
             </h3>

@@ -168,11 +168,11 @@ export default function EarthSection() {
       </div>
 
       {/* Section Header */}
-      <div className="relative z-10 pt-20 pb-10">
-        <div className="text-center max-w-4xl mx-auto px-8">
+      <div className="relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-8 lg:pb-10">
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             ref={titleRef}
-            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 transition-all duration-1000 ${
               titleVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -198,7 +198,7 @@ export default function EarthSection() {
           ></div>
 
           <p
-            className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-500 ${
+            className={`text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-500 ${
               titleVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
@@ -211,16 +211,20 @@ export default function EarthSection() {
         </div>
       </div>
 
-      <div className="h-screen flex items-center sticky top-0 z-10">
+      <div className="h-screen flex flex-col lg:flex-row items-center sticky top-0 z-10">
         {/* Earth fixed */}
-        <div className="w-1/2 h-full flex items-center justify-center relative">
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex items-center justify-center relative">
           <EarthModel />
 
           {/* Terra orbiting */}
           <div
-            className="absolute w-32 h-32 transition-all duration-1000 ease-in-out pointer-events-none"
+            className="absolute w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 transition-all duration-1000 ease-in-out pointer-events-none"
             style={{
-              transform: `translate(${terraPosition.x}px, ${terraPosition.y}px)`,
+              transform: `translate(${
+                terraPosition.x * (window.innerWidth > 1024 ? 1 : 0.6)
+              }px, ${
+                terraPosition.y * (window.innerWidth > 1024 ? 1 : 0.6)
+              }px)`,
             }}
           >
             <AnimatedTerra rotation={terraRotation} />
@@ -228,18 +232,18 @@ export default function EarthSection() {
         </div>
 
         {/* Right Content */}
-        <div className="w-1/2 h-full flex items-center justify-center relative p-8">
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex items-center justify-center relative p-4 sm:p-6 lg:p-8">
           {phases.map((phase, index) => (
             <div
               key={index}
-              className={`absolute w-full transition-all duration-1000 ease-out ${
+              className={`absolute transition-all duration-1000 ease-out -top-[125px] lg:top-[100px] w-[90%] lg:w-full ${
                 index === currentPhase
                   ? "opacity-100 translate-y-0 scale-100"
                   : "opacity-0 translate-y-12 scale-95"
               }`}
             >
               <div
-                className="relative p-8 rounded-l-2xl"
+                className="relative p-4 sm:p-6 lg:p-8 rounded-2xl lg:rounded-l-2xl lg:rounded-r-[0px]"
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 50%, rgba(59,130,246,0.08) 100%)",
@@ -257,26 +261,28 @@ export default function EarthSection() {
                 </div>
 
                 {/* Title */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300 bg-clip-text text-transparent">
+                <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-center mb-4 sm:mb-6 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300 bg-clip-text text-transparent">
                   {phase.title}
                 </h2>
 
                 {/* Description */}
-                <p className="text-gray-300 text-base lg:text-lg mb-6 leading-relaxed">
+                <p className="text-gray-300 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 leading-relaxed">
                   {phase.description}
                 </p>
 
                 {/* Details List */}
-                <div className="space-y-3 mb-6">
+                <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {phase.details.map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 text-gray-300 p-2 rounded-lg"
+                      className="flex items-center gap-2 sm:gap-3 text-gray-300 p-2 rounded-lg"
                     >
                       <div className="p-1 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
-                        <FaGlobe className="text-cyan-400 text-sm" />
+                        <FaGlobe className="text-cyan-400 text-xs sm:text-sm" />
                       </div>
-                      <span className="text-sm lg:text-base">{item}</span>
+                      <span className="text-xs sm:text-sm lg:text-base">
+                        {item}
+                      </span>
                     </div>
                   ))}
                 </div>
