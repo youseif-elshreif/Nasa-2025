@@ -374,7 +374,10 @@ export default function InstrumentDetailsPage() {
             </motion.div>
 
             {/* Images Section - Only show for instruments with images */}
-            {(instrumentId === "aster" || instrumentId === "ceres" || instrumentId === "modis" || instrumentId === "mopitt") && (
+            {(instrumentId === "aster" ||
+              instrumentId === "ceres" ||
+              instrumentId === "modis" ||
+              instrumentId === "mopitt") && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -403,7 +406,7 @@ export default function InstrumentDetailsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  
+
                   <div className="relative group overflow-hidden rounded-xl">
                     <Image
                       src={`/assets/imgs/${instrumentId}2.jpg`}
