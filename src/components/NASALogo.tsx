@@ -82,7 +82,7 @@ export default function NASALogo() {
         modelRef.current = model;
 
         // Scale and position the model
-        model.scale.setScalar(0.07); // Bigger size to be visible
+        model.scale.setScalar(0.06); // Bigger size to be visible
         model.position.set(0, -0.2, 0); // Slightly lower position
         const colors = [
           0xff6f61, // Salmon

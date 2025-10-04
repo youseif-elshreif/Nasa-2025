@@ -24,6 +24,10 @@ const TerraGame = () => {
   const [combo, setCombo] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
+  // Touch handling state
+  const touchStart = useRef({ x: 0, y: 0 });
+  const lastTouchTime = useRef(0);
+
   const instruments = useMemo(
     () => [
       {
@@ -116,6 +120,7 @@ const TerraGame = () => {
   const [satellitePos, setSatellitePos] = useState({ x: 50, y: 20 });
   const [starOffset, setStarOffset] = useState(0);
   const keysPressed = useRef({});
+  const touchDirection = useRef({ x: 0, y: 0 });
   const lastComboTime = useRef(Date.now());
 
   // Animate stars slowly
@@ -191,11 +196,18 @@ const TerraGame = () => {
         let newY = prev.y;
         const speed = 0.8;
 
-        // Diagonal and cardinal movement
+        // Keyboard movement
         if (keysPressed.current["ArrowLeft"]) newX -= speed;
         if (keysPressed.current["ArrowRight"]) newX += speed;
         if (keysPressed.current["ArrowUp"]) newY -= speed;
         if (keysPressed.current["ArrowDown"]) newY += speed;
+
+        // Touch movement
+        if (touchDirection.current.x !== 0 || touchDirection.current.y !== 0) {
+          const touchSpeed = speed * 1.2; // Slightly faster for touch
+          newX += touchDirection.current.x * touchSpeed;
+          newY += touchDirection.current.y * touchSpeed;
+        }
 
         // Boundary checking
         newX = Math.max(3, Math.min(97, newX));
@@ -849,7 +861,45 @@ const TerraGame = () => {
       )}
 
       {/* Game area */}
-      <div className="absolute inset-0 mt-16">
+      <div
+        className="absolute inset-0 mt-16"
+        onTouchStart={(e) => {
+          e.preventDefault();
+          const touch = e.touches[0];
+          touchStart.current = { x: touch.clientX, y: touch.clientY };
+          lastTouchTime.current = Date.now();
+        }}
+        onTouchMove={(e) => {
+          e.preventDefault();
+          const touch = e.touches[0];
+          const deltaX = touch.clientX - touchStart.current.x;
+          const deltaY = touch.clientY - touchStart.current.y;
+          const minSwipeDistance = 30;
+
+          // Calculate direction based on swipe
+          if (
+            Math.abs(deltaX) > minSwipeDistance ||
+            Math.abs(deltaY) > minSwipeDistance
+          ) {
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+              // Horizontal swipe
+              touchDirection.current.x = deltaX > 0 ? 1 : -1;
+              touchDirection.current.y = 0;
+            } else {
+              // Vertical swipe
+              touchDirection.current.y = deltaY > 0 ? 1 : -1;
+              touchDirection.current.x = 0;
+            }
+          }
+        }}
+        onTouchEnd={(e) => {
+          e.preventDefault();
+          // Stop movement after a short delay to allow smooth movement
+          setTimeout(() => {
+            touchDirection.current = { x: 0, y: 0 };
+          }, 100);
+        }}
+      >
         {/* Earth */}
         <div
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-2/3 rounded-t-full bg-gradient-to-b from-blue-400 via-green-400 to-blue-600 opacity-80"
@@ -932,9 +982,10 @@ const TerraGame = () => {
           <div className="absolute inset-0 rounded-full opacity-30 bg-gradient-to-r from-blue-500/20 via-purple-500/15 to-cyan-500/20 blur-lg"></div>
 
           <p className="relative z-10 text-sm text-gray-300 font-medium">
-            <span className="text-blue-400">↑↓←→</span> Move Satellite •
-            <span className="text-purple-400 mx-2">🛰️</span> Collect Data •
-            <span className="text-orange-400">⚡</span> Build Combos!
+            <span className="text-blue-400 hidden md:inline">↑↓←→</span>
+            <span className="text-blue-400 md:hidden">� Swipe</span> Move
+            Satellite •<span className="text-purple-400 mx-2">🛰️</span> Collect
+            Data •<span className="text-orange-400">⚡</span> Build Combos!
           </p>
         </div>
       </div>
